@@ -29,7 +29,12 @@ async function carregarTarefas() {
     const proximoStatus = tarefa.status === "concluida" ? "pendente" : "concluida";
     const textoStatus = tarefa.status === "concluida" ? "Concluída" : "Pendente";
     const textoAcaoStatus = tarefa.status === "concluida" ? "Reabrir" : "Concluir";
-
+    
+    const classeAcaoStatus =
+      tarefa.status === "concluida"
+        ? "reabrir"
+        : "concluir";
+        
     return `
       <tr data-task-id="${tarefa.id}">
         <td>${escaparHtml(tarefa.titulo)}</td>
@@ -45,7 +50,7 @@ async function carregarTarefas() {
             <a class="button secondary small" href="visualizar.html?id=${tarefa.id}">Ver</a>
             <a class="button secondary small" href="editar.html?id=${tarefa.id}">Editar</a>
 
-            <button class="button secondary small"
+            <button class="button ${classeAcaoStatus} small"
                     data-action="status"
                     data-id="${tarefa.id}"
                     data-status="${proximoStatus}">
@@ -68,17 +73,45 @@ async function carregarTarefas() {
 }
 
 async function alterarStatus(id, status) {
+  const concluindo = status === "concluida";
+
+  const confirmou = await abrirModalConfirmacao({
+    titulo: concluindo
+      ? "Concluir tarefa"
+      : "Reabrir tarefa",
+
+    mensagem: concluindo
+      ? "Deseja concluir esta tarefa?"
+      : "Deseja reabrir esta tarefa?",
+
+    confirmarTexto: concluindo
+      ? "Concluir"
+      : "Reabrir"
+  });
+
+  if (!confirmou) return;
+
   const { error } = await window.dbClient
     .from("tarefas")
     .update({ status })
     .eq("id", id);
 
   if (error) {
-    mostrarMensagem(`Erro ao alterar status: ${error.message}`, "error");
+    mostrarMensagem(
+      `Erro ao alterar status: ${error.message}`,
+      "error"
+    );
+
     return;
   }
 
-  mostrarMensagem("Status atualizado com sucesso.", "success");
+  mostrarMensagem(
+    concluindo
+      ? "Tarefa concluída com sucesso."
+      : "Tarefa reaberta com sucesso.",
+    "success"
+  );
+
   await carregarTarefas();
 }
 
@@ -110,10 +143,12 @@ document.addEventListener("click", async (event) => {
   const alvo = event.target.closest("[data-action]");
   if (!alvo) return;
 
-  if (alvo.dataset.action === "status") {
-    await alterarStatus(alvo.dataset.id, alvo.dataset.status);
-  }
-
+if (alvo.dataset.action === "status") {
+  await alterarStatus(
+    alvo.dataset.id,
+    alvo.dataset.status,
+  );
+}
   if (alvo.dataset.action === "excluir") {
     await excluirTarefa(alvo.dataset.id, alvo.dataset.titulo);
   }
