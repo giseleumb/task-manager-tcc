@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Histórico | Gerenciador de Tarefas</title>
+
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
+</head>
+
+
+<body>
+
+  <header class="topbar">
+
+    <div class="container">
+
+      <h1>Gerenciador de Tarefas</h1>
+
+      <p>Histórico de atividades</p>
+
+    </div>
+
+  </header>
+
+
+  <main class="container">
+
+    <section class="page-heading">
+
+      <div>
+
+        <h2>Histórico</h2>
+
+        <p>
+          Acompanhe as atividades realizadas nas tarefas.
+        </p>
+
+      </div>
+
+
+      <a
+        href="index.html"
+        class="button secondary"
+      >
+        ← Voltar
+      </a>
+
+    </section>
+
+
+    <div
+      id="mensagem"
+      class="message hidden"
+    ></div>
+
+
+    <section class="card">
+
+      <div
+        id="carregando"
+        class="loading"
+      >
+        Carregando histórico...
+      </div>
+
+
+      <div
+        id="historico-vazio"
+        class="empty-state hidden"
+      >
+
+        <h3>Nenhum histórico encontrado</h3>
+
+        <p>
+          As atividades realizadas aparecerão aqui.
+        </p>
+
+      </div>
+
+
+      <div class="table-wrapper">
+
+        <table
+          id="tabela-historico"
+          class="task-table hidden"
+        >
+
+          <thead>
+
+            <tr>
+
+              <th>Data</th>
+
+              <th>Tarefa</th>
+
+              <th>Ação</th>
+
+              <th>Autor da tarefa</th>
+
+              <th>Detalhes</th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody id="lista-historico"></tbody>
+
+        </table>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script src="js/supabaseClient.js"></script>
+
+  <script src="js/common.js"></script>
+
+  <script src="js/historico.js"></script>
+
+</body>
+
+</html>
