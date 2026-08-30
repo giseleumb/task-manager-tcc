@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nova tarefa | Gerenciador de Tarefas</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <h1>Gerenciador de Tarefas</h1>
+      <p>Cadastro de tarefa</p>
+    </div>
+  </header>
+
+  <main class="container narrow">
+    <a class="back-link" href="index.html">← Voltar para a listagem</a>
+
+    <section class="card form-card">
+      <h2>Nova tarefa</h2>
+
+      <div id="mensagem" class="message hidden" role="alert"></div>
+
+      <form id="form-tarefa" novalidate>
+        <div class="form-group">
+          <label for="titulo-tarefa">Título <span aria-hidden="true">*</span></label>
+          <input
+            id="titulo-tarefa"
+            name="titulo"
+            type="text"
+            maxlength="120"
+            autocomplete="off"
+            required
+          >
+          <small>Campo obrigatório.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="descricao-tarefa">Descrição</label>
+          <textarea
+            id="descricao-tarefa"
+            name="descricao"
+            rows="5"
+            maxlength="500"
+          ></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button id="salvar-tarefa" class="button primary" type="submit">Salvar</button>
+          <a class="button secondary" href="index.html">Cancelar</a>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabaseClient.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/nova.js"></script>
+</body>
+</html>
