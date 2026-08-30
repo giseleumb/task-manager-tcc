@@ -25,25 +25,20 @@
       <form id="form-tarefa" novalidate>
         <div class="form-group">
           <label for="titulo-tarefa">Título <span aria-hidden="true">*</span></label>
-          <input
-            id="titulo-tarefa"
-            name="titulo"
-            type="text"
-            maxlength="120"
-            autocomplete="off"
-            required
-          >
+          <input id="titulo-tarefa" name="titulo" type="text" maxlength="120" required>
           <small>Campo obrigatório.</small>
         </div>
 
         <div class="form-group">
-          <label for="descricao-tarefa">Descrição</label>
-          <textarea
-            id="descricao-tarefa"
-            name="descricao"
-            rows="5"
-            maxlength="500"
-          ></textarea>
+          <label for="descricao-tarefa">Descrição <span aria-hidden="true">*</span></label>
+          <textarea id="descricao-tarefa" name="descricao" rows="5" maxlength="500" required></textarea>
+          <small>Campo obrigatório.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="criado-por">Criado por <span aria-hidden="true">*</span></label>
+          <input id="criado-por" name="criado_por" type="text" maxlength="100" required>
+          <small>Informe o nome de quem está criando a tarefa.</small>
         </div>
 
         <div class="form-actions">

@@ -23,8 +23,7 @@ async function carregarTarefa() {
   }
 
   document.getElementById("detalhe-titulo").textContent = data.titulo;
-  document.getElementById("detalhe-descricao").textContent =
-    data.descricao || "Sem descrição.";
+  document.getElementById("detalhe-descricao").textContent = data.descricao;
 
   const status = document.getElementById("detalhe-status");
   status.textContent = data.status === "concluida" ? "Concluída" : "Pendente";
@@ -32,8 +31,19 @@ async function carregarTarefa() {
     status.classList.add("status-concluida");
   }
 
-  document.getElementById("detalhe-data").textContent = formatarData(data.data_criacao);
-  document.getElementById("editar-tarefa").href = `editar.html?id=${encodeURIComponent(id)}`;
+  document.getElementById("detalhe-criado-por").textContent =
+    data.criado_por || "Não informado";
+
+  document.getElementById("detalhe-data").textContent =
+    formatarData(data.data_criacao);
+
+  document.getElementById("editar-tarefa").href =
+    `editar.html?id=${encodeURIComponent(id)}`;
+
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("resultado") === "edicao-sucesso") {
+    mostrarMensagem("Tarefa editada com sucesso.", "success");
+  }
 
   detalhes.classList.remove("hidden");
 }

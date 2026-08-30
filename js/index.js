@@ -38,14 +38,12 @@ async function carregarTarefas() {
             ${textoStatus}
           </span>
         </td>
+        <td>${escaparHtml(tarefa.criado_por ?? "Não informado")}</td>
         <td>${formatarData(tarefa.data_criacao)}</td>
         <td>
           <div class="actions">
-            <a class="button secondary small" data-action="visualizar"
-               href="visualizar.html?id=${tarefa.id}">Ver</a>
-
-            <a class="button secondary small" data-action="editar"
-               href="editar.html?id=${tarefa.id}">Editar</a>
+            <a class="button secondary small" href="visualizar.html?id=${tarefa.id}">Ver</a>
+            <a class="button secondary small" href="editar.html?id=${tarefa.id}">Editar</a>
 
             <button class="button secondary small"
                     data-action="status"
@@ -56,7 +54,8 @@ async function carregarTarefas() {
 
             <button class="button danger small"
                     data-action="excluir"
-                    data-id="${tarefa.id}">
+                    data-id="${tarefa.id}"
+                    data-titulo="${escaparHtml(tarefa.titulo)}">
               Excluir
             </button>
           </div>
@@ -83,8 +82,14 @@ async function alterarStatus(id, status) {
   await carregarTarefas();
 }
 
-async function excluirTarefa(id) {
-  const confirmou = window.confirm("Deseja realmente excluir esta tarefa?");
+async function excluirTarefa(id, tituloTarefa) {
+  const confirmou = await abrirModalConfirmacao({
+    titulo: "Confirmar exclusão",
+    mensagem: `Deseja realmente excluir a tarefa "${tituloTarefa}"? Esta ação não poderá ser desfeita.`,
+    confirmarTexto: "Excluir tarefa",
+    perigoso: true
+  });
+
   if (!confirmou) return;
 
   const { error } = await window.dbClient
@@ -105,14 +110,12 @@ document.addEventListener("click", async (event) => {
   const alvo = event.target.closest("[data-action]");
   if (!alvo) return;
 
-  const acao = alvo.dataset.action;
-
-  if (acao === "status") {
+  if (alvo.dataset.action === "status") {
     await alterarStatus(alvo.dataset.id, alvo.dataset.status);
   }
 
-  if (acao === "excluir") {
-    await excluirTarefa(alvo.dataset.id);
+  if (alvo.dataset.action === "excluir") {
+    await excluirTarefa(alvo.dataset.id, alvo.dataset.titulo);
   }
 });
 
