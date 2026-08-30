@@ -3,6 +3,7 @@ const carregando = document.getElementById("carregando");
 const form = document.getElementById("form-tarefa");
 const titulo = document.getElementById("titulo-tarefa");
 const descricao = document.getElementById("descricao-tarefa");
+const criadoPor = document.getElementById("criado-por");
 const botaoSalvar = document.getElementById("salvar-edicao");
 
 async function carregarTarefa() {
@@ -27,6 +28,7 @@ async function carregarTarefa() {
 
   titulo.value = data.titulo ?? "";
   descricao.value = data.descricao ?? "";
+  criadoPor.value = data.criado_por ?? "Não informado";
   form.classList.remove("hidden");
 }
 
@@ -42,6 +44,20 @@ form.addEventListener("submit", async (event) => {
     return;
   }
 
+  if (!descricaoNormalizada) {
+    mostrarMensagem("A descrição é obrigatória.", "error");
+    descricao.focus();
+    return;
+  }
+
+  const confirmou = await abrirModalConfirmacao({
+    titulo: "Confirmar edição",
+    mensagem: "Deseja salvar as alterações realizadas nesta tarefa?",
+    confirmarTexto: "Salvar alterações"
+  });
+
+  if (!confirmou) return;
+
   botaoSalvar.disabled = true;
   botaoSalvar.textContent = "Salvando...";
 
@@ -49,7 +65,7 @@ form.addEventListener("submit", async (event) => {
     .from("tarefas")
     .update({
       titulo: tituloNormalizado,
-      descricao: descricaoNormalizada || null
+      descricao: descricaoNormalizada
     })
     .eq("id", id);
 
@@ -61,7 +77,7 @@ form.addEventListener("submit", async (event) => {
     return;
   }
 
-  window.location.href = `visualizar.html?id=${encodeURIComponent(id)}`;
+  window.location.href = `visualizar.html?id=${encodeURIComponent(id)}&resultado=edicao-sucesso`;
 });
 
 carregarTarefa();
