@@ -5,15 +5,6 @@
 const SUPABASE_URL = "https://dfqblqroggjdgxddchkm.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_9bLw0J8cqV0jzalqyUTECg_Tpc66D62";
 
-if (
-  SUPABASE_URL.includes("COLE_AQUI") ||
-  SUPABASE_PUBLISHABLE_KEY.includes("COLE_AQUI")
-) {
-  console.warn(
-    "Supabase ainda não configurado. Edite js/supabaseClient.js com a URL e a publishable key."
-  );
-}
-
 window.dbClient = window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_PUBLISHABLE_KEY
