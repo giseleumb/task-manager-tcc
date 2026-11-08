@@ -1,0 +1,22 @@
+{
+  "name": "task-manager-tcc",
+  "version": "1.0.0",
+  "description": "Aplicação web CRUD simples para o experimento de comparação entre scripts\r monolíticos e Page Object Model (POM) com Playwright.",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/giseleumb/task-manager-tcc.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/giseleumb/task-manager-tcc/issues"
+  },
+  "homepage": "https://github.com/giseleumb/task-manager-tcc#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^26.4.0"
+  }
+}
