@@ -51,3 +51,11 @@ form.addEventListener("submit", async (event) => {
 
   window.location.href = "index.html?resultado=cadastro-sucesso";
 });
+if (
+  window.dbClient &&
+  typeof mostrarMensagem === "function"
+) {
+  botaoSalvar.disabled = false;
+} else {
+  console.error("Não foi possível inicializar o formulário de cadastro.");
+}
