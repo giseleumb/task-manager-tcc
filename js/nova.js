@@ -2,7 +2,7 @@ const form = document.getElementById("form-tarefa");
 const titulo = document.getElementById("titulo-tarefa");
 const descricao = document.getElementById("descricao-tarefa");
 const criadoPor = document.getElementById("criado-por");
-const botaoSalvar = document.getElementById("salvar-tarefa");
+const botaoSalvar = document.getElementById("confirmar-cadastro-tarefa");
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
