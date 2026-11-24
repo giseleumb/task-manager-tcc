@@ -1,0 +1,619 @@
+<!DOCTYPE HTML PUBLIC
+"-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Code complexity report</title>
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <!-- DataTables JS -->
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+  <style>
+    h2
+    {
+          text-align: center;
+    }
+        td.footer
+        {
+          text-align: center;
+          padding-top: 3px;
+          font-family: sans-serif;
+        }
+    td.greater-value
+        {
+          padding-top: 2px;
+          text-align: center;
+          padding-left: 10px;
+          padding-right: 10px;
+          font-family: sans-serif;
+          white-space: nowrap;
+      background-color: LightPink;
+        }
+    td.lesser-value
+        {
+          padding-top: 2px;
+          text-align: center;
+          padding-left: 10px;
+          padding-right: 10px;
+          font-family: sans-serif;
+          white-space: nowrap;
+      background-color: LightGreen;
+        }
+    td.value
+        {
+          padding-top: 2px;
+          text-align: center;
+          padding-left: 10px;
+          padding-right: 10px;
+          font-family: sans-serif;
+          white-space: nowrap;
+        }
+    td.file-header
+        {
+          background-color: LightBlue;
+          font-weight: bold;
+        }
+    td.function-name
+        {
+          background-color: LightSteelBlue;
+        }
+    /* DataTables wrapper styling */
+    .dataTables_wrapper {
+          margin: 0 auto;
+          width: 95%;
+        }
+    /* Fallback styling if DataTables CSS doesn't load */
+    table#complexityTable {
+          border-collapse: collapse;
+          width: 95%;
+          margin: 0 auto;
+        }
+    table#complexityTable th {
+          background-color: #4CAF50;
+          color: white;
+          padding: 10px;
+          text-align: left;
+          border: 1px solid #ddd;
+        }
+    table#complexityTable td {
+          border: 1px solid #ddd;
+        }
+    table#complexityTable tr:nth-child(even) {
+          background-color: #f2f2f2;
+        }
+    table#complexityTable tr:hover {
+          background-color: #ddd;
+        }
+  </style>
+ </head>
+ <body>
+<h2>Code Complexity Report</h2>
+
+<center>
+
+<table id="complexityTable" class="display" style="width:100%">
+  <thead>
+    <tr>
+      <th>File</th>
+      <th>Function name</th>
+      <th>Cyclomatic complexity (15)</th>
+      <th>LOC (1000000)</th>
+      <th>
+        
+           Token count
+        
+      </th>
+      <th>Parameter count (100)</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  
+  <tr>
+    <td>tests/monolitico\cadastro.spec.js</td>
+    <td class="function-name">(anonymous)</td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">33</td>
+    
+
+    
+       <td class="value">156</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+  <tr>
+    <td>tests/monolitico\cadastro.spec.js</td>
+    <td class="function-name">(anonymous)</td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">19</td>
+    
+
+    
+       <td class="value">93</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+  <tr>
+    <td>tests/monolitico\cadastro.spec.js</td>
+    <td class="function-name">(anonymous)</td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">19</td>
+    
+
+    
+       <td class="value">93</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+  <tr>
+    <td>tests/monolitico\cadastro.spec.js</td>
+    <td class="function-name">(anonymous)</td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">19</td>
+    
+
+    
+       <td class="value">93</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+
+  
+  <tr>
+    <td>tests/monolitico\edicao.spec.js</td>
+    <td class="function-name">(anonymous)</td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">77</td>
+    
+
+    
+       <td class="value">411</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+  <tr>
+    <td>tests/monolitico\edicao.spec.js</td>
+    <td class="function-name">(anonymous)</td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">70</td>
+    
+
+    
+       <td class="value">356</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+  <tr>
+    <td>tests/monolitico\edicao.spec.js</td>
+    <td class="function-name">(anonymous)</td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">43</td>
+    
+
+    
+       <td class="value">249</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+  <tr>
+    <td>tests/monolitico\edicao.spec.js</td>
+    <td class="function-name">(anonymous)</td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">43</td>
+    
+
+    
+       <td class="value">249</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+  <tr>
+    <td>tests/monolitico\edicao.spec.js</td>
+    <td class="function-name">(anonymous)</td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">36</td>
+    
+
+    
+       <td class="value">235</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+
+  
+  <tr>
+    <td>tests/monolitico\historico.spec.js</td>
+    <td class="function-name">(anonymous)</td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">45</td>
+    
+
+    
+       <td class="value">247</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+  <tr>
+    <td>tests/monolitico\historico.spec.js</td>
+    <td class="function-name">(anonymous)</td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">74</td>
+    
+
+    
+       <td class="value">386</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+  <tr>
+    <td>tests/monolitico\historico.spec.js</td>
+    <td class="function-name">(anonymous)</td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">49</td>
+    
+
+    
+       <td class="value">310</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+  <tr>
+    <td>tests/monolitico\historico.spec.js</td>
+    <td class="function-name">(anonymous)</td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">63</td>
+    
+
+    
+       <td class="value">382</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+  <tr>
+    <td>tests/monolitico\historico.spec.js</td>
+    <td class="function-name">(anonymous)</td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">46</td>
+    
+
+    
+       <td class="value">310</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+  <tr>
+    <td>tests/monolitico\historico.spec.js</td>
+    <td class="function-name">(anonymous)</td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">57</td>
+    
+
+    
+       <td class="value">380</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+
+  
+  <tr>
+    <td>tests/monolitico\listagem-consulta.spec.js</td>
+    <td class="function-name">(anonymous)</td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">49</td>
+    
+
+    
+       <td class="value">299</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+  <tr>
+    <td>tests/monolitico\listagem-consulta.spec.js</td>
+    <td class="function-name">(anonymous)</td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">57</td>
+    
+
+    
+       <td class="value">333</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+
+  
+  <tr>
+    <td>tests/monolitico\status-exclusao.spec.js</td>
+    <td class="function-name">(anonymous)</td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">49</td>
+    
+
+    
+       <td class="value">312</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+  <tr>
+    <td>tests/monolitico\status-exclusao.spec.js</td>
+    <td class="function-name">(anonymous)</td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">53</td>
+    
+
+    
+       <td class="value">343</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+  <tr>
+    <td>tests/monolitico\status-exclusao.spec.js</td>
+    <td class="function-name">(anonymous)</td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">55</td>
+    
+
+    
+       <td class="value">352</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+  <tr>
+    <td>tests/monolitico\status-exclusao.spec.js</td>
+    <td class="function-name">(anonymous)</td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">61</td>
+    
+
+    
+       <td class="value">403</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+  <tr>
+    <td>tests/monolitico\status-exclusao.spec.js</td>
+    <td class="function-name">(anonymous)</td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">45</td>
+    
+
+    
+       <td class="value">296</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+  <tr>
+    <td>tests/monolitico\status-exclusao.spec.js</td>
+    <td class="function-name">(anonymous)</td>
+    
+       <td class="lesser-value">1</td>
+    
+
+    
+       <td class="lesser-value">44</td>
+    
+
+    
+       <td class="value">299</td>
+    
+
+    
+       <td class="lesser-value">1</td>
+    
+  </tr>
+  
+
+  </tbody>
+</table>
+<center>
+
+<br>
+<table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="footer">Generated by
+    <a href="http://www.lizard.ws/">Lizard</a> on 2026-11-09 22:28
+    </td></tr>
+</table>
+
+<script>
+// Gracefully degrade if CDN is unavailable
+if (typeof jQuery !== 'undefined' && typeof jQuery.fn.dataTable !== 'undefined') {
+    $(document).ready(function() {
+        try {
+            $('#complexityTable').DataTable({
+                "pageLength": 25,
+                "order": [[2, "desc"]],  // Sort by cyclomatic complexity descending by default
+                "columnDefs": [
+                    { "type": "num", "targets": [2, 3, 4, 5] }  // Ensure numeric sorting for metric columns
+                ]
+            });
+        } catch (e) {
+            console.warn('DataTables initialization failed. Displaying static table.', e);
+        }
+    });
+} else {
+    // Fallback: Table will display as static HTML
+    console.info('DataTables not available. Displaying static HTML table.');
+}
+</script>
+
+ </body>
+</html>
+

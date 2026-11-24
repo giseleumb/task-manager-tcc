@@ -1,0 +1,1781 @@
+{
+  "duplicates": [
+    {
+      "firstFile": {
+        "end": 42,
+        "endLoc": {
+          "column": 13,
+          "line": 42,
+          "position": 748
+        },
+        "name": "cadastro.spec.js",
+        "start": 11,
+        "startLoc": {
+          "column": 52,
+          "line": 11,
+          "position": 304
+        }
+      },
+      "format": "javascript",
+      "fragment": "    'Tarefa criada automaticamente pelo teste CT01.';\n\n  const criadoPor =\n    'Teste Playwright';\n\n\n  await page.goto('./');\n\n\n  await page\n    .getByRole('link', { name: '+ Nova tarefa' })\n    .click();\n\n\n  await page\n    .locator('#titulo-tarefa')\n    .fill(titulo);\n\n\n  await page\n    .locator('#descricao-tarefa')\n    .fill(descricao);\n\n\n  await page\n    .locator('#criado-por')\n    .fill(criadoPor);\n\n\n  await page\n    .locator('#salvar-tarefa')\n    .click();",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 32,
+      "secondFile": {
+        "end": 31,
+        "endLoc": {
+          "column": 13,
+          "line": 31,
+          "position": 726
+        },
+        "name": "listagem-consulta.spec.js",
+        "start": 7,
+        "startLoc": {
+          "column": 61,
+          "line": 7,
+          "position": 272
+        }
+      },
+      "tokens": 83
+    },
+    {
+      "firstFile": {
+        "end": 37,
+        "endLoc": {
+          "column": 10,
+          "line": 37,
+          "position": 672
+        },
+        "name": "cadastro.spec.js",
+        "start": 13,
+        "startLoc": {
+          "column": 18,
+          "line": 13,
+          "position": 327
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const criadoPor =\n    'Teste Playwright';\n\n\n  await page.goto('./');\n\n\n  await page\n    .getByRole('link', { name: '+ Nova tarefa' })\n    .click();\n\n\n  await page\n    .locator('#titulo-tarefa')\n    .fill(titulo);\n\n\n  await page\n    .locator('#descricao-tarefa')\n    .fill(descricao);\n\n\n  await page\n    .locator('#criado-por')\n    .fill(criadoPor);",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 25,
+      "secondFile": {
+        "end": 255,
+        "endLoc": {
+          "column": 41,
+          "line": 255,
+          "position": 5728
+        },
+        "name": "edicao.spec.js",
+        "start": 244,
+        "startLoc": {
+          "column": 14,
+          "line": 244,
+          "position": 5419
+        }
+      },
+      "tokens": 65
+    },
+    {
+      "firstFile": {
+        "end": 37,
+        "endLoc": {
+          "column": 10,
+          "line": 37,
+          "position": 672
+        },
+        "name": "cadastro.spec.js",
+        "start": 14,
+        "startLoc": {
+          "column": 22,
+          "line": 14,
+          "position": 352
+        }
+      },
+      "format": "javascript",
+      "fragment": "    'Teste Playwright';\n\n\n  await page.goto('./');\n\n\n  await page\n    .getByRole('link', { name: '+ Nova tarefa' })\n    .click();\n\n\n  await page\n    .locator('#titulo-tarefa')\n    .fill(titulo);\n\n\n  await page\n    .locator('#descricao-tarefa')\n    .fill(descricao);\n\n\n  await page\n    .locator('#criado-por')\n    .fill(criadoPor);",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 24,
+      "secondFile": {
+        "end": 381,
+        "endLoc": {
+          "column": 41,
+          "line": 381,
+          "position": 8493
+        },
+        "name": "edicao.spec.js",
+        "start": 370,
+        "startLoc": {
+          "column": 46,
+          "line": 370,
+          "position": 8204
+        }
+      },
+      "tokens": 63
+    },
+    {
+      "firstFile": {
+        "end": 42,
+        "endLoc": {
+          "column": 13,
+          "line": 42,
+          "position": 748
+        },
+        "name": "cadastro.spec.js",
+        "start": 21,
+        "startLoc": {
+          "column": 15,
+          "line": 21,
+          "position": 418
+        }
+      },
+      "format": "javascript",
+      "fragment": "    .getByRole('link', { name: '+ Nova tarefa' })\n    .click();\n\n\n  await page\n    .locator('#titulo-tarefa')\n    .fill(titulo);\n\n\n  await page\n    .locator('#descricao-tarefa')\n    .fill(descricao);\n\n\n  await page\n    .locator('#criado-por')\n    .fill(criadoPor);\n\n\n  await page\n    .locator('#salvar-tarefa')\n    .click();",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 22,
+      "secondFile": {
+        "end": 103,
+        "endLoc": {
+          "column": 13,
+          "line": 103,
+          "position": 2368
+        },
+        "name": "listagem-consulta.spec.js",
+        "start": 86,
+        "startLoc": {
+          "column": 15,
+          "line": 86,
+          "position": 2046
+        }
+      },
+      "tokens": 64
+    },
+    {
+      "firstFile": {
+        "end": 58,
+        "endLoc": {
+          "column": 19,
+          "line": 58,
+          "position": 1356
+        },
+        "name": "edicao.spec.js",
+        "start": 10,
+        "startLoc": {
+          "column": 58,
+          "line": 10,
+          "position": 439
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const novaDescricao = 'Descrição alterada pelo EDI02.';\n\n  // =========================\n  // PREPARAÇÃO DA TAREFA\n  // =========================\n\n  await page.goto('./');\n\n  await page\n    .getByRole('link', { name: '+ Nova tarefa' })\n    .click();\n\n  await page\n    .locator('#titulo-tarefa')\n    .fill(tituloOriginal);\n\n  await page\n    .locator('#descricao-tarefa')\n    .fill(descricaoOriginal);\n\n  await page\n    .locator('#criado-por')\n    .fill(autor);\n\n  await page\n    .locator('#salvar-tarefa')\n    .click();\n\n  await expect(page).toHaveURL(/index\\.html/, {\n    timeout: 15000\n  });\n\n  // =========================\n  // EDIÇÃO\n  // =========================\n\n  const linha = page\n    .locator('#lista-tarefas tr')\n    .filter({ hasText: tituloOriginal });\n\n  await expect(linha).toBeVisible({\n    timeout: 10000\n  });\n\n  await linha\n    .getByRole('link', { name: 'Editar' })\n    .click();\n\n  await expect(page).toHaveURL(/editar\\.html\\?id=/);",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 49,
+      "secondFile": {
+        "end": 181,
+        "endLoc": {
+          "column": 8,
+          "line": 181,
+          "position": 4003
+        },
+        "name": "edicao.spec.js",
+        "start": 132,
+        "startLoc": {
+          "column": 40,
+          "line": 132,
+          "position": 3074
+        }
+      },
+      "tokens": 151
+    },
+    {
+      "firstFile": {
+        "end": 48,
+        "endLoc": {
+          "column": 22,
+          "line": 48,
+          "position": 1172
+        },
+        "name": "edicao.spec.js",
+        "start": 28,
+        "startLoc": {
+          "column": 27,
+          "line": 28,
+          "position": 801
+        }
+      },
+      "format": "javascript",
+      "fragment": "    .fill(descricaoOriginal);\n\n  await page\n    .locator('#criado-por')\n    .fill(autor);\n\n  await page\n    .locator('#salvar-tarefa')\n    .click();\n\n  await expect(page).toHaveURL(/index\\.html/, {\n    timeout: 15000\n  });\n\n  // =========================\n  // EDIÇÃO\n  // =========================\n\n  const linha = page\n    .locator('#lista-tarefas tr')\n    .filter({ hasText: tituloOriginal });",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 21,
+      "secondFile": {
+        "end": 266,
+        "endLoc": {
+          "column": 22,
+          "line": 266,
+          "position": 5968
+        },
+        "name": "edicao.spec.js",
+        "start": 254,
+        "startLoc": {
+          "column": 56,
+          "line": 254,
+          "position": 5683
+        }
+      },
+      "tokens": 59
+    },
+    {
+      "firstFile": {
+        "end": 77,
+        "endLoc": {
+          "column": 7,
+          "line": 77,
+          "position": 1810
+        },
+        "name": "edicao.spec.js",
+        "start": 58,
+        "startLoc": {
+          "column": 50,
+          "line": 58,
+          "position": 1387
+        }
+      },
+      "format": "javascript",
+      "fragment": "  await expect(page).toHaveURL(/editar\\.html\\?id=/);\n\n  // Espera os dados da tarefa carregarem\n  await expect(\n    page.locator('#form-tarefa')\n  ).toBeVisible({\n    timeout: 10000\n  });\n\n  // Primeiro verificamos que a tarefa correta foi carregada\n  await expect(\n    page.locator('#titulo-tarefa')\n  ).toHaveValue(tituloOriginal);\n\n  await expect(\n    page.locator('#descricao-tarefa')\n  ).toHaveValue(descricaoOriginal);\n\n  // Altera os dados\n  await page",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 20,
+      "secondFile": {
+        "end": 235,
+        "endLoc": {
+          "column": 7,
+          "line": 235,
+          "position": 5127
+        },
+        "name": "edicao.spec.js",
+        "start": 218,
+        "startLoc": {
+          "column": 20,
+          "line": 218,
+          "position": 4785
+        }
+      },
+      "tokens": 55
+    },
+    {
+      "firstFile": {
+        "end": 116,
+        "endLoc": {
+          "column": 7,
+          "line": 116,
+          "position": 2571
+        },
+        "name": "edicao.spec.js",
+        "start": 83,
+        "startLoc": {
+          "column": 23,
+          "line": 83,
+          "position": 1947
+        }
+      },
+      "format": "javascript",
+      "fragment": "    .fill(novaDescricao);\n\n  await page\n    .locator('#salvar-edicao')\n    .click();\n\n  // =========================\n  // CONFIRMAÇÃO DA MODAL\n  // =========================\n\n  const modal = page.getByRole('dialog');\n\n  await expect(modal).toBeVisible();\n\n  await modal\n    .getByRole('button', { name: /Salvar|Confirmar/i })\n    .click();\n\n  // =========================\n  // VALIDAÇÃO\n  // =========================\n\n  await expect(page).toHaveURL(\n    /visualizar\\.html\\?id=/,\n    {\n      timeout: 15000\n    }\n  );\n\n  await expect(\n    page.getByText(novoTitulo, { exact: true })\n  ).toBeVisible();\n\n  await expect(",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 34,
+      "secondFile": {
+        "end": 163,
+        "endLoc": {
+          "column": 7,
+          "line": 163,
+          "position": 3422
+        },
+        "name": "historico.spec.js",
+        "start": 131,
+        "startLoc": {
+          "column": 20,
+          "line": 131,
+          "position": 2845
+        }
+      },
+      "tokens": 91
+    },
+    {
+      "firstFile": {
+        "end": 189,
+        "endLoc": {
+          "column": 10,
+          "line": 189,
+          "position": 4156
+        },
+        "name": "edicao.spec.js",
+        "start": 132,
+        "startLoc": {
+          "column": 25,
+          "line": 132,
+          "position": 3059
+        }
+      },
+      "format": "javascript",
+      "fragment": "    `EDI03 Não Salvar ${identificador}`;\n\n  // =========================\n  // PREPARAÇÃO DA TAREFA\n  // =========================\n\n  await page.goto('./');\n\n  await page\n    .getByRole('link', { name: '+ Nova tarefa' })\n    .click();\n\n  await page\n    .locator('#titulo-tarefa')\n    .fill(tituloOriginal);\n\n  await page\n    .locator('#descricao-tarefa')\n    .fill(descricaoOriginal);\n\n  await page\n    .locator('#criado-por')\n    .fill(autor);\n\n  await page\n    .locator('#salvar-tarefa')\n    .click();\n\n  await expect(page).toHaveURL(/index\\.html/, {\n    timeout: 15000\n  });\n\n  // =========================\n  // ABRIR EDIÇÃO\n  // =========================\n\n  const linha = page\n    .locator('#lista-tarefas tr')\n    .filter({ hasText: tituloOriginal });\n\n  await expect(linha).toBeVisible({\n    timeout: 10000\n  });\n\n  await linha\n    .getByRole('link', { name: 'Editar' })\n    .click();\n\n  await expect(\n    page.locator('#form-tarefa')\n  ).toBeVisible({\n    timeout: 10000\n  });\n\n  // Altera o título\n  await page\n    .locator('#titulo-tarefa')\n    .fill(tituloNaoSalvo);",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 58,
+      "secondFile": {
+        "end": 131,
+        "endLoc": {
+          "column": 10,
+          "line": 131,
+          "position": 2835
+        },
+        "name": "historico.spec.js",
+        "start": 75,
+        "startLoc": {
+          "column": 38,
+          "line": 75,
+          "position": 1779
+        }
+      },
+      "tokens": 179
+    },
+    {
+      "firstFile": {
+        "end": 189,
+        "endLoc": {
+          "column": 10,
+          "line": 189,
+          "position": 4156
+        },
+        "name": "edicao.spec.js",
+        "start": 170,
+        "startLoc": {
+          "column": 38,
+          "line": 170,
+          "position": 3829
+        }
+      },
+      "format": "javascript",
+      "fragment": "    .filter({ hasText: tituloOriginal });\n\n  await expect(linha).toBeVisible({\n    timeout: 10000\n  });\n\n  await linha\n    .getByRole('link', { name: 'Editar' })\n    .click();\n\n  await expect(\n    page.locator('#form-tarefa')\n  ).toBeVisible({\n    timeout: 10000\n  });\n\n  // Altera o título\n  await page\n    .locator('#titulo-tarefa')\n    .fill(tituloNaoSalvo);",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 20,
+      "secondFile": {
+        "end": 285,
+        "endLoc": {
+          "column": 10,
+          "line": 285,
+          "position": 6303
+        },
+        "name": "edicao.spec.js",
+        "start": 266,
+        "startLoc": {
+          "column": 30,
+          "line": 266,
+          "position": 5976
+        }
+      },
+      "tokens": 66
+    },
+    {
+      "firstFile": {
+        "end": 284,
+        "endLoc": {
+          "column": 13,
+          "line": 284,
+          "position": 6274
+        },
+        "name": "edicao.spec.js",
+        "start": 243,
+        "startLoc": {
+          "column": 51,
+          "line": 243,
+          "position": 5402
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const descricao = 'Descrição válida do EDI04.';\n  const autor = 'Teste Playwright';\n\n  // Preparação\n  await page.goto('./');\n\n  await page\n    .getByRole('link', { name: '+ Nova tarefa' })\n    .click();\n\n  await page.locator('#titulo-tarefa').fill(titulo);\n  await page.locator('#descricao-tarefa').fill(descricao);\n  await page.locator('#criado-por').fill(autor);\n\n  await page.locator('#salvar-tarefa').click();\n\n  await expect(page).toHaveURL(/index\\.html/, {\n    timeout: 15000\n  });\n\n  // Abrir edição\n  const linha = page\n    .locator('#lista-tarefas tr')\n    .filter({ hasText: titulo });\n\n  await expect(linha).toBeVisible({\n    timeout: 10000\n  });\n\n  await linha\n    .getByRole('link', { name: 'Editar' })\n    .click();\n\n  await expect(\n    page.locator('#form-tarefa')\n  ).toBeVisible({\n    timeout: 10000\n  });\n\n  // Remove o título\n  await page\n    .locator('#titulo-tarefa')",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 42,
+      "secondFile": {
+        "end": 347,
+        "endLoc": {
+          "column": 13,
+          "line": 347,
+          "position": 7647
+        },
+        "name": "edicao.spec.js",
+        "start": 306,
+        "startLoc": {
+          "column": 51,
+          "line": 306,
+          "position": 6771
+        }
+      },
+      "tokens": 177
+    },
+    {
+      "firstFile": {
+        "end": 272,
+        "endLoc": {
+          "column": 7,
+          "line": 272,
+          "position": 6056
+        },
+        "name": "edicao.spec.js",
+        "start": 243,
+        "startLoc": {
+          "column": 51,
+          "line": 243,
+          "position": 5402
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const descricao = 'Descrição válida do EDI04.';\n  const autor = 'Teste Playwright';\n\n  // Preparação\n  await page.goto('./');\n\n  await page\n    .getByRole('link', { name: '+ Nova tarefa' })\n    .click();\n\n  await page.locator('#titulo-tarefa').fill(titulo);\n  await page.locator('#descricao-tarefa').fill(descricao);\n  await page.locator('#criado-por').fill(autor);\n\n  await page.locator('#salvar-tarefa').click();\n\n  await expect(page).toHaveURL(/index\\.html/, {\n    timeout: 15000\n  });\n\n  // Abrir edição\n  const linha = page\n    .locator('#lista-tarefas tr')\n    .filter({ hasText: titulo });\n\n  await expect(linha).toBeVisible({\n    timeout: 10000\n  });\n\n  await linha",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 30,
+      "secondFile": {
+        "end": 35,
+        "endLoc": {
+          "column": 7,
+          "line": 35,
+          "position": 925
+        },
+        "name": "status-exclusao.spec.js",
+        "start": 6,
+        "startLoc": {
+          "column": 59,
+          "line": 6,
+          "position": 261
+        }
+      },
+      "tokens": 135
+    },
+    {
+      "firstFile": {
+        "end": 272,
+        "endLoc": {
+          "column": 7,
+          "line": 272,
+          "position": 6056
+        },
+        "name": "edicao.spec.js",
+        "start": 243,
+        "startLoc": {
+          "column": 51,
+          "line": 243,
+          "position": 5402
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const descricao = 'Descrição válida do EDI04.';\n  const autor = 'Teste Playwright';\n\n  // Preparação\n  await page.goto('./');\n\n  await page\n    .getByRole('link', { name: '+ Nova tarefa' })\n    .click();\n\n  await page.locator('#titulo-tarefa').fill(titulo);\n  await page.locator('#descricao-tarefa').fill(descricao);\n  await page.locator('#criado-por').fill(autor);\n\n  await page.locator('#salvar-tarefa').click();\n\n  await expect(page).toHaveURL(/index\\.html/, {\n    timeout: 15000\n  });\n\n  // Abrir edição\n  const linha = page\n    .locator('#lista-tarefas tr')\n    .filter({ hasText: titulo });\n\n  await expect(linha).toBeVisible({\n    timeout: 10000\n  });\n\n  await linha",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 30,
+      "secondFile": {
+        "end": 106,
+        "endLoc": {
+          "column": 7,
+          "line": 106,
+          "position": 2574
+        },
+        "name": "status-exclusao.spec.js",
+        "start": 78,
+        "startLoc": {
+          "column": 61,
+          "line": 78,
+          "position": 1941
+        }
+      },
+      "tokens": 135
+    },
+    {
+      "firstFile": {
+        "end": 261,
+        "endLoc": {
+          "column": 5,
+          "line": 261,
+          "position": 5864
+        },
+        "name": "edicao.spec.js",
+        "start": 243,
+        "startLoc": {
+          "column": 51,
+          "line": 243,
+          "position": 5402
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const descricao = 'Descrição válida do EDI04.';\n  const autor = 'Teste Playwright';\n\n  // Preparação\n  await page.goto('./');\n\n  await page\n    .getByRole('link', { name: '+ Nova tarefa' })\n    .click();\n\n  await page.locator('#titulo-tarefa').fill(titulo);\n  await page.locator('#descricao-tarefa').fill(descricao);\n  await page.locator('#criado-por').fill(autor);\n\n  await page.locator('#salvar-tarefa').click();\n\n  await expect(page).toHaveURL(/index\\.html/, {\n    timeout: 15000\n  });",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 19,
+      "secondFile": {
+        "end": 177,
+        "endLoc": {
+          "column": 5,
+          "line": 177,
+          "position": 4340
+        },
+        "name": "status-exclusao.spec.js",
+        "start": 159,
+        "startLoc": {
+          "column": 59,
+          "line": 159,
+          "position": 3864
+        }
+      },
+      "tokens": 100
+    },
+    {
+      "firstFile": {
+        "end": 261,
+        "endLoc": {
+          "column": 5,
+          "line": 261,
+          "position": 5864
+        },
+        "name": "edicao.spec.js",
+        "start": 243,
+        "startLoc": {
+          "column": 51,
+          "line": 243,
+          "position": 5402
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const descricao = 'Descrição válida do EDI04.';\n  const autor = 'Teste Playwright';\n\n  // Preparação\n  await page.goto('./');\n\n  await page\n    .getByRole('link', { name: '+ Nova tarefa' })\n    .click();\n\n  await page.locator('#titulo-tarefa').fill(titulo);\n  await page.locator('#descricao-tarefa').fill(descricao);\n  await page.locator('#criado-por').fill(autor);\n\n  await page.locator('#salvar-tarefa').click();\n\n  await expect(page).toHaveURL(/index\\.html/, {\n    timeout: 15000\n  });",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 19,
+      "secondFile": {
+        "end": 258,
+        "endLoc": {
+          "column": 5,
+          "line": 258,
+          "position": 6201
+        },
+        "name": "status-exclusao.spec.js",
+        "start": 240,
+        "startLoc": {
+          "column": 75,
+          "line": 240,
+          "position": 5739
+        }
+      },
+      "tokens": 100
+    },
+    {
+      "firstFile": {
+        "end": 273,
+        "endLoc": {
+          "column": 15,
+          "line": 273,
+          "position": 6079
+        },
+        "name": "edicao.spec.js",
+        "start": 243,
+        "startLoc": {
+          "column": 51,
+          "line": 243,
+          "position": 5402
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const descricao = 'Descrição válida do EDI04.';\n  const autor = 'Teste Playwright';\n\n  // Preparação\n  await page.goto('./');\n\n  await page\n    .getByRole('link', { name: '+ Nova tarefa' })\n    .click();\n\n  await page.locator('#titulo-tarefa').fill(titulo);\n  await page.locator('#descricao-tarefa').fill(descricao);\n  await page.locator('#criado-por').fill(autor);\n\n  await page.locator('#salvar-tarefa').click();\n\n  await expect(page).toHaveURL(/index\\.html/, {\n    timeout: 15000\n  });\n\n  // Abrir edição\n  const linha = page\n    .locator('#lista-tarefas tr')\n    .filter({ hasText: titulo });\n\n  await expect(linha).toBeVisible({\n    timeout: 10000\n  });\n\n  await linha\n    .getByRole('link', { name: 'Editar' })",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 31,
+      "secondFile": {
+        "end": 362,
+        "endLoc": {
+          "column": 15,
+          "line": 362,
+          "position": 8486
+        },
+        "name": "status-exclusao.spec.js",
+        "start": 332,
+        "startLoc": {
+          "column": 58,
+          "line": 332,
+          "position": 7805
+        }
+      },
+      "tokens": 139
+    },
+    {
+      "firstFile": {
+        "end": 261,
+        "endLoc": {
+          "column": 5,
+          "line": 261,
+          "position": 5864
+        },
+        "name": "edicao.spec.js",
+        "start": 243,
+        "startLoc": {
+          "column": 51,
+          "line": 243,
+          "position": 5402
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const descricao = 'Descrição válida do EDI04.';\n  const autor = 'Teste Playwright';\n\n  // Preparação\n  await page.goto('./');\n\n  await page\n    .getByRole('link', { name: '+ Nova tarefa' })\n    .click();\n\n  await page.locator('#titulo-tarefa').fill(titulo);\n  await page.locator('#descricao-tarefa').fill(descricao);\n  await page.locator('#criado-por').fill(autor);\n\n  await page.locator('#salvar-tarefa').click();\n\n  await expect(page).toHaveURL(/index\\.html/, {\n    timeout: 15000\n  });",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 19,
+      "secondFile": {
+        "end": 419,
+        "endLoc": {
+          "column": 5,
+          "line": 419,
+          "position": 9945
+        },
+        "name": "status-exclusao.spec.js",
+        "start": 401,
+        "startLoc": {
+          "column": 74,
+          "line": 401,
+          "position": 9483
+        }
+      },
+      "tokens": 100
+    },
+    {
+      "firstFile": {
+        "end": 280,
+        "endLoc": {
+          "column": 5,
+          "line": 280,
+          "position": 6220
+        },
+        "name": "edicao.spec.js",
+        "start": 250,
+        "startLoc": {
+          "column": 15,
+          "line": 250,
+          "position": 5520
+        }
+      },
+      "format": "javascript",
+      "fragment": "    .getByRole('link', { name: '+ Nova tarefa' })\n    .click();\n\n  await page.locator('#titulo-tarefa').fill(titulo);\n  await page.locator('#descricao-tarefa').fill(descricao);\n  await page.locator('#criado-por').fill(autor);\n\n  await page.locator('#salvar-tarefa').click();\n\n  await expect(page).toHaveURL(/index\\.html/, {\n    timeout: 15000\n  });\n\n  // Abrir edição\n  const linha = page\n    .locator('#lista-tarefas tr')\n    .filter({ hasText: titulo });\n\n  await expect(linha).toBeVisible({\n    timeout: 10000\n  });\n\n  await linha\n    .getByRole('link', { name: 'Editar' })\n    .click();\n\n  await expect(\n    page.locator('#form-tarefa')\n  ).toBeVisible({\n    timeout: 10000\n  });",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 31,
+      "secondFile": {
+        "end": 406,
+        "endLoc": {
+          "column": 5,
+          "line": 406,
+          "position": 8985
+        },
+        "name": "edicao.spec.js",
+        "start": 376,
+        "startLoc": {
+          "column": 15,
+          "line": 376,
+          "position": 8285
+        }
+      },
+      "tokens": 153
+    },
+    {
+      "firstFile": {
+        "end": 272,
+        "endLoc": {
+          "column": 7,
+          "line": 272,
+          "position": 6056
+        },
+        "name": "edicao.spec.js",
+        "start": 255,
+        "startLoc": {
+          "column": 46,
+          "line": 255,
+          "position": 5733
+        }
+      },
+      "format": "javascript",
+      "fragment": "  await page.locator('#criado-por').fill(autor);\n\n  await page.locator('#salvar-tarefa').click();\n\n  await expect(page).toHaveURL(/index\\.html/, {\n    timeout: 15000\n  });\n\n  // Abrir edição\n  const linha = page\n    .locator('#lista-tarefas tr')\n    .filter({ hasText: titulo });\n\n  await expect(linha).toBeVisible({\n    timeout: 10000\n  });\n\n  await linha",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 18,
+      "secondFile": {
+        "end": 47,
+        "endLoc": {
+          "column": 7,
+          "line": 47,
+          "position": 1046
+        },
+        "name": "listagem-consulta.spec.js",
+        "start": 27,
+        "startLoc": {
+          "column": 19,
+          "line": 27,
+          "position": 661
+        }
+      },
+      "tokens": 66
+    },
+    {
+      "firstFile": {
+        "end": 387,
+        "endLoc": {
+          "column": 5,
+          "line": 387,
+          "position": 8629
+        },
+        "name": "edicao.spec.js",
+        "start": 370,
+        "startLoc": {
+          "column": 31,
+          "line": 370,
+          "position": 8189
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const autor = `Autor EDI06 ${identificador}`;\n\n  // Preparação\n  await page.goto('./');\n\n  await page\n    .getByRole('link', { name: '+ Nova tarefa' })\n    .click();\n\n  await page.locator('#titulo-tarefa').fill(titulo);\n  await page.locator('#descricao-tarefa').fill(descricao);\n  await page.locator('#criado-por').fill(autor);\n\n  await page.locator('#salvar-tarefa').click();\n\n  await expect(page).toHaveURL(/index\\.html/, {\n    timeout: 15000\n  });",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 18,
+      "secondFile": {
+        "end": 34,
+        "endLoc": {
+          "column": 5,
+          "line": 34,
+          "position": 792
+        },
+        "name": "historico.spec.js",
+        "start": 7,
+        "startLoc": {
+          "column": 31,
+          "line": 7,
+          "position": 300
+        }
+      },
+      "tokens": 97
+    },
+    {
+      "firstFile": {
+        "end": 399,
+        "endLoc": {
+          "column": 15,
+          "line": 399,
+          "position": 8844
+        },
+        "name": "edicao.spec.js",
+        "start": 370,
+        "startLoc": {
+          "column": 31,
+          "line": 370,
+          "position": 8189
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const autor = `Autor EDI06 ${identificador}`;\n\n  // Preparação\n  await page.goto('./');\n\n  await page\n    .getByRole('link', { name: '+ Nova tarefa' })\n    .click();\n\n  await page.locator('#titulo-tarefa').fill(titulo);\n  await page.locator('#descricao-tarefa').fill(descricao);\n  await page.locator('#criado-por').fill(autor);\n\n  await page.locator('#salvar-tarefa').click();\n\n  await expect(page).toHaveURL(/index\\.html/, {\n    timeout: 15000\n  });\n\n  // Abrir edição\n  const linha = page\n    .locator('#lista-tarefas tr')\n    .filter({ hasText: titulo });\n\n  await expect(linha).toBeVisible({\n    timeout: 10000\n  });\n\n  await linha\n    .getByRole('link', { name: 'Editar' })",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 30,
+      "secondFile": {
+        "end": 215,
+        "endLoc": {
+          "column": 15,
+          "line": 215,
+          "position": 4716
+        },
+        "name": "historico.spec.js",
+        "start": 185,
+        "startLoc": {
+          "column": 31,
+          "line": 185,
+          "position": 4037
+        }
+      },
+      "tokens": 136
+    },
+    {
+      "firstFile": {
+        "end": 399,
+        "endLoc": {
+          "column": 15,
+          "line": 399,
+          "position": 8844
+        },
+        "name": "edicao.spec.js",
+        "start": 370,
+        "startLoc": {
+          "column": 31,
+          "line": 370,
+          "position": 8189
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const autor = `Autor EDI06 ${identificador}`;\n\n  // Preparação\n  await page.goto('./');\n\n  await page\n    .getByRole('link', { name: '+ Nova tarefa' })\n    .click();\n\n  await page.locator('#titulo-tarefa').fill(titulo);\n  await page.locator('#descricao-tarefa').fill(descricao);\n  await page.locator('#criado-por').fill(autor);\n\n  await page.locator('#salvar-tarefa').click();\n\n  await expect(page).toHaveURL(/index\\.html/, {\n    timeout: 15000\n  });\n\n  // Abrir edição\n  const linha = page\n    .locator('#lista-tarefas tr')\n    .filter({ hasText: titulo });\n\n  await expect(linha).toBeVisible({\n    timeout: 10000\n  });\n\n  await linha\n    .getByRole('link', { name: 'Editar' })",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 30,
+      "secondFile": {
+        "end": 285,
+        "endLoc": {
+          "column": 15,
+          "line": 285,
+          "position": 6336
+        },
+        "name": "historico.spec.js",
+        "start": 256,
+        "startLoc": {
+          "column": 31,
+          "line": 256,
+          "position": 5679
+        }
+      },
+      "tokens": 136
+    },
+    {
+      "firstFile": {
+        "end": 399,
+        "endLoc": {
+          "column": 15,
+          "line": 399,
+          "position": 8844
+        },
+        "name": "edicao.spec.js",
+        "start": 370,
+        "startLoc": {
+          "column": 31,
+          "line": 370,
+          "position": 8189
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const autor = `Autor EDI06 ${identificador}`;\n\n  // Preparação\n  await page.goto('./');\n\n  await page\n    .getByRole('link', { name: '+ Nova tarefa' })\n    .click();\n\n  await page.locator('#titulo-tarefa').fill(titulo);\n  await page.locator('#descricao-tarefa').fill(descricao);\n  await page.locator('#criado-por').fill(autor);\n\n  await page.locator('#salvar-tarefa').click();\n\n  await expect(page).toHaveURL(/index\\.html/, {\n    timeout: 15000\n  });\n\n  // Abrir edição\n  const linha = page\n    .locator('#lista-tarefas tr')\n    .filter({ hasText: titulo });\n\n  await expect(linha).toBeVisible({\n    timeout: 10000\n  });\n\n  await linha\n    .getByRole('link', { name: 'Editar' })",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 30,
+      "secondFile": {
+        "end": 375,
+        "endLoc": {
+          "column": 15,
+          "line": 375,
+          "position": 8301
+        },
+        "name": "historico.spec.js",
+        "start": 346,
+        "startLoc": {
+          "column": 31,
+          "line": 346,
+          "position": 7646
+        }
+      },
+      "tokens": 136
+    },
+    {
+      "firstFile": {
+        "end": 387,
+        "endLoc": {
+          "column": 5,
+          "line": 387,
+          "position": 8629
+        },
+        "name": "edicao.spec.js",
+        "start": 370,
+        "startLoc": {
+          "column": 31,
+          "line": 370,
+          "position": 8189
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const autor = `Autor EDI06 ${identificador}`;\n\n  // Preparação\n  await page.goto('./');\n\n  await page\n    .getByRole('link', { name: '+ Nova tarefa' })\n    .click();\n\n  await page.locator('#titulo-tarefa').fill(titulo);\n  await page.locator('#descricao-tarefa').fill(descricao);\n  await page.locator('#criado-por').fill(autor);\n\n  await page.locator('#salvar-tarefa').click();\n\n  await expect(page).toHaveURL(/index\\.html/, {\n    timeout: 15000\n  });",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 18,
+      "secondFile": {
+        "end": 430,
+        "endLoc": {
+          "column": 5,
+          "line": 430,
+          "position": 9684
+        },
+        "name": "historico.spec.js",
+        "start": 413,
+        "startLoc": {
+          "column": 31,
+          "line": 413,
+          "position": 9244
+        }
+      },
+      "tokens": 97
+    },
+    {
+      "firstFile": {
+        "end": 381,
+        "endLoc": {
+          "column": 41,
+          "line": 381,
+          "position": 8493
+        },
+        "name": "edicao.spec.js",
+        "start": 370,
+        "startLoc": {
+          "column": 31,
+          "line": 370,
+          "position": 8189
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const autor = `Autor EDI06 ${identificador}`;\n\n  // Preparação\n  await page.goto('./');\n\n  await page\n    .getByRole('link', { name: '+ Nova tarefa' })\n    .click();\n\n  await page.locator('#titulo-tarefa').fill(titulo);\n  await page.locator('#descricao-tarefa').fill(descricao);\n  await page.locator('#criado-por').fill(autor);",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 12,
+      "secondFile": {
+        "end": 99,
+        "endLoc": {
+          "column": 10,
+          "line": 99,
+          "position": 2294
+        },
+        "name": "listagem-consulta.spec.js",
+        "start": 80,
+        "startLoc": {
+          "column": 35,
+          "line": 80,
+          "position": 1940
+        }
+      },
+      "tokens": 65
+    },
+    {
+      "firstFile": {
+        "end": 216,
+        "endLoc": {
+          "column": 13,
+          "line": 216,
+          "position": 4762
+        },
+        "name": "historico.spec.js",
+        "start": 200,
+        "startLoc": {
+          "column": 30,
+          "line": 200,
+          "position": 4433
+        }
+      },
+      "format": "javascript",
+      "fragment": "  await expect(page).toHaveURL(/index\\.html/, {\n    timeout: 15000\n  });\n\n  // Localizar tarefa\n  const linha = page\n    .locator('#lista-tarefas tr')\n    .filter({ hasText: titulo });\n\n  await expect(linha).toBeVisible({\n    timeout: 10000\n  });\n\n  // Concluir tarefa\n  await linha\n    .getByRole('button', { name: 'Concluir' })\n    .click();",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 17,
+      "secondFile": {
+        "end": 286,
+        "endLoc": {
+          "column": 13,
+          "line": 286,
+          "position": 6382
+        },
+        "name": "historico.spec.js",
+        "start": 271,
+        "startLoc": {
+          "column": 30,
+          "line": 271,
+          "position": 6075
+        }
+      },
+      "tokens": 62
+    },
+    {
+      "firstFile": {
+        "end": 215,
+        "endLoc": {
+          "column": 32,
+          "line": 215,
+          "position": 4733
+        },
+        "name": "historico.spec.js",
+        "start": 200,
+        "startLoc": {
+          "column": 30,
+          "line": 200,
+          "position": 4433
+        }
+      },
+      "format": "javascript",
+      "fragment": "  await expect(page).toHaveURL(/index\\.html/, {\n    timeout: 15000\n  });\n\n  // Localizar tarefa\n  const linha = page\n    .locator('#lista-tarefas tr')\n    .filter({ hasText: titulo });\n\n  await expect(linha).toBeVisible({\n    timeout: 10000\n  });\n\n  // Concluir tarefa\n  await linha\n    .getByRole('button', { name: 'Concluir' })",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 16,
+      "secondFile": {
+        "end": 375,
+        "endLoc": {
+          "column": 32,
+          "line": 375,
+          "position": 8318
+        },
+        "name": "historico.spec.js",
+        "start": 361,
+        "startLoc": {
+          "column": 30,
+          "line": 361,
+          "position": 8042
+        }
+      },
+      "tokens": 54
+    },
+    {
+      "firstFile": {
+        "end": 215,
+        "endLoc": {
+          "column": 32,
+          "line": 215,
+          "position": 4733
+        },
+        "name": "historico.spec.js",
+        "start": 200,
+        "startLoc": {
+          "column": 30,
+          "line": 200,
+          "position": 4433
+        }
+      },
+      "format": "javascript",
+      "fragment": "  await expect(page).toHaveURL(/index\\.html/, {\n    timeout: 15000\n  });\n\n  // Localizar tarefa\n  const linha = page\n    .locator('#lista-tarefas tr')\n    .filter({ hasText: titulo });\n\n  await expect(linha).toBeVisible({\n    timeout: 10000\n  });\n\n  // Concluir tarefa\n  await linha\n    .getByRole('button', { name: 'Concluir' })",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 16,
+      "secondFile": {
+        "end": 362,
+        "endLoc": {
+          "column": 32,
+          "line": 362,
+          "position": 8503
+        },
+        "name": "status-exclusao.spec.js",
+        "start": 348,
+        "startLoc": {
+          "column": 30,
+          "line": 348,
+          "position": 8223
+        }
+      },
+      "tokens": 54
+    },
+    {
+      "firstFile": {
+        "end": 216,
+        "endLoc": {
+          "column": 13,
+          "line": 216,
+          "position": 4762
+        },
+        "name": "historico.spec.js",
+        "start": 205,
+        "startLoc": {
+          "column": 8,
+          "line": 205,
+          "position": 4512
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const linha = page\n    .locator('#lista-tarefas tr')\n    .filter({ hasText: titulo });\n\n  await expect(linha).toBeVisible({\n    timeout: 10000\n  });\n\n  // Concluir tarefa\n  await linha\n    .getByRole('button', { name: 'Concluir' })\n    .click();",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 12,
+      "secondFile": {
+        "end": 190,
+        "endLoc": {
+          "column": 13,
+          "line": 190,
+          "position": 4610
+        },
+        "name": "status-exclusao.spec.js",
+        "start": 179,
+        "startLoc": {
+          "column": 6,
+          "line": 179,
+          "position": 4350
+        }
+      },
+      "tokens": 51
+    },
+    {
+      "firstFile": {
+        "end": 223,
+        "endLoc": {
+          "column": 32,
+          "line": 223,
+          "position": 4898
+        },
+        "name": "historico.spec.js",
+        "start": 211,
+        "startLoc": {
+          "column": 3,
+          "line": 211,
+          "position": 4658
+        }
+      },
+      "format": "javascript",
+      "fragment": "  });\n\n  // Concluir tarefa\n  await linha\n    .getByRole('button', { name: 'Concluir' })\n    .click();\n\n  const modal = page.getByRole('dialog');\n\n  await expect(modal).toBeVisible();\n\n  await modal\n    .getByRole('button', { name: 'Concluir' })",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 13,
+      "secondFile": {
+        "end": 119,
+        "endLoc": {
+          "column": 32,
+          "line": 119,
+          "position": 2871
+        },
+        "name": "status-exclusao.spec.js",
+        "start": 106,
+        "startLoc": {
+          "column": 46,
+          "line": 106,
+          "position": 2613
+        }
+      },
+      "tokens": 50
+    },
+    {
+      "firstFile": {
+        "end": 234,
+        "endLoc": {
+          "column": 7,
+          "line": 234,
+          "position": 5062
+        },
+        "name": "historico.spec.js",
+        "start": 218,
+        "startLoc": {
+          "column": 8,
+          "line": 218,
+          "position": 4774
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const modal = page.getByRole('dialog');\n\n  await expect(modal).toBeVisible();\n\n  await modal\n    .getByRole('button', { name: 'Concluir' })\n    .click();\n\n  await expect(linha).toContainText(\n    'Concluída',\n    {\n      timeout: 10000\n    }\n  );\n\n  // Abrir histórico\n  await page.goto('./historico.html');",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 17,
+      "secondFile": {
+        "end": 304,
+        "endLoc": {
+          "column": 7,
+          "line": 304,
+          "position": 6676
+        },
+        "name": "historico.spec.js",
+        "start": 288,
+        "startLoc": {
+          "column": 6,
+          "line": 288,
+          "position": 6392
+        }
+      },
+      "tokens": 55
+    },
+    {
+      "firstFile": {
+        "end": 312,
+        "endLoc": {
+          "column": 7,
+          "line": 312,
+          "position": 6834
+        },
+        "name": "historico.spec.js",
+        "start": 275,
+        "startLoc": {
+          "column": 16,
+          "line": 275,
+          "position": 6139
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const linha = page\n    .locator('#lista-tarefas tr')\n    .filter({ hasText: titulo });\n\n  await expect(linha).toBeVisible({\n    timeout: 10000\n  });\n\n  // Primeiro conclui\n  await linha\n    .getByRole('button', { name: 'Concluir' })\n    .click();\n\n  let modal = page.getByRole('dialog');\n\n  await expect(modal).toBeVisible();\n\n  await modal\n    .getByRole('button', { name: 'Concluir' })\n    .click();\n\n  await expect(linha).toContainText(\n    'Concluída',\n    {\n      timeout: 10000\n    }\n  );\n\n  // Agora reabre\n  await linha\n    .getByRole('button', { name: 'Reabrir' })\n    .click();\n\n  modal = page.getByRole('dialog');\n\n  await expect(modal).toBeVisible();\n\n  await modal",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 38,
+      "secondFile": {
+        "end": 214,
+        "endLoc": {
+          "column": 7,
+          "line": 214,
+          "position": 5062
+        },
+        "name": "status-exclusao.spec.js",
+        "start": 179,
+        "startLoc": {
+          "column": 14,
+          "line": 179,
+          "position": 4358
+        }
+      },
+      "tokens": 142
+    },
+    {
+      "firstFile": {
+        "end": 313,
+        "endLoc": {
+          "column": 32,
+          "line": 313,
+          "position": 6874
+        },
+        "name": "historico.spec.js",
+        "start": 296,
+        "startLoc": {
+          "column": 22,
+          "line": 296,
+          "position": 6571
+        }
+      },
+      "format": "javascript",
+      "fragment": "  await expect(linha).toContainText(\n    'Concluída',\n    {\n      timeout: 10000\n    }\n  );\n\n  // Agora reabre\n  await linha\n    .getByRole('button', { name: 'Reabrir' })\n    .click();\n\n  modal = page.getByRole('dialog');\n\n  await expect(modal).toBeVisible();\n\n  await modal\n    .getByRole('button', { name: 'Reabrir' })",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 18,
+      "secondFile": {
+        "end": 297,
+        "endLoc": {
+          "column": 32,
+          "line": 297,
+          "position": 6972
+        },
+        "name": "status-exclusao.spec.js",
+        "start": 281,
+        "startLoc": {
+          "column": 22,
+          "line": 281,
+          "position": 6660
+        }
+      },
+      "tokens": 58
+    },
+    {
+      "firstFile": {
+        "end": 382,
+        "endLoc": {
+          "column": 7,
+          "line": 382,
+          "position": 8442
+        },
+        "name": "historico.spec.js",
+        "start": 362,
+        "startLoc": {
+          "column": 11,
+          "line": 362,
+          "position": 8072
+        }
+      },
+      "format": "javascript",
+      "fragment": "    timeout: 15000\n  });\n\n  const linha = page\n    .locator('#lista-tarefas tr')\n    .filter({ hasText: titulo });\n\n  await expect(linha).toBeVisible({\n    timeout: 10000\n  });\n\n  // Excluir tarefa\n  await linha\n    .getByRole('button', { name: 'Excluir' })\n    .click();\n\n  const modal = page.getByRole('dialog');\n\n  await expect(modal).toBeVisible();\n\n  await modal",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 21,
+      "secondFile": {
+        "end": 369,
+        "endLoc": {
+          "column": 7,
+          "line": 369,
+          "position": 8627
+        },
+        "name": "status-exclusao.spec.js",
+        "start": 349,
+        "startLoc": {
+          "column": 11,
+          "line": 349,
+          "position": 8253
+        }
+      },
+      "tokens": 78
+    },
+    {
+      "firstFile": {
+        "end": 391,
+        "endLoc": {
+          "column": 13,
+          "line": 391,
+          "position": 8626
+        },
+        "name": "historico.spec.js",
+        "start": 365,
+        "startLoc": {
+          "column": 8,
+          "line": 365,
+          "position": 8098
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const linha = page\n    .locator('#lista-tarefas tr')\n    .filter({ hasText: titulo });\n\n  await expect(linha).toBeVisible({\n    timeout: 10000\n  });\n\n  // Excluir tarefa\n  await linha\n    .getByRole('button', { name: 'Excluir' })\n    .click();\n\n  const modal = page.getByRole('dialog');\n\n  await expect(modal).toBeVisible();\n\n  await modal\n    .getByRole('button', { name: 'Excluir tarefa' })\n    .click();\n\n  await expect(linha).toHaveCount(0, {\n    timeout: 10000\n  });\n\n  // Abrir histórico\n  await page.goto('./historico.html');",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 27,
+      "secondFile": {
+        "end": 458,
+        "endLoc": {
+          "column": 13,
+          "line": 458,
+          "position": 10266
+        },
+        "name": "historico.spec.js",
+        "start": 432,
+        "startLoc": {
+          "column": 6,
+          "line": 432,
+          "position": 9694
+        }
+      },
+      "tokens": 109
+    },
+    {
+      "firstFile": {
+        "end": 442,
+        "endLoc": {
+          "column": 32,
+          "line": 442,
+          "position": 9914
+        },
+        "name": "historico.spec.js",
+        "start": 423,
+        "startLoc": {
+          "column": 40,
+          "line": 423,
+          "position": 9487
+        }
+      },
+      "format": "javascript",
+      "fragment": "  await page.locator('#descricao-tarefa').fill(descricao);\n  await page.locator('#criado-por').fill(autor);\n\n  await page.locator('#salvar-tarefa').click();\n\n  await expect(page).toHaveURL(/index\\.html/, {\n    timeout: 15000\n  });\n\n  let linha = page\n    .locator('#lista-tarefas tr')\n    .filter({ hasText: titulo });\n\n  await expect(linha).toBeVisible({\n    timeout: 10000\n  });\n\n  // Excluir tarefa\n  await linha\n    .getByRole('button', { name: 'Excluir' })",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 20,
+      "secondFile": {
+        "end": 189,
+        "endLoc": {
+          "column": 32,
+          "line": 189,
+          "position": 4581
+        },
+        "name": "status-exclusao.spec.js",
+        "start": 170,
+        "startLoc": {
+          "column": 40,
+          "line": 170,
+          "position": 4143
+        }
+      },
+      "tokens": 93
+    },
+    {
+      "firstFile": {
+        "end": 442,
+        "endLoc": {
+          "column": 32,
+          "line": 442,
+          "position": 9914
+        },
+        "name": "historico.spec.js",
+        "start": 423,
+        "startLoc": {
+          "column": 40,
+          "line": 423,
+          "position": 9487
+        }
+      },
+      "format": "javascript",
+      "fragment": "  await page.locator('#descricao-tarefa').fill(descricao);\n  await page.locator('#criado-por').fill(autor);\n\n  await page.locator('#salvar-tarefa').click();\n\n  await expect(page).toHaveURL(/index\\.html/, {\n    timeout: 15000\n  });\n\n  let linha = page\n    .locator('#lista-tarefas tr')\n    .filter({ hasText: titulo });\n\n  await expect(linha).toBeVisible({\n    timeout: 10000\n  });\n\n  // Excluir tarefa\n  await linha\n    .getByRole('button', { name: 'Excluir' })",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 20,
+      "secondFile": {
+        "end": 270,
+        "endLoc": {
+          "column": 32,
+          "line": 270,
+          "position": 6442
+        },
+        "name": "status-exclusao.spec.js",
+        "start": 251,
+        "startLoc": {
+          "column": 40,
+          "line": 251,
+          "position": 6004
+        }
+      },
+      "tokens": 93
+    },
+    {
+      "firstFile": {
+        "end": 450,
+        "endLoc": {
+          "column": 32,
+          "line": 450,
+          "position": 10078
+        },
+        "name": "historico.spec.js",
+        "start": 423,
+        "startLoc": {
+          "column": 40,
+          "line": 423,
+          "position": 9487
+        }
+      },
+      "format": "javascript",
+      "fragment": "  await page.locator('#descricao-tarefa').fill(descricao);\n  await page.locator('#criado-por').fill(autor);\n\n  await page.locator('#salvar-tarefa').click();\n\n  await expect(page).toHaveURL(/index\\.html/, {\n    timeout: 15000\n  });\n\n  let linha = page\n    .locator('#lista-tarefas tr')\n    .filter({ hasText: titulo });\n\n  await expect(linha).toBeVisible({\n    timeout: 10000\n  });\n\n  // Excluir tarefa\n  await linha\n    .getByRole('button', { name: 'Excluir' })\n    .click();\n\n  const modal = page.getByRole('dialog');\n\n  await expect(modal).toBeVisible();\n\n  await modal\n    .getByRole('button', { name: 'Excluir tarefa' })",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 28,
+      "secondFile": {
+        "end": 440,
+        "endLoc": {
+          "column": 32,
+          "line": 440,
+          "position": 10357
+        },
+        "name": "status-exclusao.spec.js",
+        "start": 412,
+        "startLoc": {
+          "column": 40,
+          "line": 412,
+          "position": 9748
+        }
+      },
+      "tokens": 131
+    },
+    {
+      "firstFile": {
+        "end": 44,
+        "endLoc": {
+          "column": 5,
+          "line": 44,
+          "position": 1004
+        },
+        "name": "listagem-consulta.spec.js",
+        "start": 18,
+        "startLoc": {
+          "column": 4,
+          "line": 18,
+          "position": 475
+        }
+      },
+      "format": "javascript",
+      "fragment": "    .locator('#titulo-tarefa')\n    .fill(titulo);\n\n  await page\n    .locator('#descricao-tarefa')\n    .fill(descricao);\n\n  await page\n    .locator('#criado-por')\n    .fill(criadoPor);\n\n  await page\n    .locator('#salvar-tarefa')\n    .click();\n\n  await expect(page).toHaveURL(/index\\.html/, {\n    timeout: 15000\n  });\n\n  // Localiza a linha da tarefa criada\n  const linha = page\n    .locator('#lista-tarefas tr')\n    .filter({ hasText: titulo });\n\n  await expect(linha).toBeVisible({\n    timeout: 10000\n  });",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 27,
+      "secondFile": {
+        "end": 115,
+        "endLoc": {
+          "column": 5,
+          "line": 115,
+          "position": 2606
+        },
+        "name": "listagem-consulta.spec.js",
+        "start": 90,
+        "startLoc": {
+          "column": 4,
+          "line": 90,
+          "position": 2117
+        }
+      },
+      "tokens": 100
+    },
+    {
+      "firstFile": {
+        "end": 47,
+        "endLoc": {
+          "column": 36,
+          "line": 47,
+          "position": 1075
+        },
+        "name": "listagem-consulta.spec.js",
+        "start": 33,
+        "startLoc": {
+          "column": 15,
+          "line": 33,
+          "position": 745
+        }
+      },
+      "format": "javascript",
+      "fragment": "  await expect(page).toHaveURL(/index\\.html/, {\n    timeout: 15000\n  });\n\n  // Localiza a linha da tarefa criada\n  const linha = page\n    .locator('#lista-tarefas tr')\n    .filter({ hasText: titulo });\n\n  await expect(linha).toBeVisible({\n    timeout: 10000\n  });\n\n  // Valida os dados da linha\n  await expect(linha).toContainText(titulo);",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 15,
+      "secondFile": {
+        "end": 35,
+        "endLoc": {
+          "column": 36,
+          "line": 35,
+          "position": 954
+        },
+        "name": "status-exclusao.spec.js",
+        "start": 22,
+        "startLoc": {
+          "column": 15,
+          "line": 22,
+          "position": 674
+        }
+      },
+      "tokens": 56
+    },
+    {
+      "firstFile": {
+        "end": 47,
+        "endLoc": {
+          "column": 36,
+          "line": 47,
+          "position": 1075
+        },
+        "name": "listagem-consulta.spec.js",
+        "start": 33,
+        "startLoc": {
+          "column": 15,
+          "line": 33,
+          "position": 745
+        }
+      },
+      "format": "javascript",
+      "fragment": "  await expect(page).toHaveURL(/index\\.html/, {\n    timeout: 15000\n  });\n\n  // Localiza a linha da tarefa criada\n  const linha = page\n    .locator('#lista-tarefas tr')\n    .filter({ hasText: titulo });\n\n  await expect(linha).toBeVisible({\n    timeout: 10000\n  });\n\n  // Valida os dados da linha\n  await expect(linha).toContainText(titulo);",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 15,
+      "secondFile": {
+        "end": 106,
+        "endLoc": {
+          "column": 36,
+          "line": 106,
+          "position": 2603
+        },
+        "name": "status-exclusao.spec.js",
+        "start": 94,
+        "startLoc": {
+          "column": 15,
+          "line": 94,
+          "position": 2344
+        }
+      },
+      "tokens": 56
+    },
+    {
+      "firstFile": {
+        "end": 37,
+        "endLoc": {
+          "column": 7,
+          "line": 37,
+          "position": 977
+        },
+        "name": "status-exclusao.spec.js",
+        "start": 22,
+        "startLoc": {
+          "column": 46,
+          "line": 22,
+          "position": 705
+        }
+      },
+      "format": "javascript",
+      "fragment": "  await expect(page).toHaveURL(/index\\.html/, {\n    timeout: 15000\n  });\n\n  const linha = page\n    .locator('#lista-tarefas tr')\n    .filter({ hasText: titulo });\n\n  await expect(linha).toBeVisible({\n    timeout: 10000\n  });\n\n  // Estado inicial\n  await expect(linha).toContainText('Pendente');\n\n  await expect(",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 16,
+      "secondFile": {
+        "end": 109,
+        "endLoc": {
+          "column": 7,
+          "line": 109,
+          "position": 2652
+        },
+        "name": "status-exclusao.spec.js",
+        "start": 94,
+        "startLoc": {
+          "column": 46,
+          "line": 94,
+          "position": 2375
+        }
+      },
+      "tokens": 53
+    },
+    {
+      "firstFile": {
+        "end": 126,
+        "endLoc": {
+          "column": 22,
+          "line": 126,
+          "position": 3028
+        },
+        "name": "status-exclusao.spec.js",
+        "start": 110,
+        "startLoc": {
+          "column": 44,
+          "line": 110,
+          "position": 2704
+        }
+      },
+      "format": "javascript",
+      "fragment": "    .getByRole('button', { name: 'Concluir' })\n    .click();\n\n  const modal = page.getByRole('dialog');\n\n  await expect(modal).toBeVisible();\n\n  // Cancela\n  await modal\n    .getByRole('button', { name: 'Cancelar' })\n    .click();\n\n  // Modal deve desaparecer\n  await expect(modal).not.toBeVisible();\n\n  // Estado não pode mudar\n  await expect(linha).toContainText('Pendente');",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 17,
+      "secondFile": {
+        "end": 446,
+        "endLoc": {
+          "column": 22,
+          "line": 446,
+          "position": 10489
+        },
+        "name": "status-exclusao.spec.js",
+        "start": 431,
+        "startLoc": {
+          "column": 43,
+          "line": 431,
+          "position": 10190
+        }
+      },
+      "tokens": 63
+    },
+    {
+      "firstFile": {
+        "end": 126,
+        "endLoc": {
+          "column": 36,
+          "line": 126,
+          "position": 3042
+        },
+        "name": "status-exclusao.spec.js",
+        "start": 113,
+        "startLoc": {
+          "column": 8,
+          "line": 113,
+          "position": 2733
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const modal = page.getByRole('dialog');\n\n  await expect(modal).toBeVisible();\n\n  // Cancela\n  await modal\n    .getByRole('button', { name: 'Cancelar' })\n    .click();\n\n  // Modal deve desaparecer\n  await expect(modal).not.toBeVisible();\n\n  // Estado não pode mudar\n  await expect(linha).toContainText('Pendente');",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 14,
+      "secondFile": {
+        "end": 304,
+        "endLoc": {
+          "column": 19,
+          "line": 304,
+          "position": 7117
+        },
+        "name": "status-exclusao.spec.js",
+        "start": 291,
+        "startLoc": {
+          "column": 2,
+          "line": 291,
+          "position": 6834
+        }
+      },
+      "tokens": 57
+    },
+    {
+      "firstFile": {
+        "end": 214,
+        "endLoc": {
+          "column": 7,
+          "line": 214,
+          "position": 5062
+        },
+        "name": "status-exclusao.spec.js",
+        "start": 176,
+        "startLoc": {
+          "column": 11,
+          "line": 176,
+          "position": 4326
+        }
+      },
+      "format": "javascript",
+      "fragment": "    timeout: 15000\n  });\n\n  let linha = page\n    .locator('#lista-tarefas tr')\n    .filter({ hasText: titulo });\n\n  await expect(linha).toBeVisible({\n    timeout: 10000\n  });\n\n  // Primeiro conclui a tarefa\n  await linha\n    .getByRole('button', { name: 'Concluir' })\n    .click();\n\n  let modal = page.getByRole('dialog');\n\n  await expect(modal).toBeVisible();\n\n  await modal\n    .getByRole('button', { name: 'Concluir' })\n    .click();\n\n  await expect(linha).toContainText(\n    'Concluída',\n    { timeout: 10000 }\n  );\n\n  // Agora testa a reabertura\n  await linha\n    .getByRole('button', { name: 'Reabrir' })\n    .click();\n\n  modal = page.getByRole('dialog');\n\n  await expect(modal).toBeVisible();\n\n  await expect(modal)",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 39,
+      "secondFile": {
+        "end": 296,
+        "endLoc": {
+          "column": 7,
+          "line": 296,
+          "position": 6932
+        },
+        "name": "status-exclusao.spec.js",
+        "start": 257,
+        "startLoc": {
+          "column": 11,
+          "line": 257,
+          "position": 6187
+        }
+      },
+      "tokens": 150
+    },
+    {
+      "firstFile": {
+        "end": 322,
+        "endLoc": {
+          "column": 19,
+          "line": 322,
+          "position": 7486
+        },
+        "name": "status-exclusao.spec.js",
+        "start": 308,
+        "startLoc": {
+          "column": 16,
+          "line": 308,
+          "position": 7220
+        }
+      },
+      "format": "javascript",
+      "fragment": "  ).toBeVisible();\n\n  // Verifica persistência no banco\n  await page.reload();\n\n  linha = page\n    .locator('#lista-tarefas tr')\n    .filter({ hasText: titulo });\n\n  await expect(linha).toBeVisible({\n    timeout: 10000\n  });\n\n  await expect(linha)\n    .toContainText('Concluída');",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 15,
+      "secondFile": {
+        "end": 463,
+        "endLoc": {
+          "column": 19,
+          "line": 463,
+          "position": 10828
+        },
+        "name": "status-exclusao.spec.js",
+        "start": 449,
+        "startLoc": {
+          "column": 25,
+          "line": 449,
+          "position": 10555
+        }
+      },
+      "tokens": 50
+    }
+  ],
+  "statistics": {
+    "detectionDate": "2026-11-10T01:01:36.933Z",
+    "formats": {
+      "javascript": {
+        "clones": 46,
+        "duplicatedLines": 1103,
+        "duplicatedTokens": 4263,
+        "lines": 1660,
+        "newClones": 0,
+        "newDuplicatedLines": 0,
+        "percentage": 66.44578313253012,
+        "percentageTokens": 62.23357664233576,
+        "sources": 5,
+        "tokens": 6850
+      }
+    },
+    "total": {
+      "clones": 46,
+      "duplicatedLines": 1103,
+      "duplicatedTokens": 4263,
+      "lines": 1660,
+      "newClones": 0,
+      "newDuplicatedLines": 0,
+      "percentage": 66.44578313253012,
+      "percentageTokens": 62.23357664233576,
+      "sources": 5,
+      "tokens": 6850
+    }
+  }
+}

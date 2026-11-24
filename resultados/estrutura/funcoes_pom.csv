@@ -1,0 +1,68 @@
+﻿NLOC,CCN,token,PARAM,length,location,file,function,long_name,start,end
+10,1,88,1,10,"constructor@2-11@tests/pom\pages\EditarTarefaPage.js","tests/pom\pages\EditarTarefaPage.js","constructor","constructor ( page )",2,11
+3,1,18,0,3,"aguardarFormulario@13-15@tests/pom\pages\EditarTarefaPage.js","tests/pom\pages\EditarTarefaPage.js","aguardarFormulario","aguardarFormulario ( )",13,15
+4,4,44,1,4,"preencherAlteracoes@17-20@tests/pom\pages\EditarTarefaPage.js","tests/pom\pages\EditarTarefaPage.js","preencherAlteracoes","preencherAlteracoes ( {} titulo descricao { } )",17,20
+3,1,13,0,3,"solicitarSalvar@22-24@tests/pom\pages\EditarTarefaPage.js","tests/pom\pages\EditarTarefaPage.js","solicitarSalvar","solicitarSalvar ( )",22,24
+3,1,18,0,3,"confirmarEdicao@26-28@tests/pom\pages\EditarTarefaPage.js","tests/pom\pages\EditarTarefaPage.js","confirmarEdicao","confirmarEdicao ( )",26,28
+3,1,18,0,3,"cancelarEdicao@30-32@tests/pom\pages\EditarTarefaPage.js","tests/pom\pages\EditarTarefaPage.js","cancelarEdicao","cancelarEdicao ( )",30,32
+5,1,27,1,5,"salvarAlteracoes@35-39@tests/pom\pages\EditarTarefaPage.js","tests/pom\pages\EditarTarefaPage.js","salvarAlteracoes","salvarAlteracoes ( dados )",35,39
+4,1,20,0,4,"recarregar@41-44@tests/pom\pages\EditarTarefaPage.js","tests/pom\pages\EditarTarefaPage.js","recarregar","recarregar ( )",41,44
+7,1,55,1,7,"constructor@2-8@tests/pom\pages\HistoricoPage.js","tests/pom\pages\HistoricoPage.js","constructor","constructor ( page )",2,8
+3,1,14,0,3,"abrir@10-12@tests/pom\pages\HistoricoPage.js","tests/pom\pages\HistoricoPage.js","abrir","abrir ( )",10,12
+5,1,41,1,5,"eventosDaTarefa@14-18@tests/pom\pages\HistoricoPage.js","tests/pom\pages\HistoricoPage.js","eventosDaTarefa","eventosDaTarefa ( titulo )",14,18
+5,1,41,2,5,"eventoDaTarefa@20-24@tests/pom\pages\HistoricoPage.js","tests/pom\pages\HistoricoPage.js","eventoDaTarefa","eventoDaTarefa ( titulo , acao )",20,24
+3,1,27,2,3,"dataDoEvento@26-28@tests/pom\pages\HistoricoPage.js","tests/pom\pages\HistoricoPage.js","dataDoEvento","dataDoEvento ( titulo , acao )",26,28
+3,1,27,2,3,"autorDoEvento@30-32@tests/pom\pages\HistoricoPage.js","tests/pom\pages\HistoricoPage.js","autorDoEvento","autorDoEvento ( titulo , acao )",30,32
+3,1,27,2,3,"detalhesDoEvento@34-36@tests/pom\pages\HistoricoPage.js","tests/pom\pages\HistoricoPage.js","detalhesDoEvento","detalhesDoEvento ( titulo , acao )",34,36
+9,1,87,1,9,"constructor@2-10@tests/pom\pages\ListaPage.js","tests/pom\pages\ListaPage.js","constructor","constructor ( page )",2,10
+3,1,14,0,3,"abrir@12-14@tests/pom\pages\ListaPage.js","tests/pom\pages\ListaPage.js","abrir","abrir ( )",12,14
+3,1,13,0,3,"abrirNovaTarefa@16-18@tests/pom\pages\ListaPage.js","tests/pom\pages\ListaPage.js","abrirNovaTarefa","abrirNovaTarefa ( )",16,18
+3,1,13,0,3,"abrirHistorico@20-22@tests/pom\pages\ListaPage.js","tests/pom\pages\ListaPage.js","abrirHistorico","abrirHistorico ( )",20,22
+5,1,41,1,5,"linhaDaTarefa@24-28@tests/pom\pages\ListaPage.js","tests/pom\pages\ListaPage.js","linhaDaTarefa","linhaDaTarefa ( titulo )",24,28
+3,1,23,1,3,"statusDaTarefa@30-32@tests/pom\pages\ListaPage.js","tests/pom\pages\ListaPage.js","statusDaTarefa","statusDaTarefa ( titulo )",30,32
+3,1,23,1,3,"autorDaTarefa@34-36@tests/pom\pages\ListaPage.js","tests/pom\pages\ListaPage.js","autorDaTarefa","autorDaTarefa ( titulo )",34,36
+3,1,23,1,3,"dataCriacaoDaTarefa@38-40@tests/pom\pages\ListaPage.js","tests/pom\pages\ListaPage.js","dataCriacaoDaTarefa","dataCriacaoDaTarefa ( titulo )",38,40
+5,1,28,1,5,"botaoConcluir@42-46@tests/pom\pages\ListaPage.js","tests/pom\pages\ListaPage.js","botaoConcluir","botaoConcluir ( titulo )",42,46
+5,1,28,1,5,"botaoReabrir@48-52@tests/pom\pages\ListaPage.js","tests/pom\pages\ListaPage.js","botaoReabrir","botaoReabrir ( titulo )",48,52
+5,1,28,1,5,"botaoExcluir@54-58@tests/pom\pages\ListaPage.js","tests/pom\pages\ListaPage.js","botaoExcluir","botaoExcluir ( titulo )",54,58
+5,1,28,1,5,"linkVer@60-64@tests/pom\pages\ListaPage.js","tests/pom\pages\ListaPage.js","linkVer","linkVer ( titulo )",60,64
+5,1,28,1,5,"linkEditar@66-70@tests/pom\pages\ListaPage.js","tests/pom\pages\ListaPage.js","linkEditar","linkEditar ( titulo )",66,70
+3,1,17,1,3,"visualizarTarefa@72-74@tests/pom\pages\ListaPage.js","tests/pom\pages\ListaPage.js","visualizarTarefa","visualizarTarefa ( titulo )",72,74
+3,1,17,1,3,"editarTarefa@76-78@tests/pom\pages\ListaPage.js","tests/pom\pages\ListaPage.js","editarTarefa","editarTarefa ( titulo )",76,78
+3,1,17,1,3,"solicitarConclusao@80-82@tests/pom\pages\ListaPage.js","tests/pom\pages\ListaPage.js","solicitarConclusao","solicitarConclusao ( titulo )",80,82
+3,1,17,1,3,"solicitarReabertura@84-86@tests/pom\pages\ListaPage.js","tests/pom\pages\ListaPage.js","solicitarReabertura","solicitarReabertura ( titulo )",84,86
+3,1,17,1,3,"solicitarExclusao@88-90@tests/pom\pages\ListaPage.js","tests/pom\pages\ListaPage.js","solicitarExclusao","solicitarExclusao ( titulo )",88,90
+3,1,18,0,3,"confirmarModal@92-94@tests/pom\pages\ListaPage.js","tests/pom\pages\ListaPage.js","confirmarModal","confirmarModal ( )",92,94
+3,1,18,0,3,"cancelarModal@96-98@tests/pom\pages\ListaPage.js","tests/pom\pages\ListaPage.js","cancelarModal","cancelarModal ( )",96,98
+3,1,13,0,3,"recarregar@100-102@tests/pom\pages\ListaPage.js","tests/pom\pages\ListaPage.js","recarregar","recarregar ( )",100,102
+9,1,77,1,9,"constructor@2-10@tests/pom\pages\NovaTarefaPage.js","tests/pom\pages\NovaTarefaPage.js","constructor","constructor ( page )",2,10
+3,1,14,0,3,"abrir@12-14@tests/pom\pages\NovaTarefaPage.js","tests/pom\pages\NovaTarefaPage.js","abrir","abrir ( )",12,14
+5,5,62,1,5,"preencherFormulario@16-20@tests/pom\pages\NovaTarefaPage.js","tests/pom\pages\NovaTarefaPage.js","preencherFormulario","preencherFormulario ( {} titulo descricao criadoPor { } )",16,20
+3,1,13,0,3,"salvar@22-24@tests/pom\pages\NovaTarefaPage.js","tests/pom\pages\NovaTarefaPage.js","salvar","salvar ( )",22,24
+4,1,20,1,4,"cadastrar@26-29@tests/pom\pages\NovaTarefaPage.js","tests/pom\pages\NovaTarefaPage.js","cadastrar","cadastrar ( dados )",26,29
+11,1,99,1,11,"constructor@2-12@tests/pom\pages\VisualizarTarefaPage.js","tests/pom\pages\VisualizarTarefaPage.js","constructor","constructor ( page )",2,12
+3,1,18,0,3,"aguardarDetalhes@14-16@tests/pom\pages\VisualizarTarefaPage.js","tests/pom\pages\VisualizarTarefaPage.js","aguardarDetalhes","aguardarDetalhes ( )",14,16
+3,1,13,0,3,"abrirEdicao@18-20@tests/pom\pages\VisualizarTarefaPage.js","tests/pom\pages\VisualizarTarefaPage.js","abrirEdicao","abrirEdicao ( )",18,20
+15,1,119,1,20,"(anonymous)@6-25@tests/pom\cadastro.spec.js","tests/pom\cadastro.spec.js","(anonymous)","(anonymous)",6,25
+13,1,74,1,17,"(anonymous)@27-43@tests/pom\cadastro.spec.js","tests/pom\cadastro.spec.js","(anonymous)","(anonymous)",27,43
+13,1,74,1,17,"(anonymous)@45-61@tests/pom\cadastro.spec.js","tests/pom\cadastro.spec.js","(anonymous)","(anonymous)",45,61
+13,1,74,1,17,"(anonymous)@63-79@tests/pom\cadastro.spec.js","tests/pom\cadastro.spec.js","(anonymous)","(anonymous)",63,79
+39,1,315,1,48,"(anonymous)@7-54@tests/pom\edicao.spec.js","tests/pom\edicao.spec.js","(anonymous)","(anonymous)",7,54
+30,1,249,1,36,"(anonymous)@56-91@tests/pom\edicao.spec.js","tests/pom\edicao.spec.js","(anonymous)","(anonymous)",56,91
+20,1,183,1,24,"(anonymous)@93-116@tests/pom\edicao.spec.js","tests/pom\edicao.spec.js","(anonymous)","(anonymous)",93,116
+20,1,183,1,24,"(anonymous)@118-141@tests/pom\edicao.spec.js","tests/pom\edicao.spec.js","(anonymous)","(anonymous)",118,141
+18,1,172,1,22,"(anonymous)@143-164@tests/pom\edicao.spec.js","tests/pom\edicao.spec.js","(anonymous)","(anonymous)",143,164
+20,1,197,1,24,"(anonymous)@11-34@tests/pom\historico.spec.js","tests/pom\historico.spec.js","(anonymous)","(anonymous)",11,34
+35,1,308,1,40,"(anonymous)@36-75@tests/pom\historico.spec.js","tests/pom\historico.spec.js","(anonymous)","(anonymous)",36,75
+24,1,235,1,28,"(anonymous)@77-104@tests/pom\historico.spec.js","tests/pom\historico.spec.js","(anonymous)","(anonymous)",77,104
+28,1,279,1,35,"(anonymous)@106-140@tests/pom\historico.spec.js","tests/pom\historico.spec.js","(anonymous)","(anonymous)",106,140
+24,1,235,1,28,"(anonymous)@142-169@tests/pom\historico.spec.js","tests/pom\historico.spec.js","(anonymous)","(anonymous)",142,169
+28,1,285,1,36,"(anonymous)@171-206@tests/pom\historico.spec.js","tests/pom\historico.spec.js","(anonymous)","(anonymous)",171,206
+22,1,230,1,29,"(anonymous)@6-34@tests/pom\listagem-consulta.spec.js","tests/pom\listagem-consulta.spec.js","(anonymous)","(anonymous)",6,34
+24,1,256,1,33,"(anonymous)@36-68@tests/pom\listagem-consulta.spec.js","tests/pom\listagem-consulta.spec.js","(anonymous)","(anonymous)",36,68
+23,1,232,1,29,"(anonymous)@9-37@tests/pom\status-exclusÒo.spec.js","tests/pom\status-exclusÒo.spec.js","(anonymous)","(anonymous)",9,37
+26,1,257,1,33,"(anonymous)@39-71@tests/pom\status-exclusÒo.spec.js","tests/pom\status-exclusÒo.spec.js","(anonymous)","(anonymous)",39,71
+25,1,250,1,32,"(anonymous)@73-104@tests/pom\status-exclusÒo.spec.js","tests/pom\status-exclusÒo.spec.js","(anonymous)","(anonymous)",73,104
+29,1,290,1,38,"(anonymous)@106-143@tests/pom\status-exclusÒo.spec.js","tests/pom\status-exclusÒo.spec.js","(anonymous)","(anonymous)",106,143
+22,1,214,1,29,"(anonymous)@145-173@tests/pom\status-exclusÒo.spec.js","tests/pom\status-exclusÒo.spec.js","(anonymous)","(anonymous)",145,173
+24,1,226,1,31,"(anonymous)@175-205@tests/pom\status-exclusÒo.spec.js","tests/pom\status-exclusÒo.spec.js","(anonymous)","(anonymous)",175,205

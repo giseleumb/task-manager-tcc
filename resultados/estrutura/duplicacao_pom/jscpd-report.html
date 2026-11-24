@@ -1,0 +1,2356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Copy/Paste Detector Report</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background: #f7fafc; color: #2d3748; }
+    a { color: #3182ce; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .header { background: #fff; box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06); padding: 1rem 0; }
+    .header-inner { max-width: 80rem; margin: 0 auto; padding: 0 1rem; }
+    .header h1 { font-size: 1.875rem; font-weight: 600; color: #2d3748; margin: 0; }
+    .main { max-width: 80rem; margin: 2rem auto; padding: 0 1rem; }
+    .card { background: #fff; box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06); border-radius: 0.25rem; padding: 1.5rem; margin-bottom: 2rem; }
+    h2 { font-size: 1.5rem; font-weight: 600; color: #4a5568; margin: 0 0 1rem 0; }
+    .dashboard { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .stat-card { padding: 1rem; border-radius: 0.25rem; text-align: center; }
+    .stat-card h3 { font-size: 1.125rem; font-weight: 600; margin: 0 0 0.5rem 0; }
+    .stat-card .val { font-size: 2.25rem; font-weight: 700; }
+    .stat-blue { background: #bee3f8; color: #2a4365; }
+    .stat-green { background: #c6f6d5; color: #276749; }
+    .stat-yellow { background: #fefcbf; color: #975a16; }
+    .stat-red { background: #fed7d7; color: #9b2c2c; }
+    table { width: 100%; border-collapse: collapse; }
+    thead th { background: #edf2f7; color: #718096; text-transform: uppercase; font-size: 0.75rem; font-weight: 600; padding: 0.75rem 1.5rem; text-align: left; }
+    tbody td { padding: 0.75rem 1.5rem; border-bottom: 1px solid #edf2f7; font-size: 0.875rem; }
+    tbody tr:hover { background: #f7fafc; }
+    .clone-section { margin-bottom: 2rem; }
+    .clone-section h2 { border-bottom: 2px solid #edf2f7; padding-bottom: 0.5rem; }
+    .clone-item { padding: 1rem 0; border-bottom: 1px solid #edf2f7; }
+    .clone-item:last-child { border-bottom: none; }
+    .clone-info { color: #718096; font-size: 0.875rem; margin-bottom: 0.25rem; }
+    .toggle-btn { background: #a0aec0; color: #fff; border: none; padding: 0.125rem 0.5rem; font-size: 0.75rem; border-radius: 0.25rem; cursor: pointer; margin-left: 0.5rem; }
+    .toggle-btn:focus { outline: none; }
+    .code-pair { display: none; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-top: 0.5rem; }
+    .code-pair.visible { display: grid; }
+    .code-side { min-width: 0; background: #f7fafc; border: 1px solid #edf2f7; border-radius: 0.25rem; }
+    .code-file { padding: 0.5rem 1rem; border-bottom: 1px solid #edf2f7; color: #718096; font-size: 0.75rem; overflow-wrap: anywhere; }
+    .code-lines { display: flex; overflow-x: auto; }
+    .code-gutter, .code-text { margin: 0; padding: 0.75rem 1rem; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 0.875rem; line-height: 1.5; white-space: pre; }
+    .code-gutter { position: sticky; left: 0; padding-right: 0.75rem; background: #f7fafc; border-right: 1px solid #edf2f7; color: #a0aec0; text-align: right; user-select: none; }
+    .code-text { flex: 1; color: #2d3748; }
+    .code-text code { font: inherit; }
+    .token.comment, .token.prolog, .token.doctype, .token.cdata { color: #5f6b7a; font-style: italic; }
+    .token.keyword, .token.atrule, .token.important, .token.rule { color: #6b46c1; }
+    .token.string, .token.char, .token.attr-value, .token.template-string, .token.regex, .token.url, .token.inserted { color: #276749; }
+    .token.number, .token.boolean, .token.constant, .token.symbol { color: #9c4221; }
+    .token.function, .token.class-name { color: #2b6cb0; }
+    .token.tag, .token.selector, .token.property, .token.deleted { color: #9b2c2c; }
+    .token.attr-name, .token.builtin, .token.variable { color: #975a16; }
+    .token.punctuation, .token.operator { color: #4a5568; }
+    .token.bold { font-weight: 700; }
+    .token.italic { font-style: italic; }
+    .no-dupes { color: #27ae60; font-weight: 700; font-size: 1.125rem; }
+    .footer { margin-top: 3rem; padding: 2rem 0; border-top: 1px solid #e0e0e0; text-align: center; font-family: -apple-system, sans-serif; color: #666; }
+    .footer p { margin: 0.5rem 0; font-size: 0.875rem; }
+    .footer a { color: #0066cc; }
+    .footer .small { font-size: 0.75rem; color: #999; }
+    @media (max-width: 768px) { .dashboard { grid-template-columns: repeat(2, 1fr); } .code-pair { grid-template-columns: minmax(0, 1fr); } }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <h1>jscpd - copy/paste report</h1>
+    </div>
+  </header>
+
+  <div class="main">
+    <div class="card">
+      <section>
+        <h2>Dashboard</h2>
+        <div class="dashboard">
+          <div class="stat-card stat-blue">
+            <h3>Total Files</h3>
+            <div class="val">10</div>
+          </div>
+          <div class="stat-card stat-green">
+            <h3>Total Lines of Code</h3>
+            <div class="val">968</div>
+          </div>
+          <div class="stat-card stat-yellow">
+            <h3>Number of Clones</h3>
+            <div class="val">38</div>
+          </div>
+          <div class="stat-card stat-red">
+            <h3>Duplicated Lines</h3>
+            <div class="val">354 (36.57%)</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="card">
+      <section>
+        <h2>Formats with Duplications</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Format</th>
+              <th>Files</th>
+              <th>Lines</th>
+              <th>Clones</th>
+              <th>Duplicated Lines</th>
+              <th>Duplicated Tokens</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+            <tr>
+              <td><a href="#javascript-clones">javascript</a></td>
+              <td>10</td>
+              <td>968</td>
+              <td>38</td>
+              <td>354 (36.57%)</td>
+              <td>2591 (38.14%)</td>
+            </tr>
+            
+            <tr style="font-weight: 700;">
+              <td>Total</td>
+              <td>10</td>
+              <td>968</td>
+              <td>38</td>
+              <td>354 (36.57%)</td>
+              <td>2591 (38.14%)</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+
+    
+    
+    <div class="card">
+      <section class="clone-section">
+        <a name="javascript-clones"></a>
+        <h2>javascript</h2>
+        <div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 1:1 - Line 7:5),
+              historico.spec.js (Line 1:1 - Line 6:6)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-1" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-1" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">1
+2
+3
+4
+5
+6
+7</pre><pre class="code-text"><code class="language-javascript">const { test, expect } = require(&#39;@playwright/test&#39;);
+const { ListaPage } = require(&#39;./pages/ListaPage&#39;);
+const { NovaTarefaPage } = require(&#39;./pages/NovaTarefaPage&#39;);
+const { EditarTarefaPage } = require(&#39;./pages/EditarTarefaPage&#39;);
+const { VisualizarTarefaPage } = require(&#39;./pages/VisualizarTarefaPage&#39;);
+
+test(&#39;EDI02 - editar tarefa e confirmar alteração&#39;, async ({ page }) =&#62; {</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">1
+2
+3
+4
+5
+6</pre><pre class="code-text"><code class="language-javascript">const { test, expect } = require(&#39;@playwright/test&#39;);
+const { ListaPage } = require(&#39;./pages/ListaPage&#39;);
+const { NovaTarefaPage } = require(&#39;./pages/NovaTarefaPage&#39;);
+const { EditarTarefaPage } = require(&#39;./pages/EditarTarefaPage&#39;);
+const { VisualizarTarefaPage } = require(&#39;./pages/VisualizarTarefaPage&#39;);
+const { HistoricoPage } = require(&#39;./pages/HistoricoPage&#39;);</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 18:59 - Line 28:67),
+              edicao.spec.js (Line 65:62 - Line 74:67)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-2" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-2" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre><pre class="code-text"><code class="language-javascript">  const novaDescricao = &#39;Descrição alterada pelo EDI02.&#39;;
+
+  // Preparação da tarefa: mesmo fluxo e dados da suíte monolítica.
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({
+    titulo: tituloOriginal,
+    descricao: descricaoOriginal,
+    criadoPor: autor
+  });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">65
+66
+67
+68
+69
+70
+71
+72
+73
+74</pre><pre class="code-text"><code class="language-javascript">  const tituloNaoSalvo = `EDI03 Não Salvar ${identificador}`;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({
+    titulo: tituloOriginal,
+    descricao: descricaoOriginal,
+    criadoPor: autor
+  });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 44:3 - Line 52:8),
+              historico.spec.js (Line 61:57 - Line 70:8)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-3" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-3" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">44
+45
+46
+47
+48
+49
+50
+51
+52</pre><pre class="code-text"><code class="language-javascript">  });
+  await editar.solicitarSalvar();
+  await expect(editar.modal).toBeVisible();
+  await editar.confirmarEdicao();
+
+  await expect(page).toHaveURL(/visualizar\.html\?id=/, { timeout: 15000 });
+  await visualizar.aguardarDetalhes();
+  await expect(visualizar.titulo).toHaveText(novoTitulo);
+  await expect(visualizar.descricao).toHaveText(novaDescricao);</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">61
+62
+63
+64
+65
+66
+67
+68
+69
+70</pre><pre class="code-text"><code class="language-javascript">  await editar.preencherAlteracoes({ titulo: novoTitulo });
+  await editar.solicitarSalvar();
+  await expect(editar.modal).toBeVisible();
+  await editar.confirmarEdicao();
+
+  await expect(page).toHaveURL(/visualizar\.html\?id=/, { timeout: 15000 });
+  await visualizar.aguardarDetalhes();
+  await expect(visualizar.titulo).toHaveText(novoTitulo);
+
+  await historico.abrir();</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 65:47 - Line 80:45),
+              historico.spec.js (Line 47:39 - Line 61:45)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-4" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-4" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80</pre><pre class="code-text"><code class="language-javascript">  const tituloNaoSalvo = `EDI03 Não Salvar ${identificador}`;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({
+    titulo: tituloOriginal,
+    descricao: descricaoOriginal,
+    criadoPor: autor
+  });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  await expect(lista.linhaDaTarefa(tituloOriginal)).toBeVisible({ timeout: 10000 });
+  await lista.editarTarefa(tituloOriginal);
+  await editar.aguardarFormulario();
+
+  await editar.preencherAlteracoes({ titulo: tituloNaoSalvo });</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61</pre><pre class="code-text"><code class="language-javascript">  const novoTitulo = `HIS02 Editada ${identificador}`;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({
+    titulo: tituloOriginal,
+    descricao: descricaoOriginal,
+    criadoPor: autor
+  });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  await expect(lista.linhaDaTarefa(tituloOriginal)).toBeVisible({ timeout: 10000 });
+  await lista.editarTarefa(tituloOriginal);
+  await editar.aguardarFormulario();
+  await editar.preencherAlteracoes({ titulo: novoTitulo });</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 100:52 - Line 112:37),
+              edicao.spec.js (Line 125:52 - Line 137:37)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-5" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-5" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112</pre><pre class="code-text"><code class="language-javascript">  const descricao = &#39;Descrição válida do EDI04.&#39;;
+  const autor = &#39;Teste Playwright&#39;;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  await expect(lista.linhaDaTarefa(titulo)).toBeVisible({ timeout: 10000 });
+  await lista.editarTarefa(titulo);
+  await editar.aguardarFormulario();
+
+  await editar.preencherAlteracoes({ titulo: &#39;&#39; });</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137</pre><pre class="code-text"><code class="language-javascript">  const descricao = &#39;Descrição válida do EDI05.&#39;;
+  const autor = &#39;Teste Playwright&#39;;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  await expect(lista.linhaDaTarefa(titulo)).toBeVisible({ timeout: 10000 });
+  await lista.editarTarefa(titulo);
+  await editar.aguardarFormulario();
+
+  await editar.preencherAlteracoes({ descricao: &#39;&#39; });</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 100:52 - Line 106:67),
+              status-exclusão.spec.js (Line 15:60 - Line 22:67)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-6" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-6" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">100
+101
+102
+103
+104
+105
+106</pre><pre class="code-text"><code class="language-javascript">  const descricao = &#39;Descrição válida do EDI04.&#39;;
+  const autor = &#39;Teste Playwright&#39;;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusão.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">15
+16
+17
+18
+19
+20
+21
+22</pre><pre class="code-text"><code class="language-javascript">  const descricao = &#39;Tarefa criada para testar conclusão.&#39;;
+  const autor = &#39;Teste Playwright&#39;;
+
+  // Preparação da tarefa.
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 100:52 - Line 106:67),
+              status-exclusão.spec.js (Line 45:62 - Line 51:67)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-7" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-7" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">100
+101
+102
+103
+104
+105
+106</pre><pre class="code-text"><code class="language-javascript">  const descricao = &#39;Descrição válida do EDI04.&#39;;
+  const autor = &#39;Teste Playwright&#39;;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusão.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">45
+46
+47
+48
+49
+50
+51</pre><pre class="code-text"><code class="language-javascript">  const descricao = &#39;Tarefa criada para testar cancelamento.&#39;;
+  const autor = &#39;Teste Playwright&#39;;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 100:52 - Line 106:67),
+              status-exclusão.spec.js (Line 79:60 - Line 85:67)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-8" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-8" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">100
+101
+102
+103
+104
+105
+106</pre><pre class="code-text"><code class="language-javascript">  const descricao = &#39;Descrição válida do EDI04.&#39;;
+  const autor = &#39;Teste Playwright&#39;;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusão.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">79
+80
+81
+82
+83
+84
+85</pre><pre class="code-text"><code class="language-javascript">  const descricao = &#39;Tarefa criada para testar reabertura.&#39;;
+  const autor = &#39;Teste Playwright&#39;;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 100:52 - Line 106:67),
+              status-exclusão.spec.js (Line 112:76 - Line 118:67)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-9" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-9" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">100
+101
+102
+103
+104
+105
+106</pre><pre class="code-text"><code class="language-javascript">  const descricao = &#39;Descrição válida do EDI04.&#39;;
+  const autor = &#39;Teste Playwright&#39;;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusão.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">112
+113
+114
+115
+116
+117
+118</pre><pre class="code-text"><code class="language-javascript">  const descricao = &#39;Tarefa criada para testar cancelamento de reabertura.&#39;;
+  const autor = &#39;Teste Playwright&#39;;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 100:52 - Line 106:67),
+              status-exclusão.spec.js (Line 151:59 - Line 157:67)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-10" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-10" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">100
+101
+102
+103
+104
+105
+106</pre><pre class="code-text"><code class="language-javascript">  const descricao = &#39;Descrição válida do EDI04.&#39;;
+  const autor = &#39;Teste Playwright&#39;;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusão.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">151
+152
+153
+154
+155
+156
+157</pre><pre class="code-text"><code class="language-javascript">  const descricao = &#39;Tarefa criada para testar exclusão.&#39;;
+  const autor = &#39;Teste Playwright&#39;;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 100:52 - Line 106:67),
+              status-exclusão.spec.js (Line 181:75 - Line 187:67)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-11" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-11" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">100
+101
+102
+103
+104
+105
+106</pre><pre class="code-text"><code class="language-javascript">  const descricao = &#39;Descrição válida do EDI04.&#39;;
+  const autor = &#39;Teste Playwright&#39;;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusão.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">181
+182
+183
+184
+185
+186
+187</pre><pre class="code-text"><code class="language-javascript">  const descricao = &#39;Tarefa criada para testar cancelamento da exclusão.&#39;;
+  const autor = &#39;Teste Playwright&#39;;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 101:35 - Line 112:8),
+              edicao.spec.js (Line 151:47 - Line 162:8)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-12" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-12" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112</pre><pre class="code-text"><code class="language-javascript">  const autor = &#39;Teste Playwright&#39;;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  await expect(lista.linhaDaTarefa(titulo)).toBeVisible({ timeout: 10000 });
+  await lista.editarTarefa(titulo);
+  await editar.aguardarFormulario();
+
+  await editar.preencherAlteracoes({ titulo: &#39;&#39; });</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162</pre><pre class="code-text"><code class="language-javascript">  const autor = `Autor EDI06 ${identificador}`;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  await expect(lista.linhaDaTarefa(titulo)).toBeVisible({ timeout: 10000 });
+  await lista.editarTarefa(titulo);
+  await editar.aguardarFormulario();
+
+  await expect(editar.criadoPor).toHaveValue(autor);</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 151:32 - Line 158:8),
+              historico.spec.js (Line 19:32 - Line 26:8)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-13" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-13" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">151
+152
+153
+154
+155
+156
+157
+158</pre><pre class="code-text"><code class="language-javascript">  const autor = `Autor EDI06 ${identificador}`;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  await expect(lista.linhaDaTarefa(titulo)).toBeVisible({ timeout: 10000 });</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">19
+20
+21
+22
+23
+24
+25
+26</pre><pre class="code-text"><code class="language-javascript">  const autor = `Autor HIS01 ${identificador}`;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  await lista.abrirHistorico();</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 151:32 - Line 156:67),
+              historico.spec.js (Line 85:32 - Line 90:67)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-14" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-14" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">151
+152
+153
+154
+155
+156</pre><pre class="code-text"><code class="language-javascript">  const autor = `Autor EDI06 ${identificador}`;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">85
+86
+87
+88
+89
+90</pre><pre class="code-text"><code class="language-javascript">  const autor = `Autor HIS03 ${identificador}`;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 151:32 - Line 156:67),
+              historico.spec.js (Line 114:32 - Line 119:67)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-15" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-15" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">151
+152
+153
+154
+155
+156</pre><pre class="code-text"><code class="language-javascript">  const autor = `Autor EDI06 ${identificador}`;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">114
+115
+116
+117
+118
+119</pre><pre class="code-text"><code class="language-javascript">  const autor = `Autor HIS04 ${identificador}`;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 151:32 - Line 156:67),
+              historico.spec.js (Line 150:32 - Line 155:67)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-16" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-16" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">151
+152
+153
+154
+155
+156</pre><pre class="code-text"><code class="language-javascript">  const autor = `Autor EDI06 ${identificador}`;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">150
+151
+152
+153
+154
+155</pre><pre class="code-text"><code class="language-javascript">  const autor = `Autor HIS05 ${identificador}`;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 151:32 - Line 156:67),
+              historico.spec.js (Line 179:32 - Line 184:67)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-17" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-17" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">151
+152
+153
+154
+155
+156</pre><pre class="code-text"><code class="language-javascript">  const autor = `Autor EDI06 ${identificador}`;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">179
+180
+181
+182
+183
+184</pre><pre class="code-text"><code class="language-javascript">  const autor = `Autor HIS06 ${identificador}`;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              historico.spec.js (Line 85:45 - Line 99:8),
+              historico.spec.js (Line 114:45 - Line 130:8)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-18" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-18" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99</pre><pre class="code-text"><code class="language-javascript">  const autor = `Autor HIS03 ${identificador}`;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  const linha = lista.linhaDaTarefa(titulo);
+  await expect(linha).toBeVisible({ timeout: 10000 });
+  await lista.solicitarConclusao(titulo);
+  await expect(lista.modal).toBeVisible();
+  await lista.confirmarModal();
+  await expect(linha).toContainText(&#39;Concluída&#39;, { timeout: 10000 });
+
+  await historico.abrir();</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130</pre><pre class="code-text"><code class="language-javascript">  const autor = `Autor HIS04 ${identificador}`;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  const linha = lista.linhaDaTarefa(titulo);
+  await expect(linha).toBeVisible({ timeout: 10000 });
+
+  // Precondição: a tarefa precisa estar concluída para ser reaberta.
+  await lista.solicitarConclusao(titulo);
+  await expect(lista.modal).toBeVisible();
+  await lista.confirmarModal();
+  await expect(linha).toContainText(&#39;Concluída&#39;, { timeout: 10000 });
+
+  await lista.solicitarReabertura(titulo);</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              historico.spec.js (Line 85:45 - Line 94:15),
+              historico.spec.js (Line 150:45 - Line 159:15)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-19" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-19" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">85
+86
+87
+88
+89
+90
+91
+92
+93
+94</pre><pre class="code-text"><code class="language-javascript">  const autor = `Autor HIS03 ${identificador}`;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  const linha = lista.linhaDaTarefa(titulo);
+  await expect(linha).toBeVisible({ timeout: 10000 });
+  await lista.solicitarConclusao(titulo);</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">150
+151
+152
+153
+154
+155
+156
+157
+158
+159</pre><pre class="code-text"><code class="language-javascript">  const autor = `Autor HIS05 ${identificador}`;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  const linha = lista.linhaDaTarefa(titulo);
+  await expect(linha).toBeVisible({ timeout: 10000 });
+  await lista.solicitarExclusao(titulo);</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              historico.spec.js (Line 85:45 - Line 94:15),
+              historico.spec.js (Line 179:45 - Line 188:15)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-20" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-20" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">85
+86
+87
+88
+89
+90
+91
+92
+93
+94</pre><pre class="code-text"><code class="language-javascript">  const autor = `Autor HIS03 ${identificador}`;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  const linha = lista.linhaDaTarefa(titulo);
+  await expect(linha).toBeVisible({ timeout: 10000 });
+  await lista.solicitarConclusao(titulo);</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">179
+180
+181
+182
+183
+184
+185
+186
+187
+188</pre><pre class="code-text"><code class="language-javascript">  const autor = `Autor HIS06 ${identificador}`;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  const linha = lista.linhaDaTarefa(titulo);
+  await expect(linha).toBeVisible({ timeout: 10000 });
+  await lista.solicitarExclusao(titulo);</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              historico.spec.js (Line 85:47 - Line 94:8),
+              status-exclusão.spec.js (Line 16:35 - Line 26:8)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-21" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-21" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">85
+86
+87
+88
+89
+90
+91
+92
+93
+94</pre><pre class="code-text"><code class="language-javascript">  const autor = `Autor HIS03 ${identificador}`;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  const linha = lista.linhaDaTarefa(titulo);
+  await expect(linha).toBeVisible({ timeout: 10000 });
+  await lista.solicitarConclusao(titulo);</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusão.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26</pre><pre class="code-text"><code class="language-javascript">  const autor = &#39;Teste Playwright&#39;;
+
+  // Preparação da tarefa.
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  const linha = lista.linhaDaTarefa(titulo);
+  await expect(linha).toBeVisible({ timeout: 10000 });
+  await expect(linha).toContainText(&#39;Pendente&#39;);</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              historico.spec.js (Line 89:51 - Line 99:8),
+              status-exclusão.spec.js (Line 84:51 - Line 96:8)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-22" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-22" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99</pre><pre class="code-text"><code class="language-javascript">  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  const linha = lista.linhaDaTarefa(titulo);
+  await expect(linha).toBeVisible({ timeout: 10000 });
+  await lista.solicitarConclusao(titulo);
+  await expect(lista.modal).toBeVisible();
+  await lista.confirmarModal();
+  await expect(linha).toContainText(&#39;Concluída&#39;, { timeout: 10000 });
+
+  await historico.abrir();</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusão.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96</pre><pre class="code-text"><code class="language-javascript">  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  const linha = lista.linhaDaTarefa(titulo);
+  await expect(linha).toBeVisible({ timeout: 10000 });
+
+  // Preparação: concluir a tarefa antes de reabri-la.
+  await lista.solicitarConclusao(titulo);
+  await expect(lista.modal).toBeVisible();
+  await lista.confirmarModal();
+  await expect(linha).toContainText(&#39;Concluída&#39;, { timeout: 10000 });
+
+  await lista.solicitarReabertura(titulo);</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              historico.spec.js (Line 89:51 - Line 99:8),
+              status-exclusão.spec.js (Line 117:51 - Line 129:8)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-23" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-23" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99</pre><pre class="code-text"><code class="language-javascript">  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  const linha = lista.linhaDaTarefa(titulo);
+  await expect(linha).toBeVisible({ timeout: 10000 });
+  await lista.solicitarConclusao(titulo);
+  await expect(lista.modal).toBeVisible();
+  await lista.confirmarModal();
+  await expect(linha).toContainText(&#39;Concluída&#39;, { timeout: 10000 });
+
+  await historico.abrir();</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusão.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129</pre><pre class="code-text"><code class="language-javascript">  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  const linha = lista.linhaDaTarefa(titulo);
+  await expect(linha).toBeVisible({ timeout: 10000 });
+
+  // Preparação: concluir a tarefa.
+  await lista.solicitarConclusao(titulo);
+  await expect(lista.modal).toBeVisible();
+  await lista.confirmarModal();
+  await expect(linha).toContainText(&#39;Concluída&#39;, { timeout: 10000 });
+
+  await lista.solicitarReabertura(titulo);</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              historico.spec.js (Line 89:51 - Line 94:15),
+              status-exclusão.spec.js (Line 156:51 - Line 162:15)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-24" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-24" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">89
+90
+91
+92
+93
+94</pre><pre class="code-text"><code class="language-javascript">  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  const linha = lista.linhaDaTarefa(titulo);
+  await expect(linha).toBeVisible({ timeout: 10000 });
+  await lista.solicitarConclusao(titulo);</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusão.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">156
+157
+158
+159
+160
+161
+162</pre><pre class="code-text"><code class="language-javascript">  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  const linha = lista.linhaDaTarefa(titulo);
+  await expect(linha).toBeVisible({ timeout: 10000 });
+
+  await lista.solicitarExclusao(titulo);</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              historico.spec.js (Line 89:51 - Line 94:15),
+              status-exclusão.spec.js (Line 186:51 - Line 192:15)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-25" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-25" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">89
+90
+91
+92
+93
+94</pre><pre class="code-text"><code class="language-javascript">  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  const linha = lista.linhaDaTarefa(titulo);
+  await expect(linha).toBeVisible({ timeout: 10000 });
+  await lista.solicitarConclusao(titulo);</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusão.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">186
+187
+188
+189
+190
+191
+192</pre><pre class="code-text"><code class="language-javascript">  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  const linha = lista.linhaDaTarefa(titulo);
+  await expect(linha).toBeVisible({ timeout: 10000 });
+
+  await lista.solicitarExclusao(titulo);</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              historico.spec.js (Line 122:46 - Line 132:8),
+              status-exclusão.spec.js (Line 88:46 - Line 98:8)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-26" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-26" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132</pre><pre class="code-text"><code class="language-javascript">  await expect(linha).toBeVisible({ timeout: 10000 });
+
+  // Precondição: a tarefa precisa estar concluída para ser reaberta.
+  await lista.solicitarConclusao(titulo);
+  await expect(lista.modal).toBeVisible();
+  await lista.confirmarModal();
+  await expect(linha).toContainText(&#39;Concluída&#39;, { timeout: 10000 });
+
+  await lista.solicitarReabertura(titulo);
+  await expect(lista.modal).toBeVisible();
+  await lista.confirmarModal();</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusão.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98</pre><pre class="code-text"><code class="language-javascript">  await expect(linha).toBeVisible({ timeout: 10000 });
+
+  // Preparação: concluir a tarefa antes de reabri-la.
+  await lista.solicitarConclusao(titulo);
+  await expect(lista.modal).toBeVisible();
+  await lista.confirmarModal();
+  await expect(linha).toContainText(&#39;Concluída&#39;, { timeout: 10000 });
+
+  await lista.solicitarReabertura(titulo);
+  await expect(lista.modal).toBeVisible();
+  await expect(lista.modal).toContainText(&#39;Deseja reabrir esta tarefa?&#39;);</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              historico.spec.js (Line 122:46 - Line 132:15),
+              status-exclusão.spec.js (Line 121:46 - Line 131:15)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-27" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-27" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132</pre><pre class="code-text"><code class="language-javascript">  await expect(linha).toBeVisible({ timeout: 10000 });
+
+  // Precondição: a tarefa precisa estar concluída para ser reaberta.
+  await lista.solicitarConclusao(titulo);
+  await expect(lista.modal).toBeVisible();
+  await lista.confirmarModal();
+  await expect(linha).toContainText(&#39;Concluída&#39;, { timeout: 10000 });
+
+  await lista.solicitarReabertura(titulo);
+  await expect(lista.modal).toBeVisible();
+  await lista.confirmarModal();</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusão.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131</pre><pre class="code-text"><code class="language-javascript">  await expect(linha).toBeVisible({ timeout: 10000 });
+
+  // Preparação: concluir a tarefa.
+  await lista.solicitarConclusao(titulo);
+  await expect(lista.modal).toBeVisible();
+  await lista.confirmarModal();
+  await expect(linha).toContainText(&#39;Concluída&#39;, { timeout: 10000 });
+
+  await lista.solicitarReabertura(titulo);
+  await expect(lista.modal).toBeVisible();
+  await lista.cancelarModal();</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              historico.spec.js (Line 154:62 - Line 164:8),
+              historico.spec.js (Line 183:62 - Line 194:8)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-28" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-28" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164</pre><pre class="code-text"><code class="language-javascript">  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  const linha = lista.linhaDaTarefa(titulo);
+  await expect(linha).toBeVisible({ timeout: 10000 });
+  await lista.solicitarExclusao(titulo);
+  await expect(lista.modal).toBeVisible();
+  await lista.confirmarModal();
+  await expect(linha).toHaveCount(0, { timeout: 10000 });
+
+  await historico.abrir();</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194</pre><pre class="code-text"><code class="language-javascript">  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  const linha = lista.linhaDaTarefa(titulo);
+  await expect(linha).toBeVisible({ timeout: 10000 });
+  await lista.solicitarExclusao(titulo);
+  await expect(lista.modal).toBeVisible();
+  await lista.confirmarModal();
+  await expect(linha).toHaveCount(0, { timeout: 10000 });
+
+  // Verifica que a tarefa foi efetivamente removida da listagem persistida.
+  await lista.recarregar();</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              historico.spec.js (Line 154:62 - Line 161:8),
+              status-exclusão.spec.js (Line 156:62 - Line 164:8)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-29" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-29" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">154
+155
+156
+157
+158
+159
+160
+161</pre><pre class="code-text"><code class="language-javascript">  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  const linha = lista.linhaDaTarefa(titulo);
+  await expect(linha).toBeVisible({ timeout: 10000 });
+  await lista.solicitarExclusao(titulo);
+  await expect(lista.modal).toBeVisible();
+  await lista.confirmarModal();</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusão.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">156
+157
+158
+159
+160
+161
+162
+163
+164</pre><pre class="code-text"><code class="language-javascript">  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  const linha = lista.linhaDaTarefa(titulo);
+  await expect(linha).toBeVisible({ timeout: 10000 });
+
+  await lista.solicitarExclusao(titulo);
+  await expect(lista.modal).toBeVisible();
+  await expect(lista.modal).toContainText(titulo);</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              historico.spec.js (Line 154:62 - Line 161:15),
+              status-exclusão.spec.js (Line 186:62 - Line 194:15)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-30" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-30" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">154
+155
+156
+157
+158
+159
+160
+161</pre><pre class="code-text"><code class="language-javascript">  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  const linha = lista.linhaDaTarefa(titulo);
+  await expect(linha).toBeVisible({ timeout: 10000 });
+  await lista.solicitarExclusao(titulo);
+  await expect(lista.modal).toBeVisible();
+  await lista.confirmarModal();</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusão.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">186
+187
+188
+189
+190
+191
+192
+193
+194</pre><pre class="code-text"><code class="language-javascript">  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  const linha = lista.linhaDaTarefa(titulo);
+  await expect(linha).toBeVisible({ timeout: 10000 });
+
+  await lista.solicitarExclusao(titulo);
+  await expect(lista.modal).toBeVisible();
+  await lista.cancelarModal();</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              listagem-consulta.spec.js (Line 13:39 - Line 24:55),
+              listagem-consulta.spec.js (Line 44:51 - Line 54:55)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-31" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-31" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">listagem-consulta.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24</pre><pre class="code-text"><code class="language-javascript">  const criadoPor = &#39;Teste Playwright&#39;;
+
+  // Preparação: cria uma tarefa pela interface.
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor });
+
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  // Mesmas verificações funcionais da suíte monolítica.
+  const linha = lista.linhaDaTarefa(titulo);
+  await expect(linha).toBeVisible({ timeout: 10000 });</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">listagem-consulta.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54</pre><pre class="code-text"><code class="language-javascript">  const criadoPor = `Autor CON01 ${identificador}`;
+
+  // Preparação: cria uma tarefa pela interface.
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor });
+
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  const linha = lista.linhaDaTarefa(titulo);
+  await expect(linha).toBeVisible({ timeout: 10000 });</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              listagem-consulta.spec.js (Line 18:61 - Line 25:37),
+              status-exclusão.spec.js (Line 21:68 - Line 26:37)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-32" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-32" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">listagem-consulta.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">18
+19
+20
+21
+22
+23
+24
+25</pre><pre class="code-text"><code class="language-javascript">  await novaTarefa.cadastrar({ titulo, descricao, criadoPor });
+
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  // Mesmas verificações funcionais da suíte monolítica.
+  const linha = lista.linhaDaTarefa(titulo);
+  await expect(linha).toBeVisible({ timeout: 10000 });
+  await expect(linha).toContainText(titulo);</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusão.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">21
+22
+23
+24
+25
+26</pre><pre class="code-text"><code class="language-javascript">  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  const linha = lista.linhaDaTarefa(titulo);
+  await expect(linha).toBeVisible({ timeout: 10000 });
+  await expect(linha).toContainText(&#39;Pendente&#39;);</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              pages\EditarTarefaPage.js (Line 1:24 - Line 8:37),
+              pages\NovaTarefaPage.js (Line 1:22 - Line 8:37)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-33" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-33" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">pages\EditarTarefaPage.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">1
+2
+3
+4
+5
+6
+7
+8</pre><pre class="code-text"><code class="language-javascript">class EditarTarefaPage {
+  constructor(page) {
+    this.page = page;
+    this.formulario = page.locator(&#39;#form-tarefa&#39;);
+    this.titulo = page.locator(&#39;#titulo-tarefa&#39;);
+    this.descricao = page.locator(&#39;#descricao-tarefa&#39;);
+    this.criadoPor = page.locator(&#39;#criado-por&#39;);
+    this.botaoSalvar = page.locator(&#39;#salvar-edicao&#39;);</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">pages\NovaTarefaPage.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">1
+2
+3
+4
+5
+6
+7
+8</pre><pre class="code-text"><code class="language-javascript">class NovaTarefaPage {
+  constructor(page) {
+    this.page = page;
+    this.formulario = page.locator(&#39;#form-tarefa&#39;);
+    this.titulo = page.locator(&#39;#titulo-tarefa&#39;);
+    this.descricao = page.locator(&#39;#descricao-tarefa&#39;);
+    this.criadoPor = page.locator(&#39;#criado-por&#39;);
+    this.botaoSalvar = page.locator(&#39;#salvar-tarefa&#39;);</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              status-exclusão.spec.js (Line 16:17 - Line 27:8),
+              status-exclusão.spec.js (Line 46:17 - Line 57:8)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-34" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-34" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusão.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27</pre><pre class="code-text"><code class="language-javascript">  const autor = &#39;Teste Playwright&#39;;
+
+  // Preparação da tarefa.
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  const linha = lista.linhaDaTarefa(titulo);
+  await expect(linha).toBeVisible({ timeout: 10000 });
+  await expect(linha).toContainText(&#39;Pendente&#39;);
+  await expect(lista.botaoConcluir(titulo)).toBeVisible();</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusão.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57</pre><pre class="code-text"><code class="language-javascript">  const autor = &#39;Teste Playwright&#39;;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  const linha = lista.linhaDaTarefa(titulo);
+  await expect(linha).toBeVisible({ timeout: 10000 });
+  await expect(linha).toContainText(&#39;Pendente&#39;);
+
+  await lista.solicitarConclusao(titulo);</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              status-exclusão.spec.js (Line 16:17 - Line 26:8),
+              status-exclusão.spec.js (Line 80:17 - Line 91:8)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-35" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-35" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusão.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26</pre><pre class="code-text"><code class="language-javascript">  const autor = &#39;Teste Playwright&#39;;
+
+  // Preparação da tarefa.
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  const linha = lista.linhaDaTarefa(titulo);
+  await expect(linha).toBeVisible({ timeout: 10000 });
+  await expect(linha).toContainText(&#39;Pendente&#39;);</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusão.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91</pre><pre class="code-text"><code class="language-javascript">  const autor = &#39;Teste Playwright&#39;;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  const linha = lista.linhaDaTarefa(titulo);
+  await expect(linha).toBeVisible({ timeout: 10000 });
+
+  // Preparação: concluir a tarefa antes de reabri-la.
+  await lista.solicitarConclusao(titulo);</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              status-exclusão.spec.js (Line 16:17 - Line 26:8),
+              status-exclusão.spec.js (Line 113:17 - Line 124:8)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-36" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-36" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusão.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26</pre><pre class="code-text"><code class="language-javascript">  const autor = &#39;Teste Playwright&#39;;
+
+  // Preparação da tarefa.
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  const linha = lista.linhaDaTarefa(titulo);
+  await expect(linha).toBeVisible({ timeout: 10000 });
+  await expect(linha).toContainText(&#39;Pendente&#39;);</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusão.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124</pre><pre class="code-text"><code class="language-javascript">  const autor = &#39;Teste Playwright&#39;;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  const linha = lista.linhaDaTarefa(titulo);
+  await expect(linha).toBeVisible({ timeout: 10000 });
+
+  // Preparação: concluir a tarefa.
+  await lista.solicitarConclusao(titulo);</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              status-exclusão.spec.js (Line 16:17 - Line 26:8),
+              status-exclusão.spec.js (Line 152:17 - Line 162:8)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-37" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-37" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusão.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26</pre><pre class="code-text"><code class="language-javascript">  const autor = &#39;Teste Playwright&#39;;
+
+  // Preparação da tarefa.
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  const linha = lista.linhaDaTarefa(titulo);
+  await expect(linha).toBeVisible({ timeout: 10000 });
+  await expect(linha).toContainText(&#39;Pendente&#39;);</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusão.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162</pre><pre class="code-text"><code class="language-javascript">  const autor = &#39;Teste Playwright&#39;;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  const linha = lista.linhaDaTarefa(titulo);
+  await expect(linha).toBeVisible({ timeout: 10000 });
+
+  await lista.solicitarExclusao(titulo);</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              status-exclusão.spec.js (Line 16:17 - Line 26:8),
+              status-exclusão.spec.js (Line 182:17 - Line 192:8)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-38" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-38" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusão.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26</pre><pre class="code-text"><code class="language-javascript">  const autor = &#39;Teste Playwright&#39;;
+
+  // Preparação da tarefa.
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  const linha = lista.linhaDaTarefa(titulo);
+  await expect(linha).toBeVisible({ timeout: 10000 });
+  await expect(linha).toContainText(&#39;Pendente&#39;);</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusão.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192</pre><pre class="code-text"><code class="language-javascript">  const autor = &#39;Teste Playwright&#39;;
+
+  await lista.abrir();
+  await lista.abrirNovaTarefa();
+  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });
+  await expect(page).toHaveURL(/index\.html/, { timeout: 15000 });
+
+  const linha = lista.linhaDaTarefa(titulo);
+  await expect(linha).toBeVisible({ timeout: 10000 });
+
+  await lista.solicitarExclusao(titulo);</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+        </div>
+      </section>
+    </div>
+    
+    
+  </div>
+
+  <div class="footer">
+    <p>Generated by <a href="https://jscpd.dev" target="_blank">jscpd</a> v5.4.3 by <a href="https://github.com/kucherenko" target="_blank">Andrey Kucherenko</a></p>
+    <p><a href="https://www.npmjs.com/package/jscpd" target="_blank"><img src="https://img.shields.io/npm/dw/jscpd.svg?style=flat-square" alt="npm weekly downloads" style="vertical-align: middle;"></a></p>
+  </div>
+
+  
+  <script>window.Prism = { manual: true };</script>
+  <script>/*!
+MIT LICENSE
+
+Copyright (c) 2012 Lea Verou
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+*/
+/*! Prism 1.30.0 (https://prismjs.com), MIT License, see LICENSE next to this file. Bundled by rust/scripts/vendor-prism.py. */
+
+var _self="undefined"!=typeof window?window:"undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?self:{},Prism=function(e){var n=/(?:^|\s)lang(?:uage)?-([\w-]+)(?=\s|$)/i,t=0,r={},a={manual:e.Prism&&e.Prism.manual,disableWorkerMessageHandler:e.Prism&&e.Prism.disableWorkerMessageHandler,util:{encode:function e(n){return n instanceof i?new i(n.type,e(n.content),n.alias):Array.isArray(n)?n.map(e):n.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\u00a0/g," ")},type:function(e){return Object.prototype.toString.call(e).slice(8,-1)},objId:function(e){return e.__id||Object.defineProperty(e,"__id",{value:++t}),e.__id},clone:function e(n,t){var r,i;switch(t=t||{},a.util.type(n)){case"Object":if(i=a.util.objId(n),t[i])return t[i];for(var l in r={},t[i]=r,n)n.hasOwnProperty(l)&&(r[l]=e(n[l],t));return r;case"Array":return i=a.util.objId(n),t[i]?t[i]:(r=[],t[i]=r,n.forEach((function(n,a){r[a]=e(n,t)})),r);default:return n}},getLanguage:function(e){for(;e;){var t=n.exec(e.className);if(t)return t[1].toLowerCase();e=e.parentElement}return"none"},setLanguage:function(e,t){e.className=e.className.replace(RegExp(n,"gi"),""),e.classList.add("language-"+t)},currentScript:function(){if("undefined"==typeof document)return null;if(document.currentScript&&"SCRIPT"===document.currentScript.tagName)return document.currentScript;try{throw new Error}catch(r){var e=(/at [^(\r\n]*\((.*):[^:]+:[^:]+\)$/i.exec(r.stack)||[])[1];if(e){var n=document.getElementsByTagName("script");for(var t in n)if(n[t].src==e)return n[t]}return null}},isActive:function(e,n,t){for(var r="no-"+n;e;){var a=e.classList;if(a.contains(n))return!0;if(a.contains(r))return!1;e=e.parentElement}return!!t}},languages:{plain:r,plaintext:r,text:r,txt:r,extend:function(e,n){var t=a.util.clone(a.languages[e]);for(var r in n)t[r]=n[r];return t},insertBefore:function(e,n,t,r){var i=(r=r||a.languages)[e],l={};for(var o in i)if(i.hasOwnProperty(o)){if(o==n)for(var s in t)t.hasOwnProperty(s)&&(l[s]=t[s]);t.hasOwnProperty(o)||(l[o]=i[o])}var u=r[e];return r[e]=l,a.languages.DFS(a.languages,(function(n,t){t===u&&n!=e&&(this[n]=l)})),l},DFS:function e(n,t,r,i){i=i||{};var l=a.util.objId;for(var o in n)if(n.hasOwnProperty(o)){t.call(n,o,n[o],r||o);var s=n[o],u=a.util.type(s);"Object"!==u||i[l(s)]?"Array"!==u||i[l(s)]||(i[l(s)]=!0,e(s,t,o,i)):(i[l(s)]=!0,e(s,t,null,i))}}},plugins:{},highlightAll:function(e,n){a.highlightAllUnder(document,e,n)},highlightAllUnder:function(e,n,t){var r={callback:t,container:e,selector:'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'};a.hooks.run("before-highlightall",r),r.elements=Array.prototype.slice.apply(r.container.querySelectorAll(r.selector)),a.hooks.run("before-all-elements-highlight",r);for(var i,l=0;i=r.elements[l++];)a.highlightElement(i,!0===n,r.callback)},highlightElement:function(n,t,r){var i=a.util.getLanguage(n),l=a.languages[i];a.util.setLanguage(n,i);var o=n.parentElement;o&&"pre"===o.nodeName.toLowerCase()&&a.util.setLanguage(o,i);var s={element:n,language:i,grammar:l,code:n.textContent};function u(e){s.highlightedCode=e,a.hooks.run("before-insert",s),s.element.innerHTML=s.highlightedCode,a.hooks.run("after-highlight",s),a.hooks.run("complete",s),r&&r.call(s.element)}if(a.hooks.run("before-sanity-check",s),(o=s.element.parentElement)&&"pre"===o.nodeName.toLowerCase()&&!o.hasAttribute("tabindex")&&o.setAttribute("tabindex","0"),!s.code)return a.hooks.run("complete",s),void(r&&r.call(s.element));if(a.hooks.run("before-highlight",s),s.grammar)if(t&&e.Worker){var c=new Worker(a.filename);c.onmessage=function(e){u(e.data)},c.postMessage(JSON.stringify({language:s.language,code:s.code,immediateClose:!0}))}else u(a.highlight(s.code,s.grammar,s.language));else u(a.util.encode(s.code))},highlight:function(e,n,t){var r={code:e,grammar:n,language:t};if(a.hooks.run("before-tokenize",r),!r.grammar)throw new Error('The language "'+r.language+'" has no grammar.');return r.tokens=a.tokenize(r.code,r.grammar),a.hooks.run("after-tokenize",r),i.stringify(a.util.encode(r.tokens),r.language)},tokenize:function(e,n){var t=n.rest;if(t){for(var r in t)n[r]=t[r];delete n.rest}var a=new s;return u(a,a.head,e),o(e,a,n,a.head,0),function(e){for(var n=[],t=e.head.next;t!==e.tail;)n.push(t.value),t=t.next;return n}(a)},hooks:{all:{},add:function(e,n){var t=a.hooks.all;t[e]=t[e]||[],t[e].push(n)},run:function(e,n){var t=a.hooks.all[e];if(t&&t.length)for(var r,i=0;r=t[i++];)r(n)}},Token:i};function i(e,n,t,r){this.type=e,this.content=n,this.alias=t,this.length=0|(r||"").length}function l(e,n,t,r){e.lastIndex=n;var a=e.exec(t);if(a&&r&&a[1]){var i=a[1].length;a.index+=i,a[0]=a[0].slice(i)}return a}function o(e,n,t,r,s,g){for(var f in t)if(t.hasOwnProperty(f)&&t[f]){var h=t[f];h=Array.isArray(h)?h:[h];for(var d=0;d<h.length;++d){if(g&&g.cause==f+","+d)return;var v=h[d],p=v.inside,m=!!v.lookbehind,y=!!v.greedy,k=v.alias;if(y&&!v.pattern.global){var x=v.pattern.toString().match(/[imsuy]*$/)[0];v.pattern=RegExp(v.pattern.source,x+"g")}for(var b=v.pattern||v,w=r.next,A=s;w!==n.tail&&!(g&&A>=g.reach);A+=w.value.length,w=w.next){var P=w.value;if(n.length>e.length)return;if(!(P instanceof i)){var E,S=1;if(y){if(!(E=l(b,A,e,m))||E.index>=e.length)break;var L=E.index,O=E.index+E[0].length,C=A;for(C+=w.value.length;L>=C;)C+=(w=w.next).value.length;if(A=C-=w.value.length,w.value instanceof i)continue;for(var j=w;j!==n.tail&&(C<O||"string"==typeof j.value);j=j.next)S++,C+=j.value.length;S--,P=e.slice(A,C),E.index-=A}else if(!(E=l(b,0,P,m)))continue;L=E.index;var N=E[0],_=P.slice(0,L),M=P.slice(L+N.length),W=A+P.length;g&&W>g.reach&&(g.reach=W);var I=w.prev;if(_&&(I=u(n,I,_),A+=_.length),c(n,I,S),w=u(n,I,new i(f,p?a.tokenize(N,p):N,k,N)),M&&u(n,w,M),S>1){var T={cause:f+","+d,reach:W};o(e,n,t,w.prev,A,T),g&&T.reach>g.reach&&(g.reach=T.reach)}}}}}}function s(){var e={value:null,prev:null,next:null},n={value:null,prev:e,next:null};e.next=n,this.head=e,this.tail=n,this.length=0}function u(e,n,t){var r=n.next,a={value:t,prev:n,next:r};return n.next=a,r.prev=a,e.length++,a}function c(e,n,t){for(var r=n.next,a=0;a<t&&r!==e.tail;a++)r=r.next;n.next=r,r.prev=n,e.length-=a}if(e.Prism=a,i.stringify=function e(n,t){if("string"==typeof n)return n;if(Array.isArray(n)){var r="";return n.forEach((function(n){r+=e(n,t)})),r}var i={type:n.type,content:e(n.content,t),tag:"span",classes:["token",n.type],attributes:{},language:t},l=n.alias;l&&(Array.isArray(l)?Array.prototype.push.apply(i.classes,l):i.classes.push(l)),a.hooks.run("wrap",i);var o="";for(var s in i.attributes)o+=" "+s+'="'+(i.attributes[s]||"").replace(/"/g,"&quot;")+'"';return"<"+i.tag+' class="'+i.classes.join(" ")+'"'+o+">"+i.content+"</"+i.tag+">"},!e.document)return e.addEventListener?(a.disableWorkerMessageHandler||e.addEventListener("message",(function(n){var t=JSON.parse(n.data),r=t.language,i=t.code,l=t.immediateClose;e.postMessage(a.highlight(i,a.languages[r],r)),l&&e.close()}),!1),a):a;var g=a.util.currentScript();function f(){a.manual||a.highlightAll()}if(g&&(a.filename=g.src,g.hasAttribute("data-manual")&&(a.manual=!0)),!a.manual){var h=document.readyState;"loading"===h||"interactive"===h&&g&&g.defer?document.addEventListener("DOMContentLoaded",f):window.requestAnimationFrame?window.requestAnimationFrame(f):window.setTimeout(f,16)}return a}(_self);"undefined"!=typeof module&&module.exports&&(module.exports=Prism),"undefined"!=typeof global&&(global.Prism=Prism);
+Prism.languages.clike={comment:[{pattern:/(^|[^\\])\/\*[\s\S]*?(?:\*\/|$)/,lookbehind:!0,greedy:!0},{pattern:/(^|[^\\:])\/\/.*/,lookbehind:!0,greedy:!0}],string:{pattern:/(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,greedy:!0},"class-name":{pattern:/(\b(?:class|extends|implements|instanceof|interface|new|trait)\s+|\bcatch\s+\()[\w.\\]+/i,lookbehind:!0,inside:{punctuation:/[.\\]/}},keyword:/\b(?:break|catch|continue|do|else|finally|for|function|if|in|instanceof|new|null|return|throw|try|while)\b/,boolean:/\b(?:false|true)\b/,function:/\b\w+(?=\()/,number:/\b0x[\da-f]+\b|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:e[+-]?\d+)?/i,operator:/[<>]=?|[!=]=?=?|--?|\+\+?|&&?|\|\|?|[?*/~^%]/,punctuation:/[{}[\];(),.:]/};
+Prism.languages.javascript=Prism.languages.extend("clike",{"class-name":[Prism.languages.clike["class-name"],{pattern:/(^|[^$\w\xA0-\uFFFF])(?!\s)[_$A-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\.(?:constructor|prototype))/,lookbehind:!0}],keyword:[{pattern:/((?:^|\})\s*)catch\b/,lookbehind:!0},{pattern:/(^|[^.]|\.\.\.\s*)\b(?:as|assert(?=\s*\{)|async(?=\s*(?:function\b|\(|[$\w\xA0-\uFFFF]|$))|await|break|case|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally(?=\s*(?:\{|$))|for|from(?=\s*(?:['"]|$))|function|(?:get|set)(?=\s*(?:[#\[$\w\xA0-\uFFFF]|$))|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)\b/,lookbehind:!0}],function:/#?(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*(?:\.\s*(?:apply|bind|call)\s*)?\()/,number:{pattern:RegExp("(^|[^\\w$])(?:NaN|Infinity|0[bB][01]+(?:_[01]+)*n?|0[oO][0-7]+(?:_[0-7]+)*n?|0[xX][\\dA-Fa-f]+(?:_[\\dA-Fa-f]+)*n?|\\d+(?:_\\d+)*n|(?:\\d+(?:_\\d+)*(?:\\.(?:\\d+(?:_\\d+)*)?)?|\\.\\d+(?:_\\d+)*)(?:[Ee][+-]?\\d+(?:_\\d+)*)?)(?![\\w$])"),lookbehind:!0},operator:/--|\+\+|\*\*=?|=>|&&=?|\|\|=?|[!=]==|<<=?|>>>?=?|[-+*/%&|^!=<>]=?|\.{3}|\?\?=?|\?\.?|[~:]/}),Prism.languages.javascript["class-name"][0].pattern=/(\b(?:class|extends|implements|instanceof|interface|new)\s+)[\w.\\]+/,Prism.languages.insertBefore("javascript","keyword",{regex:{pattern:RegExp("((?:^|[^$\\w\\xA0-\\uFFFF.\"'\\])\\s]|\\b(?:return|yield))\\s*)/(?:(?:\\[(?:[^\\]\\\\\r\n]|\\\\.)*\\]|\\\\.|[^/\\\\\\[\r\n])+/[dgimyus]{0,7}|(?:\\[(?:[^[\\]\\\\\r\n]|\\\\.|\\[(?:[^[\\]\\\\\r\n]|\\\\.|\\[(?:[^[\\]\\\\\r\n]|\\\\.)*\\])*\\])*\\]|\\\\.|[^/\\\\\\[\r\n])+/[dgimyus]{0,7}v[dgimyus]{0,7})(?=(?:\\s|/\\*(?:[^*]|\\*(?!/))*\\*/)*(?:$|[\r\n,.;:})\\]]|//))"),lookbehind:!0,greedy:!0,inside:{"regex-source":{pattern:/^(\/)[\s\S]+(?=\/[a-z]*$)/,lookbehind:!0,alias:"language-regex",inside:Prism.languages.regex},"regex-delimiter":/^\/|\/$/,"regex-flags":/^[a-z]+$/}},"function-variable":{pattern:/#?(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*[=:]\s*(?:async\s*)?(?:\bfunction\b|(?:\((?:[^()]|\([^()]*\))*\)|(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)\s*=>))/,alias:"function"},parameter:[{pattern:/(function(?:\s+(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)?\s*\(\s*)(?!\s)(?:[^()\s]|\s+(?![\s)])|\([^()]*\))+(?=\s*\))/,lookbehind:!0,inside:Prism.languages.javascript},{pattern:/(^|[^$\w\xA0-\uFFFF])(?!\s)[_$a-z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*=>)/i,lookbehind:!0,inside:Prism.languages.javascript},{pattern:/(\(\s*)(?!\s)(?:[^()\s]|\s+(?![\s)])|\([^()]*\))+(?=\s*\)\s*=>)/,lookbehind:!0,inside:Prism.languages.javascript},{pattern:/((?:\b|\s|^)(?!(?:as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)(?![$\w\xA0-\uFFFF]))(?:(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*\s*)\(\s*|\]\s*\(\s*)(?!\s)(?:[^()\s]|\s+(?![\s)])|\([^()]*\))+(?=\s*\)\s*\{)/,lookbehind:!0,inside:Prism.languages.javascript}],constant:/\b[A-Z](?:[A-Z_]|\dx?)*\b/}),Prism.languages.insertBefore("javascript","string",{hashbang:{pattern:/^#!.*/,greedy:!0,alias:"comment"},"template-string":{pattern:/`(?:\\[\s\S]|\$\{(?:[^{}]|\{(?:[^{}]|\{[^}]*\})*\})+\}|(?!\$\{)[^\\`])*`/,greedy:!0,inside:{"template-punctuation":{pattern:/^`|`$/,alias:"string"},interpolation:{pattern:/((?:^|[^\\])(?:\\{2})*)\$\{(?:[^{}]|\{(?:[^{}]|\{[^}]*\})*\})+\}/,lookbehind:!0,inside:{"interpolation-punctuation":{pattern:/^\$\{|\}$/,alias:"punctuation"},rest:Prism.languages.javascript}},string:/[\s\S]+/}},"string-property":{pattern:/((?:^|[,{])[ \t]*)(["'])(?:\\(?:\r\n|[\s\S])|(?!\2)[^\\\r\n])*\2(?=\s*:)/m,lookbehind:!0,greedy:!0,alias:"property"}}),Prism.languages.insertBefore("javascript","operator",{"literal-property":{pattern:/((?:^|[,{])[ \t]*)(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*:)/m,lookbehind:!0,alias:"property"}}),Prism.languages.markup&&(Prism.languages.markup.tag.addInlined("script","javascript"),Prism.languages.markup.tag.addAttribute("on(?:abort|blur|change|click|composition(?:end|start|update)|dblclick|error|focus(?:in|out)?|key(?:down|up)|load|mouse(?:down|enter|leave|move|out|over|up)|reset|resize|scroll|select|slotchange|submit|unload|wheel)","javascript")),Prism.languages.js=Prism.languages.javascript;</script>
+  
+  <script>
+    function toggle(id) {
+      var el = document.getElementById(id);
+      if (!el) { return; }
+      el.classList.toggle('visible');
+      // Highlight a clone's code when it is first shown, not the whole page on load.
+      if (window.Prism && !el.hasAttribute('data-highlighted')) {
+        el.setAttribute('data-highlighted', '');
+        Prism.highlightAllUnder(el);
+      }
+    }
+  </script>
+</body>
+</html>

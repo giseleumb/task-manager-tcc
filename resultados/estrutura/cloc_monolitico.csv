@@ -1,0 +1,7 @@
+language,filename,blank,comment,code,"github.com/AlDanial/cloc v 2.10  T=0.10 s (50.2 files/s 16657.8 lines/s)"
+JavaScript,tests\monolitico\historico.spec.js,126,33,335
+JavaScript,tests\monolitico\status-exclusao.spec.js,123,33,308
+JavaScript,tests\monolitico\edicao.spec.js,103,44,270
+JavaScript,tests\monolitico\listagem-consulta.spec.js,37,9,107
+JavaScript,tests\monolitico\cadastro.spec.js,41,0,91
+SUM,,430,119,1111

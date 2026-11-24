@@ -1,0 +1,19 @@
+{"header" : {
+  "cloc_url"           : "github.com/AlDanial/cloc",
+  "cloc_version"       : "2.10",
+  "elapsed_seconds"    : 0.0649549961090088,
+  "n_files"            : 5,
+  "n_lines"            : 1660,
+  "files_per_second"   : 76.9763728660517,
+  "lines_per_second"   : 25556.1557915292,
+  "report_file"        : "resultados/estrutura/cloc_monolitico.json"},
+"JavaScript" :{
+  "nFiles": 5,
+  "blank": 430,
+  "comment": 119,
+  "code": 1111},
+"SUM": {
+  "blank": 430,
+  "comment": 119,
+  "code": 1111,
+  "nFiles": 5} }

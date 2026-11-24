@@ -1,0 +1,897 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gisel\\TCC\\task-manager-tcc-inicial\\task-manager-tcc\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/monolitico",
+      "--reporter=list,json"
+    ],
+    "configFile": "C:\\Users\\gisel\\TCC\\task-manager-tcc-inicial\\task-manager-tcc\\playwright.config.js",
+    "rootDir": "C:/Users/gisel/TCC/task-manager-tcc-inicial/task-manager-tcc/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/gisel/TCC/task-manager-tcc-inicial/task-manager-tcc/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "C:/Users/gisel/TCC/task-manager-tcc-inicial/task-manager-tcc/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.62.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "monolitico\\cadastro.spec.js",
+      "file": "monolitico/cadastro.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "CT01 - criar tarefa com dados válidos",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5437,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-09T02:18:07.483Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "dfb75d6dd05b6ea82c4e-7f353dd5fcc701c88a31",
+          "file": "monolitico/cadastro.spec.js",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "CT02 - impedir cadastro sem título",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 584,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-09T02:18:13.155Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "dfb75d6dd05b6ea82c4e-867d6fb688956f6047bd",
+          "file": "monolitico/cadastro.spec.js",
+          "line": 58,
+          "column": 1
+        },
+        {
+          "title": "CT03 - impedir cadastro sem descrição",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 472,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-09T02:18:13.750Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "dfb75d6dd05b6ea82c4e-518321fbeb9341dd148b",
+          "file": "monolitico/cadastro.spec.js",
+          "line": 83,
+          "column": 1
+        },
+        {
+          "title": "CT04 - impedir cadastro sem criado por",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 418,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-09T02:18:14.230Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "dfb75d6dd05b6ea82c4e-92e0cc568037ad362264",
+          "file": "monolitico/cadastro.spec.js",
+          "line": 108,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "monolitico\\edicao.spec.js",
+      "file": "monolitico/edicao.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "EDI02 - editar tarefa e confirmar alteração",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2357,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-09T02:18:14.668Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2318ba2fad0f94c6a2bd-61db607d63f76a5fde9c",
+          "file": "monolitico/edicao.spec.js",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "EDI03 - cancelar confirmação de edição",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1593,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-09T02:18:17.041Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2318ba2fad0f94c6a2bd-3b43bda3959af19edd7d",
+          "file": "monolitico/edicao.spec.js",
+          "line": 124,
+          "column": 1
+        },
+        {
+          "title": "EDI04 - impedir edição sem título",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1169,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-09T02:18:18.646Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2318ba2fad0f94c6a2bd-ace1998a10d4c86ea1c4",
+          "file": "monolitico/edicao.spec.js",
+          "line": 239,
+          "column": 1
+        },
+        {
+          "title": "EDI05 - impedir edição sem descrição",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1288,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-09T02:18:19.830Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2318ba2fad0f94c6a2bd-ad7fbb7a0b99c06230c0",
+          "file": "monolitico/edicao.spec.js",
+          "line": 302,
+          "column": 1
+        },
+        {
+          "title": "EDI06 - preservar autor original na edição",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1148,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-09T02:18:21.128Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2318ba2fad0f94c6a2bd-3dbfca1764a210b1d3a7",
+          "file": "monolitico/edicao.spec.js",
+          "line": 365,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "monolitico\\historico.spec.js",
+      "file": "monolitico/historico.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "HIS01 - registrar evento de criação",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1375,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-09T02:18:22.295Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "7993fe3efb3a3c7c31dc-39b557d77fc1752a4e06",
+          "file": "monolitico/historico.spec.js",
+          "line": 2,
+          "column": 1
+        },
+        {
+          "title": "HIS02 - registrar evento de edição",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1924,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-09T02:18:23.683Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "7993fe3efb3a3c7c31dc-d84819b2e5504b2c95dc",
+          "file": "monolitico/historico.spec.js",
+          "line": 68,
+          "column": 1
+        },
+        {
+          "title": "HIS03 - registrar evento de conclusão",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1570,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-09T02:18:25.619Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "7993fe3efb3a3c7c31dc-77dcb3a629c329c60689",
+          "file": "monolitico/historico.spec.js",
+          "line": 180,
+          "column": 1
+        },
+        {
+          "title": "HIS04 - registrar evento de reabertura",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1935,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-09T02:18:27.199Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "7993fe3efb3a3c7c31dc-3cdc1c638709d88068ef",
+          "file": "monolitico/historico.spec.js",
+          "line": 251,
+          "column": 1
+        },
+        {
+          "title": "HIS05 - registrar evento de exclusão",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1546,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-09T02:18:29.143Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "7993fe3efb3a3c7c31dc-86c15e76def75ddf74ac",
+          "file": "monolitico/historico.spec.js",
+          "line": 341,
+          "column": 1
+        },
+        {
+          "title": "HIS06 - preservar histórico após exclusão",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1618,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-09T02:18:30.699Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "7993fe3efb3a3c7c31dc-1fdc5bf4c98eed9d7860",
+          "file": "monolitico/historico.spec.js",
+          "line": 408,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "monolitico\\listagem-consulta.spec.js",
+      "file": "monolitico/listagem-consulta.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "LIS06 - exibir dados e ações da linha",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 849,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-09T02:18:32.333Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "7ce1d6e8e2b33d26a1c7-ce2dea9ae1e6e32c57b7",
+          "file": "monolitico/listagem-consulta.spec.js",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "CON01 - consultar detalhes de uma tarefa",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1150,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-09T02:18:33.192Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "7ce1d6e8e2b33d26a1c7-c8c98e40b2d483dd5585",
+          "file": "monolitico/listagem-consulta.spec.js",
+          "line": 75,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "monolitico\\status-exclusao.spec.js",
+      "file": "monolitico/status-exclusao.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "STA01 - concluir tarefa pendente",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1171,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-09T02:18:34.358Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fc00c203a9248b410936-fc2cbca81de16544e46b",
+          "file": "monolitico/status-exclusao.spec.js",
+          "line": 2,
+          "column": 1
+        },
+        {
+          "title": "STA02 - cancelar conclusão",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1035,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-09T02:18:35.540Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fc00c203a9248b410936-968dff67bca014138a60",
+          "file": "monolitico/status-exclusao.spec.js",
+          "line": 74,
+          "column": 1
+        },
+        {
+          "title": "STA03 - reabrir tarefa concluída",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1770,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-09T02:18:36.585Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fc00c203a9248b410936-c1333a773a48fea39039",
+          "file": "monolitico/status-exclusao.spec.js",
+          "line": 155,
+          "column": 1
+        },
+        {
+          "title": "STA04 - cancelar reabertura",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2020,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-09T02:18:38.366Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fc00c203a9248b410936-c15ff993c0922dd405a6",
+          "file": "monolitico/status-exclusao.spec.js",
+          "line": 236,
+          "column": 1
+        },
+        {
+          "title": "EXC01 - excluir tarefa e confirmar",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1263,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-09T02:18:40.395Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fc00c203a9248b410936-d1ba551faab80d3bc5f4",
+          "file": "monolitico/status-exclusao.spec.js",
+          "line": 328,
+          "column": 1
+        },
+        {
+          "title": "EXC02 - cancelar exclusão",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1208,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-09T02:18:41.669Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fc00c203a9248b410936-adaf211a0a0bf5fb62cd",
+          "file": "monolitico/status-exclusao.spec.js",
+          "line": 397,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-09T02:18:06.755Z",
+    "duration": 36290.805,
+    "expected": 23,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
