@@ -1,0 +1,1477 @@
+{
+  "duplicates": [
+    {
+      "firstFile": {
+        "end": 7,
+        "endLoc": {
+          "column": 4,
+          "line": 7,
+          "position": 319
+        },
+        "name": "edicao.spec.js",
+        "start": 1,
+        "startLoc": {
+          "column": 0,
+          "line": 1,
+          "position": 0
+        }
+      },
+      "format": "javascript",
+      "fragment": "const { test, expect } = require('@playwright/test');\nconst { ListaPage } = require('./pages/ListaPage');\nconst { NovaTarefaPage } = require('./pages/NovaTarefaPage');\nconst { EditarTarefaPage } = require('./pages/EditarTarefaPage');\nconst { VisualizarTarefaPage } = require('./pages/VisualizarTarefaPage');\n\ntest('EDI02 - editar tarefa e confirmar alteração', async ({ page }) => {",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 7,
+      "secondFile": {
+        "end": 6,
+        "endLoc": {
+          "column": 5,
+          "line": 6,
+          "position": 318
+        },
+        "name": "historico.spec.js",
+        "start": 1,
+        "startLoc": {
+          "column": 0,
+          "line": 1,
+          "position": 0
+        }
+      },
+      "tokens": 52
+    },
+    {
+      "firstFile": {
+        "end": 28,
+        "endLoc": {
+          "column": 66,
+          "line": 28,
+          "position": 1210
+        },
+        "name": "edicao.spec.js",
+        "start": 18,
+        "startLoc": {
+          "column": 58,
+          "line": 18,
+          "position": 883
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const novaDescricao = 'Descrição alterada pelo EDI02.';\n\n  // Preparação da tarefa: mesmo fluxo e dados da suíte monolítica.\n  await lista.abrir();\n  await lista.abrirNovaTarefa();\n  await novaTarefa.cadastrar({\n    titulo: tituloOriginal,\n    descricao: descricaoOriginal,\n    criadoPor: autor\n  });\n  await expect(page).toHaveURL(/index\\.html/, { timeout: 15000 });",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 11,
+      "secondFile": {
+        "end": 74,
+        "endLoc": {
+          "column": 66,
+          "line": 74,
+          "position": 2934
+        },
+        "name": "edicao.spec.js",
+        "start": 65,
+        "startLoc": {
+          "column": 61,
+          "line": 65,
+          "position": 2680
+        }
+      },
+      "tokens": 52
+    },
+    {
+      "firstFile": {
+        "end": 52,
+        "endLoc": {
+          "column": 7,
+          "line": 52,
+          "position": 2100
+        },
+        "name": "edicao.spec.js",
+        "start": 44,
+        "startLoc": {
+          "column": 2,
+          "line": 44,
+          "position": 1794
+        }
+      },
+      "format": "javascript",
+      "fragment": "  });\n  await editar.solicitarSalvar();\n  await expect(editar.modal).toBeVisible();\n  await editar.confirmarEdicao();\n\n  await expect(page).toHaveURL(/visualizar\\.html\\?id=/, { timeout: 15000 });\n  await visualizar.aguardarDetalhes();\n  await expect(visualizar.titulo).toHaveText(novoTitulo);\n  await expect(visualizar.descricao).toHaveText(novaDescricao);",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 9,
+      "secondFile": {
+        "end": 70,
+        "endLoc": {
+          "column": 7,
+          "line": 70,
+          "position": 2860
+        },
+        "name": "historico.spec.js",
+        "start": 61,
+        "startLoc": {
+          "column": 56,
+          "line": 61,
+          "position": 2552
+        }
+      },
+      "tokens": 67
+    },
+    {
+      "firstFile": {
+        "end": 80,
+        "endLoc": {
+          "column": 44,
+          "line": 80,
+          "position": 3153
+        },
+        "name": "edicao.spec.js",
+        "start": 65,
+        "startLoc": {
+          "column": 46,
+          "line": 65,
+          "position": 2665
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const tituloNaoSalvo = `EDI03 Não Salvar ${identificador}`;\n\n  await lista.abrir();\n  await lista.abrirNovaTarefa();\n  await novaTarefa.cadastrar({\n    titulo: tituloOriginal,\n    descricao: descricaoOriginal,\n    criadoPor: autor\n  });\n  await expect(page).toHaveURL(/index\\.html/, { timeout: 15000 });\n\n  await expect(lista.linhaDaTarefa(tituloOriginal)).toBeVisible({ timeout: 10000 });\n  await lista.editarTarefa(tituloOriginal);\n  await editar.aguardarFormulario();\n\n  await editar.preencherAlteracoes({ titulo: tituloNaoSalvo });",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 16,
+      "secondFile": {
+        "end": 61,
+        "endLoc": {
+          "column": 44,
+          "line": 61,
+          "position": 2540
+        },
+        "name": "historico.spec.js",
+        "start": 47,
+        "startLoc": {
+          "column": 38,
+          "line": 47,
+          "position": 2054
+        }
+      },
+      "tokens": 97
+    },
+    {
+      "firstFile": {
+        "end": 112,
+        "endLoc": {
+          "column": 36,
+          "line": 112,
+          "position": 4400
+        },
+        "name": "edicao.spec.js",
+        "start": 100,
+        "startLoc": {
+          "column": 51,
+          "line": 100,
+          "position": 3967
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const descricao = 'Descrição válida do EDI04.';\n  const autor = 'Teste Playwright';\n\n  await lista.abrir();\n  await lista.abrirNovaTarefa();\n  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });\n  await expect(page).toHaveURL(/index\\.html/, { timeout: 15000 });\n\n  await expect(lista.linhaDaTarefa(titulo)).toBeVisible({ timeout: 10000 });\n  await lista.editarTarefa(titulo);\n  await editar.aguardarFormulario();\n\n  await editar.preencherAlteracoes({ titulo: '' });",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 13,
+      "secondFile": {
+        "end": 137,
+        "endLoc": {
+          "column": 36,
+          "line": 137,
+          "position": 5362
+        },
+        "name": "edicao.spec.js",
+        "start": 125,
+        "startLoc": {
+          "column": 51,
+          "line": 125,
+          "position": 4929
+        }
+      },
+      "tokens": 94
+    },
+    {
+      "firstFile": {
+        "end": 106,
+        "endLoc": {
+          "column": 66,
+          "line": 106,
+          "position": 4205
+        },
+        "name": "edicao.spec.js",
+        "start": 100,
+        "startLoc": {
+          "column": 51,
+          "line": 100,
+          "position": 3967
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const descricao = 'Descrição válida do EDI04.';\n  const autor = 'Teste Playwright';\n\n  await lista.abrir();\n  await lista.abrirNovaTarefa();\n  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });\n  await expect(page).toHaveURL(/index\\.html/, { timeout: 15000 });",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 7,
+      "secondFile": {
+        "end": 22,
+        "endLoc": {
+          "column": 66,
+          "line": 22,
+          "position": 896
+        },
+        "name": "status-exclusão.spec.js",
+        "start": 15,
+        "startLoc": {
+          "column": 59,
+          "line": 15,
+          "position": 628
+        }
+      },
+      "tokens": 53
+    },
+    {
+      "firstFile": {
+        "end": 106,
+        "endLoc": {
+          "column": 66,
+          "line": 106,
+          "position": 4205
+        },
+        "name": "edicao.spec.js",
+        "start": 100,
+        "startLoc": {
+          "column": 51,
+          "line": 100,
+          "position": 3967
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const descricao = 'Descrição válida do EDI04.';\n  const autor = 'Teste Playwright';\n\n  await lista.abrir();\n  await lista.abrirNovaTarefa();\n  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });\n  await expect(page).toHaveURL(/index\\.html/, { timeout: 15000 });",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 7,
+      "secondFile": {
+        "end": 51,
+        "endLoc": {
+          "column": 66,
+          "line": 51,
+          "position": 2058
+        },
+        "name": "status-exclusão.spec.js",
+        "start": 45,
+        "startLoc": {
+          "column": 61,
+          "line": 45,
+          "position": 1820
+        }
+      },
+      "tokens": 53
+    },
+    {
+      "firstFile": {
+        "end": 106,
+        "endLoc": {
+          "column": 66,
+          "line": 106,
+          "position": 4205
+        },
+        "name": "edicao.spec.js",
+        "start": 100,
+        "startLoc": {
+          "column": 51,
+          "line": 100,
+          "position": 3967
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const descricao = 'Descrição válida do EDI04.';\n  const autor = 'Teste Playwright';\n\n  await lista.abrir();\n  await lista.abrirNovaTarefa();\n  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });\n  await expect(page).toHaveURL(/index\\.html/, { timeout: 15000 });",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 7,
+      "secondFile": {
+        "end": 85,
+        "endLoc": {
+          "column": 66,
+          "line": 85,
+          "position": 3364
+        },
+        "name": "status-exclusão.spec.js",
+        "start": 79,
+        "startLoc": {
+          "column": 59,
+          "line": 79,
+          "position": 3126
+        }
+      },
+      "tokens": 53
+    },
+    {
+      "firstFile": {
+        "end": 106,
+        "endLoc": {
+          "column": 66,
+          "line": 106,
+          "position": 4205
+        },
+        "name": "edicao.spec.js",
+        "start": 100,
+        "startLoc": {
+          "column": 51,
+          "line": 100,
+          "position": 3967
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const descricao = 'Descrição válida do EDI04.';\n  const autor = 'Teste Playwright';\n\n  await lista.abrir();\n  await lista.abrirNovaTarefa();\n  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });\n  await expect(page).toHaveURL(/index\\.html/, { timeout: 15000 });",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 7,
+      "secondFile": {
+        "end": 118,
+        "endLoc": {
+          "column": 66,
+          "line": 118,
+          "position": 4679
+        },
+        "name": "status-exclusão.spec.js",
+        "start": 112,
+        "startLoc": {
+          "column": 75,
+          "line": 112,
+          "position": 4441
+        }
+      },
+      "tokens": 53
+    },
+    {
+      "firstFile": {
+        "end": 106,
+        "endLoc": {
+          "column": 66,
+          "line": 106,
+          "position": 4205
+        },
+        "name": "edicao.spec.js",
+        "start": 100,
+        "startLoc": {
+          "column": 51,
+          "line": 100,
+          "position": 3967
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const descricao = 'Descrição válida do EDI04.';\n  const autor = 'Teste Playwright';\n\n  await lista.abrir();\n  await lista.abrirNovaTarefa();\n  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });\n  await expect(page).toHaveURL(/index\\.html/, { timeout: 15000 });",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 7,
+      "secondFile": {
+        "end": 157,
+        "endLoc": {
+          "column": 66,
+          "line": 157,
+          "position": 6184
+        },
+        "name": "status-exclusão.spec.js",
+        "start": 151,
+        "startLoc": {
+          "column": 58,
+          "line": 151,
+          "position": 5946
+        }
+      },
+      "tokens": 53
+    },
+    {
+      "firstFile": {
+        "end": 106,
+        "endLoc": {
+          "column": 66,
+          "line": 106,
+          "position": 4205
+        },
+        "name": "edicao.spec.js",
+        "start": 100,
+        "startLoc": {
+          "column": 51,
+          "line": 100,
+          "position": 3967
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const descricao = 'Descrição válida do EDI04.';\n  const autor = 'Teste Playwright';\n\n  await lista.abrir();\n  await lista.abrirNovaTarefa();\n  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });\n  await expect(page).toHaveURL(/index\\.html/, { timeout: 15000 });",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 7,
+      "secondFile": {
+        "end": 187,
+        "endLoc": {
+          "column": 66,
+          "line": 187,
+          "position": 7289
+        },
+        "name": "status-exclusão.spec.js",
+        "start": 181,
+        "startLoc": {
+          "column": 74,
+          "line": 181,
+          "position": 7051
+        }
+      },
+      "tokens": 53
+    },
+    {
+      "firstFile": {
+        "end": 112,
+        "endLoc": {
+          "column": 7,
+          "line": 112,
+          "position": 4371
+        },
+        "name": "edicao.spec.js",
+        "start": 101,
+        "startLoc": {
+          "column": 34,
+          "line": 101,
+          "position": 4004
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const autor = 'Teste Playwright';\n\n  await lista.abrir();\n  await lista.abrirNovaTarefa();\n  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });\n  await expect(page).toHaveURL(/index\\.html/, { timeout: 15000 });\n\n  await expect(lista.linhaDaTarefa(titulo)).toBeVisible({ timeout: 10000 });\n  await lista.editarTarefa(titulo);\n  await editar.aguardarFormulario();\n\n  await editar.preencherAlteracoes({ titulo: '' });",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 12,
+      "secondFile": {
+        "end": 162,
+        "endLoc": {
+          "column": 7,
+          "line": 162,
+          "position": 6318
+        },
+        "name": "edicao.spec.js",
+        "start": 151,
+        "startLoc": {
+          "column": 46,
+          "line": 151,
+          "position": 5951
+        }
+      },
+      "tokens": 84
+    },
+    {
+      "firstFile": {
+        "end": 158,
+        "endLoc": {
+          "column": 7,
+          "line": 158,
+          "position": 6163
+        },
+        "name": "edicao.spec.js",
+        "start": 151,
+        "startLoc": {
+          "column": 31,
+          "line": 151,
+          "position": 5936
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const autor = `Autor EDI06 ${identificador}`;\n\n  await lista.abrir();\n  await lista.abrirNovaTarefa();\n  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });\n  await expect(page).toHaveURL(/index\\.html/, { timeout: 15000 });\n\n  await expect(lista.linhaDaTarefa(titulo)).toBeVisible({ timeout: 10000 });",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 8,
+      "secondFile": {
+        "end": 26,
+        "endLoc": {
+          "column": 7,
+          "line": 26,
+          "position": 1134
+        },
+        "name": "historico.spec.js",
+        "start": 19,
+        "startLoc": {
+          "column": 31,
+          "line": 19,
+          "position": 907
+        }
+      },
+      "tokens": 51
+    },
+    {
+      "firstFile": {
+        "end": 156,
+        "endLoc": {
+          "column": 66,
+          "line": 156,
+          "position": 6152
+        },
+        "name": "edicao.spec.js",
+        "start": 151,
+        "startLoc": {
+          "column": 31,
+          "line": 151,
+          "position": 5936
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const autor = `Autor EDI06 ${identificador}`;\n\n  await lista.abrir();\n  await lista.abrirNovaTarefa();\n  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });\n  await expect(page).toHaveURL(/index\\.html/, { timeout: 15000 });",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 6,
+      "secondFile": {
+        "end": 90,
+        "endLoc": {
+          "column": 66,
+          "line": 90,
+          "position": 3716
+        },
+        "name": "historico.spec.js",
+        "start": 85,
+        "startLoc": {
+          "column": 31,
+          "line": 85,
+          "position": 3500
+        }
+      },
+      "tokens": 50
+    },
+    {
+      "firstFile": {
+        "end": 156,
+        "endLoc": {
+          "column": 66,
+          "line": 156,
+          "position": 6152
+        },
+        "name": "edicao.spec.js",
+        "start": 151,
+        "startLoc": {
+          "column": 31,
+          "line": 151,
+          "position": 5936
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const autor = `Autor EDI06 ${identificador}`;\n\n  await lista.abrir();\n  await lista.abrirNovaTarefa();\n  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });\n  await expect(page).toHaveURL(/index\\.html/, { timeout: 15000 });",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 6,
+      "secondFile": {
+        "end": 119,
+        "endLoc": {
+          "column": 66,
+          "line": 119,
+          "position": 4881
+        },
+        "name": "historico.spec.js",
+        "start": 114,
+        "startLoc": {
+          "column": 31,
+          "line": 114,
+          "position": 4665
+        }
+      },
+      "tokens": 50
+    },
+    {
+      "firstFile": {
+        "end": 156,
+        "endLoc": {
+          "column": 66,
+          "line": 156,
+          "position": 6152
+        },
+        "name": "edicao.spec.js",
+        "start": 151,
+        "startLoc": {
+          "column": 31,
+          "line": 151,
+          "position": 5936
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const autor = `Autor EDI06 ${identificador}`;\n\n  await lista.abrir();\n  await lista.abrirNovaTarefa();\n  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });\n  await expect(page).toHaveURL(/index\\.html/, { timeout: 15000 });",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 6,
+      "secondFile": {
+        "end": 155,
+        "endLoc": {
+          "column": 66,
+          "line": 155,
+          "position": 6309
+        },
+        "name": "historico.spec.js",
+        "start": 150,
+        "startLoc": {
+          "column": 31,
+          "line": 150,
+          "position": 6093
+        }
+      },
+      "tokens": 50
+    },
+    {
+      "firstFile": {
+        "end": 156,
+        "endLoc": {
+          "column": 66,
+          "line": 156,
+          "position": 6152
+        },
+        "name": "edicao.spec.js",
+        "start": 151,
+        "startLoc": {
+          "column": 31,
+          "line": 151,
+          "position": 5936
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const autor = `Autor EDI06 ${identificador}`;\n\n  await lista.abrir();\n  await lista.abrirNovaTarefa();\n  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });\n  await expect(page).toHaveURL(/index\\.html/, { timeout: 15000 });",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 6,
+      "secondFile": {
+        "end": 184,
+        "endLoc": {
+          "column": 66,
+          "line": 184,
+          "position": 7467
+        },
+        "name": "historico.spec.js",
+        "start": 179,
+        "startLoc": {
+          "column": 31,
+          "line": 179,
+          "position": 7251
+        }
+      },
+      "tokens": 50
+    },
+    {
+      "firstFile": {
+        "end": 99,
+        "endLoc": {
+          "column": 7,
+          "line": 99,
+          "position": 4023
+        },
+        "name": "historico.spec.js",
+        "start": 85,
+        "startLoc": {
+          "column": 44,
+          "line": 85,
+          "position": 3513
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const autor = `Autor HIS03 ${identificador}`;\n\n  await lista.abrir();\n  await lista.abrirNovaTarefa();\n  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });\n  await expect(page).toHaveURL(/index\\.html/, { timeout: 15000 });\n\n  const linha = lista.linhaDaTarefa(titulo);\n  await expect(linha).toBeVisible({ timeout: 10000 });\n  await lista.solicitarConclusao(titulo);\n  await expect(lista.modal).toBeVisible();\n  await lista.confirmarModal();\n  await expect(linha).toContainText('Concluída', { timeout: 10000 });\n\n  await historico.abrir();",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 15,
+      "secondFile": {
+        "end": 130,
+        "endLoc": {
+          "column": 7,
+          "line": 130,
+          "position": 5264
+        },
+        "name": "historico.spec.js",
+        "start": 114,
+        "startLoc": {
+          "column": 44,
+          "line": 114,
+          "position": 4678
+        }
+      },
+      "tokens": 119
+    },
+    {
+      "firstFile": {
+        "end": 94,
+        "endLoc": {
+          "column": 14,
+          "line": 94,
+          "position": 3836
+        },
+        "name": "historico.spec.js",
+        "start": 85,
+        "startLoc": {
+          "column": 44,
+          "line": 85,
+          "position": 3513
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const autor = `Autor HIS03 ${identificador}`;\n\n  await lista.abrir();\n  await lista.abrirNovaTarefa();\n  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });\n  await expect(page).toHaveURL(/index\\.html/, { timeout: 15000 });\n\n  const linha = lista.linhaDaTarefa(titulo);\n  await expect(linha).toBeVisible({ timeout: 10000 });\n  await lista.solicitarConclusao(titulo);",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 10,
+      "secondFile": {
+        "end": 159,
+        "endLoc": {
+          "column": 14,
+          "line": 159,
+          "position": 6429
+        },
+        "name": "historico.spec.js",
+        "start": 150,
+        "startLoc": {
+          "column": 44,
+          "line": 150,
+          "position": 6106
+        }
+      },
+      "tokens": 77
+    },
+    {
+      "firstFile": {
+        "end": 94,
+        "endLoc": {
+          "column": 14,
+          "line": 94,
+          "position": 3836
+        },
+        "name": "historico.spec.js",
+        "start": 85,
+        "startLoc": {
+          "column": 44,
+          "line": 85,
+          "position": 3513
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const autor = `Autor HIS03 ${identificador}`;\n\n  await lista.abrir();\n  await lista.abrirNovaTarefa();\n  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });\n  await expect(page).toHaveURL(/index\\.html/, { timeout: 15000 });\n\n  const linha = lista.linhaDaTarefa(titulo);\n  await expect(linha).toBeVisible({ timeout: 10000 });\n  await lista.solicitarConclusao(titulo);",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 10,
+      "secondFile": {
+        "end": 188,
+        "endLoc": {
+          "column": 14,
+          "line": 188,
+          "position": 7587
+        },
+        "name": "historico.spec.js",
+        "start": 179,
+        "startLoc": {
+          "column": 44,
+          "line": 179,
+          "position": 7264
+        }
+      },
+      "tokens": 77
+    },
+    {
+      "firstFile": {
+        "end": 94,
+        "endLoc": {
+          "column": 7,
+          "line": 94,
+          "position": 3829
+        },
+        "name": "historico.spec.js",
+        "start": 85,
+        "startLoc": {
+          "column": 46,
+          "line": 85,
+          "position": 3515
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const autor = `Autor HIS03 ${identificador}`;\n\n  await lista.abrir();\n  await lista.abrirNovaTarefa();\n  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });\n  await expect(page).toHaveURL(/index\\.html/, { timeout: 15000 });\n\n  const linha = lista.linhaDaTarefa(titulo);\n  await expect(linha).toBeVisible({ timeout: 10000 });\n  await lista.solicitarConclusao(titulo);",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 10,
+      "secondFile": {
+        "end": 26,
+        "endLoc": {
+          "column": 7,
+          "line": 26,
+          "position": 1009
+        },
+        "name": "status-exclusão.spec.js",
+        "start": 16,
+        "startLoc": {
+          "column": 34,
+          "line": 16,
+          "position": 665
+        }
+      },
+      "tokens": 74
+    },
+    {
+      "firstFile": {
+        "end": 99,
+        "endLoc": {
+          "column": 7,
+          "line": 99,
+          "position": 4023
+        },
+        "name": "historico.spec.js",
+        "start": 89,
+        "startLoc": {
+          "column": 50,
+          "line": 89,
+          "position": 3628
+        }
+      },
+      "format": "javascript",
+      "fragment": "  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });\n  await expect(page).toHaveURL(/index\\.html/, { timeout: 15000 });\n\n  const linha = lista.linhaDaTarefa(titulo);\n  await expect(linha).toBeVisible({ timeout: 10000 });\n  await lista.solicitarConclusao(titulo);\n  await expect(lista.modal).toBeVisible();\n  await lista.confirmarModal();\n  await expect(linha).toContainText('Concluída', { timeout: 10000 });\n\n  await historico.abrir();",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 11,
+      "secondFile": {
+        "end": 96,
+        "endLoc": {
+          "column": 7,
+          "line": 96,
+          "position": 3731
+        },
+        "name": "status-exclusão.spec.js",
+        "start": 84,
+        "startLoc": {
+          "column": 50,
+          "line": 84,
+          "position": 3276
+        }
+      },
+      "tokens": 93
+    },
+    {
+      "firstFile": {
+        "end": 99,
+        "endLoc": {
+          "column": 7,
+          "line": 99,
+          "position": 4023
+        },
+        "name": "historico.spec.js",
+        "start": 89,
+        "startLoc": {
+          "column": 50,
+          "line": 89,
+          "position": 3628
+        }
+      },
+      "format": "javascript",
+      "fragment": "  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });\n  await expect(page).toHaveURL(/index\\.html/, { timeout: 15000 });\n\n  const linha = lista.linhaDaTarefa(titulo);\n  await expect(linha).toBeVisible({ timeout: 10000 });\n  await lista.solicitarConclusao(titulo);\n  await expect(lista.modal).toBeVisible();\n  await lista.confirmarModal();\n  await expect(linha).toContainText('Concluída', { timeout: 10000 });\n\n  await historico.abrir();",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 11,
+      "secondFile": {
+        "end": 129,
+        "endLoc": {
+          "column": 7,
+          "line": 129,
+          "position": 5027
+        },
+        "name": "status-exclusão.spec.js",
+        "start": 117,
+        "startLoc": {
+          "column": 50,
+          "line": 117,
+          "position": 4591
+        }
+      },
+      "tokens": 93
+    },
+    {
+      "firstFile": {
+        "end": 94,
+        "endLoc": {
+          "column": 14,
+          "line": 94,
+          "position": 3836
+        },
+        "name": "historico.spec.js",
+        "start": 89,
+        "startLoc": {
+          "column": 50,
+          "line": 89,
+          "position": 3628
+        }
+      },
+      "format": "javascript",
+      "fragment": "  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });\n  await expect(page).toHaveURL(/index\\.html/, { timeout: 15000 });\n\n  const linha = lista.linhaDaTarefa(titulo);\n  await expect(linha).toBeVisible({ timeout: 10000 });\n  await lista.solicitarConclusao(titulo);",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 6,
+      "secondFile": {
+        "end": 162,
+        "endLoc": {
+          "column": 14,
+          "line": 162,
+          "position": 6306
+        },
+        "name": "status-exclusão.spec.js",
+        "start": 156,
+        "startLoc": {
+          "column": 50,
+          "line": 156,
+          "position": 6096
+        }
+      },
+      "tokens": 51
+    },
+    {
+      "firstFile": {
+        "end": 94,
+        "endLoc": {
+          "column": 14,
+          "line": 94,
+          "position": 3836
+        },
+        "name": "historico.spec.js",
+        "start": 89,
+        "startLoc": {
+          "column": 50,
+          "line": 89,
+          "position": 3628
+        }
+      },
+      "format": "javascript",
+      "fragment": "  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });\n  await expect(page).toHaveURL(/index\\.html/, { timeout: 15000 });\n\n  const linha = lista.linhaDaTarefa(titulo);\n  await expect(linha).toBeVisible({ timeout: 10000 });\n  await lista.solicitarConclusao(titulo);",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 6,
+      "secondFile": {
+        "end": 192,
+        "endLoc": {
+          "column": 14,
+          "line": 192,
+          "position": 7411
+        },
+        "name": "status-exclusão.spec.js",
+        "start": 186,
+        "startLoc": {
+          "column": 50,
+          "line": 186,
+          "position": 7201
+        }
+      },
+      "tokens": 51
+    },
+    {
+      "firstFile": {
+        "end": 132,
+        "endLoc": {
+          "column": 7,
+          "line": 132,
+          "position": 5352
+        },
+        "name": "historico.spec.js",
+        "start": 122,
+        "startLoc": {
+          "column": 45,
+          "line": 122,
+          "position": 4976
+        }
+      },
+      "format": "javascript",
+      "fragment": "  await expect(linha).toBeVisible({ timeout: 10000 });\n\n  // Precondição: a tarefa precisa estar concluída para ser reaberta.\n  await lista.solicitarConclusao(titulo);\n  await expect(lista.modal).toBeVisible();\n  await lista.confirmarModal();\n  await expect(linha).toContainText('Concluída', { timeout: 10000 });\n\n  await lista.solicitarReabertura(titulo);\n  await expect(lista.modal).toBeVisible();\n  await lista.confirmarModal();",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 11,
+      "secondFile": {
+        "end": 98,
+        "endLoc": {
+          "column": 7,
+          "line": 98,
+          "position": 3819
+        },
+        "name": "status-exclusão.spec.js",
+        "start": 88,
+        "startLoc": {
+          "column": 45,
+          "line": 88,
+          "position": 3459
+        }
+      },
+      "tokens": 69
+    },
+    {
+      "firstFile": {
+        "end": 132,
+        "endLoc": {
+          "column": 14,
+          "line": 132,
+          "position": 5359
+        },
+        "name": "historico.spec.js",
+        "start": 122,
+        "startLoc": {
+          "column": 45,
+          "line": 122,
+          "position": 4976
+        }
+      },
+      "format": "javascript",
+      "fragment": "  await expect(linha).toBeVisible({ timeout: 10000 });\n\n  // Precondição: a tarefa precisa estar concluída para ser reaberta.\n  await lista.solicitarConclusao(titulo);\n  await expect(lista.modal).toBeVisible();\n  await lista.confirmarModal();\n  await expect(linha).toContainText('Concluída', { timeout: 10000 });\n\n  await lista.solicitarReabertura(titulo);\n  await expect(lista.modal).toBeVisible();\n  await lista.confirmarModal();",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 11,
+      "secondFile": {
+        "end": 131,
+        "endLoc": {
+          "column": 14,
+          "line": 131,
+          "position": 5122
+        },
+        "name": "status-exclusão.spec.js",
+        "start": 121,
+        "startLoc": {
+          "column": 45,
+          "line": 121,
+          "position": 4774
+        }
+      },
+      "tokens": 71
+    },
+    {
+      "firstFile": {
+        "end": 164,
+        "endLoc": {
+          "column": 7,
+          "line": 164,
+          "position": 6602
+        },
+        "name": "historico.spec.js",
+        "start": 154,
+        "startLoc": {
+          "column": 61,
+          "line": 154,
+          "position": 6232
+        }
+      },
+      "format": "javascript",
+      "fragment": "  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });\n  await expect(page).toHaveURL(/index\\.html/, { timeout: 15000 });\n\n  const linha = lista.linhaDaTarefa(titulo);\n  await expect(linha).toBeVisible({ timeout: 10000 });\n  await lista.solicitarExclusao(titulo);\n  await expect(lista.modal).toBeVisible();\n  await lista.confirmarModal();\n  await expect(linha).toHaveCount(0, { timeout: 10000 });\n\n  await historico.abrir();",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 11,
+      "secondFile": {
+        "end": 194,
+        "endLoc": {
+          "column": 7,
+          "line": 194,
+          "position": 7838
+        },
+        "name": "historico.spec.js",
+        "start": 183,
+        "startLoc": {
+          "column": 61,
+          "line": 183,
+          "position": 7390
+        }
+      },
+      "tokens": 91
+    },
+    {
+      "firstFile": {
+        "end": 161,
+        "endLoc": {
+          "column": 7,
+          "line": 161,
+          "position": 6508
+        },
+        "name": "historico.spec.js",
+        "start": 154,
+        "startLoc": {
+          "column": 61,
+          "line": 154,
+          "position": 6232
+        }
+      },
+      "format": "javascript",
+      "fragment": "  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });\n  await expect(page).toHaveURL(/index\\.html/, { timeout: 15000 });\n\n  const linha = lista.linhaDaTarefa(titulo);\n  await expect(linha).toBeVisible({ timeout: 10000 });\n  await lista.solicitarExclusao(titulo);\n  await expect(lista.modal).toBeVisible();\n  await lista.confirmarModal();",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 8,
+      "secondFile": {
+        "end": 164,
+        "endLoc": {
+          "column": 7,
+          "line": 164,
+          "position": 6385
+        },
+        "name": "status-exclusão.spec.js",
+        "start": 156,
+        "startLoc": {
+          "column": 61,
+          "line": 156,
+          "position": 6107
+        }
+      },
+      "tokens": 67
+    },
+    {
+      "firstFile": {
+        "end": 161,
+        "endLoc": {
+          "column": 14,
+          "line": 161,
+          "position": 6515
+        },
+        "name": "historico.spec.js",
+        "start": 154,
+        "startLoc": {
+          "column": 61,
+          "line": 154,
+          "position": 6232
+        }
+      },
+      "format": "javascript",
+      "fragment": "  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });\n  await expect(page).toHaveURL(/index\\.html/, { timeout: 15000 });\n\n  const linha = lista.linhaDaTarefa(titulo);\n  await expect(linha).toBeVisible({ timeout: 10000 });\n  await lista.solicitarExclusao(titulo);\n  await expect(lista.modal).toBeVisible();\n  await lista.confirmarModal();",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 8,
+      "secondFile": {
+        "end": 194,
+        "endLoc": {
+          "column": 14,
+          "line": 194,
+          "position": 7497
+        },
+        "name": "status-exclusão.spec.js",
+        "start": 186,
+        "startLoc": {
+          "column": 61,
+          "line": 186,
+          "position": 7212
+        }
+      },
+      "tokens": 69
+    },
+    {
+      "firstFile": {
+        "end": 24,
+        "endLoc": {
+          "column": 54,
+          "line": 24,
+          "position": 1004
+        },
+        "name": "listagem-consulta.spec.js",
+        "start": 13,
+        "startLoc": {
+          "column": 38,
+          "line": 13,
+          "position": 590
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const criadoPor = 'Teste Playwright';\n\n  // Preparação: cria uma tarefa pela interface.\n  await lista.abrir();\n  await lista.abrirNovaTarefa();\n  await novaTarefa.cadastrar({ titulo, descricao, criadoPor });\n\n  await expect(page).toHaveURL(/index\\.html/, { timeout: 15000 });\n\n  // Mesmas verificações funcionais da suíte monolítica.\n  const linha = lista.linhaDaTarefa(titulo);\n  await expect(linha).toBeVisible({ timeout: 10000 });",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 12,
+      "secondFile": {
+        "end": 54,
+        "endLoc": {
+          "column": 54,
+          "line": 54,
+          "position": 2227
+        },
+        "name": "listagem-consulta.spec.js",
+        "start": 44,
+        "startLoc": {
+          "column": 50,
+          "line": 44,
+          "position": 1875
+        }
+      },
+      "tokens": 71
+    },
+    {
+      "firstFile": {
+        "end": 25,
+        "endLoc": {
+          "column": 36,
+          "line": 25,
+          "position": 1042
+        },
+        "name": "listagem-consulta.spec.js",
+        "start": 18,
+        "startLoc": {
+          "column": 60,
+          "line": 18,
+          "position": 765
+        }
+      },
+      "format": "javascript",
+      "fragment": "  await novaTarefa.cadastrar({ titulo, descricao, criadoPor });\n\n  await expect(page).toHaveURL(/index\\.html/, { timeout: 15000 });\n\n  // Mesmas verificações funcionais da suíte monolítica.\n  const linha = lista.linhaDaTarefa(titulo);\n  await expect(linha).toBeVisible({ timeout: 10000 });\n  await expect(linha).toContainText(titulo);",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 8,
+      "secondFile": {
+        "end": 26,
+        "endLoc": {
+          "column": 36,
+          "line": 26,
+          "position": 1038
+        },
+        "name": "status-exclusão.spec.js",
+        "start": 21,
+        "startLoc": {
+          "column": 67,
+          "line": 21,
+          "position": 825
+        }
+      },
+      "tokens": 53
+    },
+    {
+      "firstFile": {
+        "end": 8,
+        "endLoc": {
+          "column": 36,
+          "line": 8,
+          "position": 320
+        },
+        "name": "pages\\EditarTarefaPage.js",
+        "start": 1,
+        "startLoc": {
+          "column": 23,
+          "line": 1,
+          "position": 23
+        }
+      },
+      "format": "javascript",
+      "fragment": "class EditarTarefaPage {\n  constructor(page) {\n    this.page = page;\n    this.formulario = page.locator('#form-tarefa');\n    this.titulo = page.locator('#titulo-tarefa');\n    this.descricao = page.locator('#descricao-tarefa');\n    this.criadoPor = page.locator('#criado-por');\n    this.botaoSalvar = page.locator('#salvar-edicao');",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 8,
+      "secondFile": {
+        "end": 8,
+        "endLoc": {
+          "column": 36,
+          "line": 8,
+          "position": 318
+        },
+        "name": "pages\\NovaTarefaPage.js",
+        "start": 1,
+        "startLoc": {
+          "column": 21,
+          "line": 1,
+          "position": 21
+        }
+      },
+      "tokens": 64
+    },
+    {
+      "firstFile": {
+        "end": 27,
+        "endLoc": {
+          "column": 7,
+          "line": 27,
+          "position": 1059
+        },
+        "name": "status-exclusão.spec.js",
+        "start": 16,
+        "startLoc": {
+          "column": 16,
+          "line": 16,
+          "position": 647
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const autor = 'Teste Playwright';\n\n  // Preparação da tarefa.\n  await lista.abrir();\n  await lista.abrirNovaTarefa();\n  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });\n  await expect(page).toHaveURL(/index\\.html/, { timeout: 15000 });\n\n  const linha = lista.linhaDaTarefa(titulo);\n  await expect(linha).toBeVisible({ timeout: 10000 });\n  await expect(linha).toContainText('Pendente');\n  await expect(lista.botaoConcluir(titulo)).toBeVisible();",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 12,
+      "secondFile": {
+        "end": 57,
+        "endLoc": {
+          "column": 7,
+          "line": 57,
+          "position": 2223
+        },
+        "name": "status-exclusão.spec.js",
+        "start": 46,
+        "startLoc": {
+          "column": 16,
+          "line": 46,
+          "position": 1839
+        }
+      },
+      "tokens": 86
+    },
+    {
+      "firstFile": {
+        "end": 26,
+        "endLoc": {
+          "column": 7,
+          "line": 26,
+          "position": 1009
+        },
+        "name": "status-exclusão.spec.js",
+        "start": 16,
+        "startLoc": {
+          "column": 16,
+          "line": 16,
+          "position": 647
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const autor = 'Teste Playwright';\n\n  // Preparação da tarefa.\n  await lista.abrir();\n  await lista.abrirNovaTarefa();\n  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });\n  await expect(page).toHaveURL(/index\\.html/, { timeout: 15000 });\n\n  const linha = lista.linhaDaTarefa(titulo);\n  await expect(linha).toBeVisible({ timeout: 10000 });\n  await expect(linha).toContainText('Pendente');",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 11,
+      "secondFile": {
+        "end": 91,
+        "endLoc": {
+          "column": 7,
+          "line": 91,
+          "position": 3537
+        },
+        "name": "status-exclusão.spec.js",
+        "start": 80,
+        "startLoc": {
+          "column": 16,
+          "line": 80,
+          "position": 3145
+        }
+      },
+      "tokens": 75
+    },
+    {
+      "firstFile": {
+        "end": 26,
+        "endLoc": {
+          "column": 7,
+          "line": 26,
+          "position": 1009
+        },
+        "name": "status-exclusão.spec.js",
+        "start": 16,
+        "startLoc": {
+          "column": 16,
+          "line": 16,
+          "position": 647
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const autor = 'Teste Playwright';\n\n  // Preparação da tarefa.\n  await lista.abrir();\n  await lista.abrirNovaTarefa();\n  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });\n  await expect(page).toHaveURL(/index\\.html/, { timeout: 15000 });\n\n  const linha = lista.linhaDaTarefa(titulo);\n  await expect(linha).toBeVisible({ timeout: 10000 });\n  await expect(linha).toContainText('Pendente');",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 11,
+      "secondFile": {
+        "end": 124,
+        "endLoc": {
+          "column": 7,
+          "line": 124,
+          "position": 4833
+        },
+        "name": "status-exclusão.spec.js",
+        "start": 113,
+        "startLoc": {
+          "column": 16,
+          "line": 113,
+          "position": 4460
+        }
+      },
+      "tokens": 75
+    },
+    {
+      "firstFile": {
+        "end": 26,
+        "endLoc": {
+          "column": 7,
+          "line": 26,
+          "position": 1009
+        },
+        "name": "status-exclusão.spec.js",
+        "start": 16,
+        "startLoc": {
+          "column": 16,
+          "line": 16,
+          "position": 647
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const autor = 'Teste Playwright';\n\n  // Preparação da tarefa.\n  await lista.abrir();\n  await lista.abrirNovaTarefa();\n  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });\n  await expect(page).toHaveURL(/index\\.html/, { timeout: 15000 });\n\n  const linha = lista.linhaDaTarefa(titulo);\n  await expect(linha).toBeVisible({ timeout: 10000 });\n  await expect(linha).toContainText('Pendente');",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 11,
+      "secondFile": {
+        "end": 162,
+        "endLoc": {
+          "column": 7,
+          "line": 162,
+          "position": 6299
+        },
+        "name": "status-exclusão.spec.js",
+        "start": 152,
+        "startLoc": {
+          "column": 16,
+          "line": 152,
+          "position": 5965
+        }
+      },
+      "tokens": 75
+    },
+    {
+      "firstFile": {
+        "end": 26,
+        "endLoc": {
+          "column": 7,
+          "line": 26,
+          "position": 1009
+        },
+        "name": "status-exclusão.spec.js",
+        "start": 16,
+        "startLoc": {
+          "column": 16,
+          "line": 16,
+          "position": 647
+        }
+      },
+      "format": "javascript",
+      "fragment": "  const autor = 'Teste Playwright';\n\n  // Preparação da tarefa.\n  await lista.abrir();\n  await lista.abrirNovaTarefa();\n  await novaTarefa.cadastrar({ titulo, descricao, criadoPor: autor });\n  await expect(page).toHaveURL(/index\\.html/, { timeout: 15000 });\n\n  const linha = lista.linhaDaTarefa(titulo);\n  await expect(linha).toBeVisible({ timeout: 10000 });\n  await expect(linha).toContainText('Pendente');",
+      "isNew": false,
+      "kind": "exact",
+      "lines": 11,
+      "secondFile": {
+        "end": 192,
+        "endLoc": {
+          "column": 7,
+          "line": 192,
+          "position": 7404
+        },
+        "name": "status-exclusão.spec.js",
+        "start": 182,
+        "startLoc": {
+          "column": 16,
+          "line": 182,
+          "position": 7070
+        }
+      },
+      "tokens": 75
+    }
+  ],
+  "statistics": {
+    "detectionDate": "2026-11-10T01:02:21.050Z",
+    "formats": {
+      "javascript": {
+        "clones": 38,
+        "duplicatedLines": 354,
+        "duplicatedTokens": 2591,
+        "lines": 968,
+        "newClones": 0,
+        "newDuplicatedLines": 0,
+        "percentage": 36.570247933884296,
+        "percentageTokens": 38.13659110980277,
+        "sources": 10,
+        "tokens": 6794
+      }
+    },
+    "total": {
+      "clones": 38,
+      "duplicatedLines": 354,
+      "duplicatedTokens": 2591,
+      "lines": 968,
+      "newClones": 0,
+      "newDuplicatedLines": 0,
+      "percentage": 36.570247933884296,
+      "percentageTokens": 38.13659110980277,
+      "sources": 10,
+      "tokens": 6794
+    }
+  }
+}

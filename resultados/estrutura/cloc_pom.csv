@@ -1,0 +1,12 @@
+language,filename,blank,comment,code,"github.com/AlDanial/cloc v 2.10  T=0.45 s (22.0 files/s 2131.5 lines/s)"
+JavaScript,tests\pom\historico.spec.js,36,5,165
+JavaScript,tests\pom\status-exclusão.spec.js,43,10,152
+JavaScript,tests\pom\edicao.spec.js,28,4,132
+JavaScript,tests\pom\pages\ListaPage.js,21,0,84
+JavaScript,tests\pom\cadastro.spec.js,22,0,57
+JavaScript,tests\pom\listagem-consulta.spec.js,14,4,50
+JavaScript,tests\pom\pages\EditarTarefaPage.js,8,1,38
+JavaScript,tests\pom\pages\HistoricoPage.js,7,0,32
+JavaScript,tests\pom\pages\NovaTarefaPage.js,5,0,27
+JavaScript,tests\pom\pages\VisualizarTarefaPage.js,3,0,20
+SUM,,187,24,757

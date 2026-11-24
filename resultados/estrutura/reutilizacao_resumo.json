@@ -1,0 +1,21 @@
+{
+  "ferramenta": "TypeScript Compiler API (analise estatica AST); script coletar_reutilizacao.cjs",
+  "typescriptVersion": "5.9.3",
+  "criterio": "Metodo alcançado diretamente ou via chamadas this.metodo() por >=2 casos de teste distintos",
+  "casosAnalisados": 23,
+  "arquivosDePageObject": 5,
+  "metodosPropriosDefinidos": 39,
+  "metodosUtilizadosDiretamente": 29,
+  "metodosUtilizadosDiretamenteEmDoisOuMaisCasos": 21,
+  "metodosUtilizadosDiretaOuIndiretamenteEmDoisOuMaisCasos": 27,
+  "metodosSemUsoDetectado": [
+    "EditarTarefaPage.salvarAlteracoes",
+    "HistoricoPage.autorDoEvento",
+    "HistoricoPage.detalhesDoEvento",
+    "ListaPage.autorDaTarefa",
+    "ListaPage.statusDaTarefa",
+    "NovaTarefaPage.abrir",
+    "VisualizarTarefaPage.abrirEdicao"
+  ],
+  "limitacoes": "Sem resolucao de chamadas dinamicas, aliases ou composicao entre classes; revisar a saida manualmente."
+}

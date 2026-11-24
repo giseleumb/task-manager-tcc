@@ -1,0 +1,5416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Copy/Paste Detector Report</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background: #f7fafc; color: #2d3748; }
+    a { color: #3182ce; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .header { background: #fff; box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06); padding: 1rem 0; }
+    .header-inner { max-width: 80rem; margin: 0 auto; padding: 0 1rem; }
+    .header h1 { font-size: 1.875rem; font-weight: 600; color: #2d3748; margin: 0; }
+    .main { max-width: 80rem; margin: 2rem auto; padding: 0 1rem; }
+    .card { background: #fff; box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06); border-radius: 0.25rem; padding: 1.5rem; margin-bottom: 2rem; }
+    h2 { font-size: 1.5rem; font-weight: 600; color: #4a5568; margin: 0 0 1rem 0; }
+    .dashboard { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .stat-card { padding: 1rem; border-radius: 0.25rem; text-align: center; }
+    .stat-card h3 { font-size: 1.125rem; font-weight: 600; margin: 0 0 0.5rem 0; }
+    .stat-card .val { font-size: 2.25rem; font-weight: 700; }
+    .stat-blue { background: #bee3f8; color: #2a4365; }
+    .stat-green { background: #c6f6d5; color: #276749; }
+    .stat-yellow { background: #fefcbf; color: #975a16; }
+    .stat-red { background: #fed7d7; color: #9b2c2c; }
+    table { width: 100%; border-collapse: collapse; }
+    thead th { background: #edf2f7; color: #718096; text-transform: uppercase; font-size: 0.75rem; font-weight: 600; padding: 0.75rem 1.5rem; text-align: left; }
+    tbody td { padding: 0.75rem 1.5rem; border-bottom: 1px solid #edf2f7; font-size: 0.875rem; }
+    tbody tr:hover { background: #f7fafc; }
+    .clone-section { margin-bottom: 2rem; }
+    .clone-section h2 { border-bottom: 2px solid #edf2f7; padding-bottom: 0.5rem; }
+    .clone-item { padding: 1rem 0; border-bottom: 1px solid #edf2f7; }
+    .clone-item:last-child { border-bottom: none; }
+    .clone-info { color: #718096; font-size: 0.875rem; margin-bottom: 0.25rem; }
+    .toggle-btn { background: #a0aec0; color: #fff; border: none; padding: 0.125rem 0.5rem; font-size: 0.75rem; border-radius: 0.25rem; cursor: pointer; margin-left: 0.5rem; }
+    .toggle-btn:focus { outline: none; }
+    .code-pair { display: none; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-top: 0.5rem; }
+    .code-pair.visible { display: grid; }
+    .code-side { min-width: 0; background: #f7fafc; border: 1px solid #edf2f7; border-radius: 0.25rem; }
+    .code-file { padding: 0.5rem 1rem; border-bottom: 1px solid #edf2f7; color: #718096; font-size: 0.75rem; overflow-wrap: anywhere; }
+    .code-lines { display: flex; overflow-x: auto; }
+    .code-gutter, .code-text { margin: 0; padding: 0.75rem 1rem; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 0.875rem; line-height: 1.5; white-space: pre; }
+    .code-gutter { position: sticky; left: 0; padding-right: 0.75rem; background: #f7fafc; border-right: 1px solid #edf2f7; color: #a0aec0; text-align: right; user-select: none; }
+    .code-text { flex: 1; color: #2d3748; }
+    .code-text code { font: inherit; }
+    .token.comment, .token.prolog, .token.doctype, .token.cdata { color: #5f6b7a; font-style: italic; }
+    .token.keyword, .token.atrule, .token.important, .token.rule { color: #6b46c1; }
+    .token.string, .token.char, .token.attr-value, .token.template-string, .token.regex, .token.url, .token.inserted { color: #276749; }
+    .token.number, .token.boolean, .token.constant, .token.symbol { color: #9c4221; }
+    .token.function, .token.class-name { color: #2b6cb0; }
+    .token.tag, .token.selector, .token.property, .token.deleted { color: #9b2c2c; }
+    .token.attr-name, .token.builtin, .token.variable { color: #975a16; }
+    .token.punctuation, .token.operator { color: #4a5568; }
+    .token.bold { font-weight: 700; }
+    .token.italic { font-style: italic; }
+    .no-dupes { color: #27ae60; font-weight: 700; font-size: 1.125rem; }
+    .footer { margin-top: 3rem; padding: 2rem 0; border-top: 1px solid #e0e0e0; text-align: center; font-family: -apple-system, sans-serif; color: #666; }
+    .footer p { margin: 0.5rem 0; font-size: 0.875rem; }
+    .footer a { color: #0066cc; }
+    .footer .small { font-size: 0.75rem; color: #999; }
+    @media (max-width: 768px) { .dashboard { grid-template-columns: repeat(2, 1fr); } .code-pair { grid-template-columns: minmax(0, 1fr); } }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <h1>jscpd - copy/paste report</h1>
+    </div>
+  </header>
+
+  <div class="main">
+    <div class="card">
+      <section>
+        <h2>Dashboard</h2>
+        <div class="dashboard">
+          <div class="stat-card stat-blue">
+            <h3>Total Files</h3>
+            <div class="val">5</div>
+          </div>
+          <div class="stat-card stat-green">
+            <h3>Total Lines of Code</h3>
+            <div class="val">1660</div>
+          </div>
+          <div class="stat-card stat-yellow">
+            <h3>Number of Clones</h3>
+            <div class="val">46</div>
+          </div>
+          <div class="stat-card stat-red">
+            <h3>Duplicated Lines</h3>
+            <div class="val">1103 (66.45%)</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="card">
+      <section>
+        <h2>Formats with Duplications</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Format</th>
+              <th>Files</th>
+              <th>Lines</th>
+              <th>Clones</th>
+              <th>Duplicated Lines</th>
+              <th>Duplicated Tokens</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+            <tr>
+              <td><a href="#javascript-clones">javascript</a></td>
+              <td>5</td>
+              <td>1660</td>
+              <td>46</td>
+              <td>1103 (66.45%)</td>
+              <td>4263 (62.23%)</td>
+            </tr>
+            
+            <tr style="font-weight: 700;">
+              <td>Total</td>
+              <td>5</td>
+              <td>1660</td>
+              <td>46</td>
+              <td>1103 (66.45%)</td>
+              <td>4263 (62.23%)</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+
+    
+    
+    <div class="card">
+      <section class="clone-section">
+        <a name="javascript-clones"></a>
+        <h2>javascript</h2>
+        <div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              cadastro.spec.js (Line 11:53 - Line 42:14),
+              listagem-consulta.spec.js (Line 7:62 - Line 31:14)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-1" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-1" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">cadastro.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42</pre><pre class="code-text"><code class="language-javascript">    &#39;Tarefa criada automaticamente pelo teste CT01.&#39;;
+
+  const criadoPor =
+    &#39;Teste Playwright&#39;;
+
+
+  await page.goto(&#39;./&#39;);
+
+
+  await page
+    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+
+  await page
+    .locator(&#39;#titulo-tarefa&#39;)
+    .fill(titulo);
+
+
+  await page
+    .locator(&#39;#descricao-tarefa&#39;)
+    .fill(descricao);
+
+
+  await page
+    .locator(&#39;#criado-por&#39;)
+    .fill(criadoPor);
+
+
+  await page
+    .locator(&#39;#salvar-tarefa&#39;)
+    .click();</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">listagem-consulta.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31</pre><pre class="code-text"><code class="language-javascript">  const descricao = &#39;Tarefa criada para o teste de listagem.&#39;;
+  const criadoPor = &#39;Teste Playwright&#39;;
+
+  // Preparação da tarefa
+  await page.goto(&#39;./&#39;);
+
+  await page
+    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+  await page
+    .locator(&#39;#titulo-tarefa&#39;)
+    .fill(titulo);
+
+  await page
+    .locator(&#39;#descricao-tarefa&#39;)
+    .fill(descricao);
+
+  await page
+    .locator(&#39;#criado-por&#39;)
+    .fill(criadoPor);
+
+  await page
+    .locator(&#39;#salvar-tarefa&#39;)
+    .click();</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              cadastro.spec.js (Line 13:19 - Line 37:11),
+              edicao.spec.js (Line 244:15 - Line 255:42)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-2" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-2" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">cadastro.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37</pre><pre class="code-text"><code class="language-javascript">  const criadoPor =
+    &#39;Teste Playwright&#39;;
+
+
+  await page.goto(&#39;./&#39;);
+
+
+  await page
+    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+
+  await page
+    .locator(&#39;#titulo-tarefa&#39;)
+    .fill(titulo);
+
+
+  await page
+    .locator(&#39;#descricao-tarefa&#39;)
+    .fill(descricao);
+
+
+  await page
+    .locator(&#39;#criado-por&#39;)
+    .fill(criadoPor);</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255</pre><pre class="code-text"><code class="language-javascript">  const autor = &#39;Teste Playwright&#39;;
+
+  // Preparação
+  await page.goto(&#39;./&#39;);
+
+  await page
+    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+  await page.locator(&#39;#titulo-tarefa&#39;).fill(titulo);
+  await page.locator(&#39;#descricao-tarefa&#39;).fill(descricao);
+  await page.locator(&#39;#criado-por&#39;).fill(autor);</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              cadastro.spec.js (Line 14:23 - Line 37:11),
+              edicao.spec.js (Line 370:47 - Line 381:42)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-3" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-3" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">cadastro.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37</pre><pre class="code-text"><code class="language-javascript">    &#39;Teste Playwright&#39;;
+
+
+  await page.goto(&#39;./&#39;);
+
+
+  await page
+    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+
+  await page
+    .locator(&#39;#titulo-tarefa&#39;)
+    .fill(titulo);
+
+
+  await page
+    .locator(&#39;#descricao-tarefa&#39;)
+    .fill(descricao);
+
+
+  await page
+    .locator(&#39;#criado-por&#39;)
+    .fill(criadoPor);</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381</pre><pre class="code-text"><code class="language-javascript">  const autor = `Autor EDI06 ${identificador}`;
+
+  // Preparação
+  await page.goto(&#39;./&#39;);
+
+  await page
+    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+  await page.locator(&#39;#titulo-tarefa&#39;).fill(titulo);
+  await page.locator(&#39;#descricao-tarefa&#39;).fill(descricao);
+  await page.locator(&#39;#criado-por&#39;).fill(autor);</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              cadastro.spec.js (Line 21:16 - Line 42:14),
+              listagem-consulta.spec.js (Line 86:16 - Line 103:14)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-4" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-4" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">cadastro.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42</pre><pre class="code-text"><code class="language-javascript">    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+
+  await page
+    .locator(&#39;#titulo-tarefa&#39;)
+    .fill(titulo);
+
+
+  await page
+    .locator(&#39;#descricao-tarefa&#39;)
+    .fill(descricao);
+
+
+  await page
+    .locator(&#39;#criado-por&#39;)
+    .fill(criadoPor);
+
+
+  await page
+    .locator(&#39;#salvar-tarefa&#39;)
+    .click();</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">listagem-consulta.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103</pre><pre class="code-text"><code class="language-javascript">    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+  await page
+    .locator(&#39;#titulo-tarefa&#39;)
+    .fill(titulo);
+
+  await page
+    .locator(&#39;#descricao-tarefa&#39;)
+    .fill(descricao);
+
+  await page
+    .locator(&#39;#criado-por&#39;)
+    .fill(criadoPor);
+
+  await page
+    .locator(&#39;#salvar-tarefa&#39;)
+    .click();</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 10:59 - Line 58:20),
+              edicao.spec.js (Line 132:41 - Line 181:9)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-5" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-5" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58</pre><pre class="code-text"><code class="language-javascript">  const novaDescricao = &#39;Descrição alterada pelo EDI02.&#39;;
+
+  // =========================
+  // PREPARAÇÃO DA TAREFA
+  // =========================
+
+  await page.goto(&#39;./&#39;);
+
+  await page
+    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+  await page
+    .locator(&#39;#titulo-tarefa&#39;)
+    .fill(tituloOriginal);
+
+  await page
+    .locator(&#39;#descricao-tarefa&#39;)
+    .fill(descricaoOriginal);
+
+  await page
+    .locator(&#39;#criado-por&#39;)
+    .fill(autor);
+
+  await page
+    .locator(&#39;#salvar-tarefa&#39;)
+    .click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  // =========================
+  // EDIÇÃO
+  // =========================
+
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: tituloOriginal });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  await linha
+    .getByRole(&#39;link&#39;, { name: &#39;Editar&#39; })
+    .click();
+
+  await expect(page).toHaveURL(/editar\.html\?id=/);</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181</pre><pre class="code-text"><code class="language-javascript">    `EDI03 Não Salvar ${identificador}`;
+
+  // =========================
+  // PREPARAÇÃO DA TAREFA
+  // =========================
+
+  await page.goto(&#39;./&#39;);
+
+  await page
+    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+  await page
+    .locator(&#39;#titulo-tarefa&#39;)
+    .fill(tituloOriginal);
+
+  await page
+    .locator(&#39;#descricao-tarefa&#39;)
+    .fill(descricaoOriginal);
+
+  await page
+    .locator(&#39;#criado-por&#39;)
+    .fill(autor);
+
+  await page
+    .locator(&#39;#salvar-tarefa&#39;)
+    .click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  // =========================
+  // ABRIR EDIÇÃO
+  // =========================
+
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: tituloOriginal });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  await linha
+    .getByRole(&#39;link&#39;, { name: &#39;Editar&#39; })
+    .click();
+
+  await expect(
+    page.locator(&#39;#form-tarefa&#39;)</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 28:28 - Line 48:23),
+              edicao.spec.js (Line 254:57 - Line 266:23)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-6" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-6" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48</pre><pre class="code-text"><code class="language-javascript">    .fill(descricaoOriginal);
+
+  await page
+    .locator(&#39;#criado-por&#39;)
+    .fill(autor);
+
+  await page
+    .locator(&#39;#salvar-tarefa&#39;)
+    .click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  // =========================
+  // EDIÇÃO
+  // =========================
+
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: tituloOriginal });</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266</pre><pre class="code-text"><code class="language-javascript">  await page.locator(&#39;#descricao-tarefa&#39;).fill(descricao);
+  await page.locator(&#39;#criado-por&#39;).fill(autor);
+
+  await page.locator(&#39;#salvar-tarefa&#39;).click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  // Abrir edição
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 58:51 - Line 77:8),
+              edicao.spec.js (Line 218:21 - Line 235:8)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-7" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-7" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77</pre><pre class="code-text"><code class="language-javascript">  await expect(page).toHaveURL(/editar\.html\?id=/);
+
+  // Espera os dados da tarefa carregarem
+  await expect(
+    page.locator(&#39;#form-tarefa&#39;)
+  ).toBeVisible({
+    timeout: 10000
+  });
+
+  // Primeiro verificamos que a tarefa correta foi carregada
+  await expect(
+    page.locator(&#39;#titulo-tarefa&#39;)
+  ).toHaveValue(tituloOriginal);
+
+  await expect(
+    page.locator(&#39;#descricao-tarefa&#39;)
+  ).toHaveValue(descricaoOriginal);
+
+  // Altera os dados
+  await page</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235</pre><pre class="code-text"><code class="language-javascript">  await page.reload();
+
+  await expect(
+    page.locator(&#39;#form-tarefa&#39;)
+  ).toBeVisible({
+    timeout: 10000
+  });
+
+  // O título original deve continuar salvo
+  await expect(
+    page.locator(&#39;#titulo-tarefa&#39;)
+  ).toHaveValue(tituloOriginal);
+
+  await expect(
+    page.locator(&#39;#descricao-tarefa&#39;)
+  ).toHaveValue(descricaoOriginal);
+
+  await expect(</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 83:24 - Line 116:8),
+              historico.spec.js (Line 131:21 - Line 163:8)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-8" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-8" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116</pre><pre class="code-text"><code class="language-javascript">    .fill(novaDescricao);
+
+  await page
+    .locator(&#39;#salvar-edicao&#39;)
+    .click();
+
+  // =========================
+  // CONFIRMAÇÃO DA MODAL
+  // =========================
+
+  const modal = page.getByRole(&#39;dialog&#39;);
+
+  await expect(modal).toBeVisible();
+
+  await modal
+    .getByRole(&#39;button&#39;, { name: /Salvar|Confirmar/i })
+    .click();
+
+  // =========================
+  // VALIDAÇÃO
+  // =========================
+
+  await expect(page).toHaveURL(
+    /visualizar\.html\?id=/,
+    {
+      timeout: 15000
+    }
+  );
+
+  await expect(
+    page.getByText(novoTitulo, { exact: true })
+  ).toBeVisible();
+
+  await expect(</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163</pre><pre class="code-text"><code class="language-javascript">    .fill(novoTitulo);
+
+  await page
+    .locator(&#39;#salvar-edicao&#39;)
+    .click();
+
+  const modal = page.getByRole(&#39;dialog&#39;);
+
+  await expect(modal).toBeVisible();
+
+  await modal
+    .getByRole(&#39;button&#39;, {
+      name: /Salvar|Confirmar/i
+    })
+    .click();
+
+  // Espera edição ser persistida
+  await expect(page).toHaveURL(
+    /visualizar\.html\?id=/,
+    {
+      timeout: 15000
+    }
+  );
+
+  await expect(
+    page.getByText(novoTitulo, { exact: true })
+  ).toBeVisible();
+
+  // =========================
+  // HISTÓRICO
+  // =========================
+
+  await page.goto(&#39;./historico.html&#39;);</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 132:26 - Line 189:11),
+              historico.spec.js (Line 75:39 - Line 131:11)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-9" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-9" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189</pre><pre class="code-text"><code class="language-javascript">    `EDI03 Não Salvar ${identificador}`;
+
+  // =========================
+  // PREPARAÇÃO DA TAREFA
+  // =========================
+
+  await page.goto(&#39;./&#39;);
+
+  await page
+    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+  await page
+    .locator(&#39;#titulo-tarefa&#39;)
+    .fill(tituloOriginal);
+
+  await page
+    .locator(&#39;#descricao-tarefa&#39;)
+    .fill(descricaoOriginal);
+
+  await page
+    .locator(&#39;#criado-por&#39;)
+    .fill(autor);
+
+  await page
+    .locator(&#39;#salvar-tarefa&#39;)
+    .click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  // =========================
+  // ABRIR EDIÇÃO
+  // =========================
+
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: tituloOriginal });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  await linha
+    .getByRole(&#39;link&#39;, { name: &#39;Editar&#39; })
+    .click();
+
+  await expect(
+    page.locator(&#39;#form-tarefa&#39;)
+  ).toBeVisible({
+    timeout: 10000
+  });
+
+  // Altera o título
+  await page
+    .locator(&#39;#titulo-tarefa&#39;)
+    .fill(tituloNaoSalvo);</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131</pre><pre class="code-text"><code class="language-javascript">  const novoTitulo = `HIS02 Editada ${identificador}`;
+
+  // =========================
+  // CRIAR TAREFA
+  // =========================
+
+  await page.goto(&#39;./&#39;);
+
+  await page
+    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+  await page
+    .locator(&#39;#titulo-tarefa&#39;)
+    .fill(tituloOriginal);
+
+  await page
+    .locator(&#39;#descricao-tarefa&#39;)
+    .fill(descricaoOriginal);
+
+  await page
+    .locator(&#39;#criado-por&#39;)
+    .fill(autor);
+
+  await page
+    .locator(&#39;#salvar-tarefa&#39;)
+    .click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  // =========================
+  // EDITAR
+  // =========================
+
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: tituloOriginal });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  await linha
+    .getByRole(&#39;link&#39;, { name: &#39;Editar&#39; })
+    .click();
+
+  await expect(
+    page.locator(&#39;#form-tarefa&#39;)
+  ).toBeVisible({
+    timeout: 10000
+  });
+
+  await page
+    .locator(&#39;#titulo-tarefa&#39;)
+    .fill(novoTitulo);</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 170:39 - Line 189:11),
+              edicao.spec.js (Line 266:31 - Line 285:11)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-10" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-10" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189</pre><pre class="code-text"><code class="language-javascript">    .filter({ hasText: tituloOriginal });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  await linha
+    .getByRole(&#39;link&#39;, { name: &#39;Editar&#39; })
+    .click();
+
+  await expect(
+    page.locator(&#39;#form-tarefa&#39;)
+  ).toBeVisible({
+    timeout: 10000
+  });
+
+  // Altera o título
+  await page
+    .locator(&#39;#titulo-tarefa&#39;)
+    .fill(tituloNaoSalvo);</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285</pre><pre class="code-text"><code class="language-javascript">    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  await linha
+    .getByRole(&#39;link&#39;, { name: &#39;Editar&#39; })
+    .click();
+
+  await expect(
+    page.locator(&#39;#form-tarefa&#39;)
+  ).toBeVisible({
+    timeout: 10000
+  });
+
+  // Remove o título
+  await page
+    .locator(&#39;#titulo-tarefa&#39;)
+    .fill(&#39;&#39;);</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 243:52 - Line 284:14),
+              edicao.spec.js (Line 306:52 - Line 347:14)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-11" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-11" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284</pre><pre class="code-text"><code class="language-javascript">  const descricao = &#39;Descrição válida do EDI04.&#39;;
+  const autor = &#39;Teste Playwright&#39;;
+
+  // Preparação
+  await page.goto(&#39;./&#39;);
+
+  await page
+    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+  await page.locator(&#39;#titulo-tarefa&#39;).fill(titulo);
+  await page.locator(&#39;#descricao-tarefa&#39;).fill(descricao);
+  await page.locator(&#39;#criado-por&#39;).fill(autor);
+
+  await page.locator(&#39;#salvar-tarefa&#39;).click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  // Abrir edição
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  await linha
+    .getByRole(&#39;link&#39;, { name: &#39;Editar&#39; })
+    .click();
+
+  await expect(
+    page.locator(&#39;#form-tarefa&#39;)
+  ).toBeVisible({
+    timeout: 10000
+  });
+
+  // Remove o título
+  await page
+    .locator(&#39;#titulo-tarefa&#39;)</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347</pre><pre class="code-text"><code class="language-javascript">  const descricao = &#39;Descrição válida do EDI05.&#39;;
+  const autor = &#39;Teste Playwright&#39;;
+
+  // Preparação
+  await page.goto(&#39;./&#39;);
+
+  await page
+    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+  await page.locator(&#39;#titulo-tarefa&#39;).fill(titulo);
+  await page.locator(&#39;#descricao-tarefa&#39;).fill(descricao);
+  await page.locator(&#39;#criado-por&#39;).fill(autor);
+
+  await page.locator(&#39;#salvar-tarefa&#39;).click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  // Abrir edição
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  await linha
+    .getByRole(&#39;link&#39;, { name: &#39;Editar&#39; })
+    .click();
+
+  await expect(
+    page.locator(&#39;#form-tarefa&#39;)
+  ).toBeVisible({
+    timeout: 10000
+  });
+
+  // Remove a descrição
+  await page
+    .locator(&#39;#descricao-tarefa&#39;)</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 243:52 - Line 272:8),
+              status-exclusao.spec.js (Line 6:60 - Line 35:8)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-12" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-12" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272</pre><pre class="code-text"><code class="language-javascript">  const descricao = &#39;Descrição válida do EDI04.&#39;;
+  const autor = &#39;Teste Playwright&#39;;
+
+  // Preparação
+  await page.goto(&#39;./&#39;);
+
+  await page
+    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+  await page.locator(&#39;#titulo-tarefa&#39;).fill(titulo);
+  await page.locator(&#39;#descricao-tarefa&#39;).fill(descricao);
+  await page.locator(&#39;#criado-por&#39;).fill(autor);
+
+  await page.locator(&#39;#salvar-tarefa&#39;).click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  // Abrir edição
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  await linha</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35</pre><pre class="code-text"><code class="language-javascript">  const descricao = &#39;Tarefa criada para testar conclusão.&#39;;
+  const autor = &#39;Teste Playwright&#39;;
+
+  // Preparação da tarefa
+  await page.goto(&#39;./&#39;);
+
+  await page
+    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+  await page.locator(&#39;#titulo-tarefa&#39;).fill(titulo);
+  await page.locator(&#39;#descricao-tarefa&#39;).fill(descricao);
+  await page.locator(&#39;#criado-por&#39;).fill(autor);
+
+  await page.locator(&#39;#salvar-tarefa&#39;).click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  // Estado inicial
+  await expect(linha).toContainText(&#39;Pendente&#39;);</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 243:52 - Line 272:8),
+              status-exclusao.spec.js (Line 78:62 - Line 106:8)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-13" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-13" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272</pre><pre class="code-text"><code class="language-javascript">  const descricao = &#39;Descrição válida do EDI04.&#39;;
+  const autor = &#39;Teste Playwright&#39;;
+
+  // Preparação
+  await page.goto(&#39;./&#39;);
+
+  await page
+    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+  await page.locator(&#39;#titulo-tarefa&#39;).fill(titulo);
+  await page.locator(&#39;#descricao-tarefa&#39;).fill(descricao);
+  await page.locator(&#39;#criado-por&#39;).fill(autor);
+
+  await page.locator(&#39;#salvar-tarefa&#39;).click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  // Abrir edição
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  await linha</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106</pre><pre class="code-text"><code class="language-javascript">  const descricao = &#39;Tarefa criada para testar cancelamento.&#39;;
+  const autor = &#39;Teste Playwright&#39;;
+
+  // Preparação
+  await page.goto(&#39;./&#39;);
+
+  await page
+    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+  await page.locator(&#39;#titulo-tarefa&#39;).fill(titulo);
+  await page.locator(&#39;#descricao-tarefa&#39;).fill(descricao);
+  await page.locator(&#39;#criado-por&#39;).fill(autor);
+
+  await page.locator(&#39;#salvar-tarefa&#39;).click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  await expect(linha).toContainText(&#39;Pendente&#39;);</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 243:52 - Line 261:6),
+              status-exclusao.spec.js (Line 159:60 - Line 177:6)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-14" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-14" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261</pre><pre class="code-text"><code class="language-javascript">  const descricao = &#39;Descrição válida do EDI04.&#39;;
+  const autor = &#39;Teste Playwright&#39;;
+
+  // Preparação
+  await page.goto(&#39;./&#39;);
+
+  await page
+    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+  await page.locator(&#39;#titulo-tarefa&#39;).fill(titulo);
+  await page.locator(&#39;#descricao-tarefa&#39;).fill(descricao);
+  await page.locator(&#39;#criado-por&#39;).fill(autor);
+
+  await page.locator(&#39;#salvar-tarefa&#39;).click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177</pre><pre class="code-text"><code class="language-javascript">  const descricao = &#39;Tarefa criada para testar reabertura.&#39;;
+  const autor = &#39;Teste Playwright&#39;;
+
+  // Preparação: criar tarefa
+  await page.goto(&#39;./&#39;);
+
+  await page
+    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+  await page.locator(&#39;#titulo-tarefa&#39;).fill(titulo);
+  await page.locator(&#39;#descricao-tarefa&#39;).fill(descricao);
+  await page.locator(&#39;#criado-por&#39;).fill(autor);
+
+  await page.locator(&#39;#salvar-tarefa&#39;).click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 243:52 - Line 261:6),
+              status-exclusao.spec.js (Line 240:76 - Line 258:6)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-15" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-15" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261</pre><pre class="code-text"><code class="language-javascript">  const descricao = &#39;Descrição válida do EDI04.&#39;;
+  const autor = &#39;Teste Playwright&#39;;
+
+  // Preparação
+  await page.goto(&#39;./&#39;);
+
+  await page
+    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+  await page.locator(&#39;#titulo-tarefa&#39;).fill(titulo);
+  await page.locator(&#39;#descricao-tarefa&#39;).fill(descricao);
+  await page.locator(&#39;#criado-por&#39;).fill(autor);
+
+  await page.locator(&#39;#salvar-tarefa&#39;).click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258</pre><pre class="code-text"><code class="language-javascript">  const descricao = &#39;Tarefa criada para testar cancelamento de reabertura.&#39;;
+  const autor = &#39;Teste Playwright&#39;;
+
+  // Preparação
+  await page.goto(&#39;./&#39;);
+
+  await page
+    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+  await page.locator(&#39;#titulo-tarefa&#39;).fill(titulo);
+  await page.locator(&#39;#descricao-tarefa&#39;).fill(descricao);
+  await page.locator(&#39;#criado-por&#39;).fill(autor);
+
+  await page.locator(&#39;#salvar-tarefa&#39;).click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 243:52 - Line 273:16),
+              status-exclusao.spec.js (Line 332:59 - Line 362:16)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-16" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-16" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273</pre><pre class="code-text"><code class="language-javascript">  const descricao = &#39;Descrição válida do EDI04.&#39;;
+  const autor = &#39;Teste Playwright&#39;;
+
+  // Preparação
+  await page.goto(&#39;./&#39;);
+
+  await page
+    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+  await page.locator(&#39;#titulo-tarefa&#39;).fill(titulo);
+  await page.locator(&#39;#descricao-tarefa&#39;).fill(descricao);
+  await page.locator(&#39;#criado-por&#39;).fill(autor);
+
+  await page.locator(&#39;#salvar-tarefa&#39;).click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  // Abrir edição
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  await linha
+    .getByRole(&#39;link&#39;, { name: &#39;Editar&#39; })</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362</pre><pre class="code-text"><code class="language-javascript">  const descricao = &#39;Tarefa criada para testar exclusão.&#39;;
+  const autor = &#39;Teste Playwright&#39;;
+
+  // Preparação
+  await page.goto(&#39;./&#39;);
+
+  await page
+    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+  await page.locator(&#39;#titulo-tarefa&#39;).fill(titulo);
+  await page.locator(&#39;#descricao-tarefa&#39;).fill(descricao);
+  await page.locator(&#39;#criado-por&#39;).fill(autor);
+
+  await page.locator(&#39;#salvar-tarefa&#39;).click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  // Solicita exclusão
+  await linha
+    .getByRole(&#39;button&#39;, { name: &#39;Excluir&#39; })</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 243:52 - Line 261:6),
+              status-exclusao.spec.js (Line 401:75 - Line 419:6)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-17" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-17" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261</pre><pre class="code-text"><code class="language-javascript">  const descricao = &#39;Descrição válida do EDI04.&#39;;
+  const autor = &#39;Teste Playwright&#39;;
+
+  // Preparação
+  await page.goto(&#39;./&#39;);
+
+  await page
+    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+  await page.locator(&#39;#titulo-tarefa&#39;).fill(titulo);
+  await page.locator(&#39;#descricao-tarefa&#39;).fill(descricao);
+  await page.locator(&#39;#criado-por&#39;).fill(autor);
+
+  await page.locator(&#39;#salvar-tarefa&#39;).click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419</pre><pre class="code-text"><code class="language-javascript">  const descricao = &#39;Tarefa criada para testar cancelamento da exclusão.&#39;;
+  const autor = &#39;Teste Playwright&#39;;
+
+  // Preparação
+  await page.goto(&#39;./&#39;);
+
+  await page
+    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+  await page.locator(&#39;#titulo-tarefa&#39;).fill(titulo);
+  await page.locator(&#39;#descricao-tarefa&#39;).fill(descricao);
+  await page.locator(&#39;#criado-por&#39;).fill(autor);
+
+  await page.locator(&#39;#salvar-tarefa&#39;).click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 250:16 - Line 280:6),
+              edicao.spec.js (Line 376:16 - Line 406:6)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-18" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-18" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280</pre><pre class="code-text"><code class="language-javascript">    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+  await page.locator(&#39;#titulo-tarefa&#39;).fill(titulo);
+  await page.locator(&#39;#descricao-tarefa&#39;).fill(descricao);
+  await page.locator(&#39;#criado-por&#39;).fill(autor);
+
+  await page.locator(&#39;#salvar-tarefa&#39;).click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  // Abrir edição
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  await linha
+    .getByRole(&#39;link&#39;, { name: &#39;Editar&#39; })
+    .click();
+
+  await expect(
+    page.locator(&#39;#form-tarefa&#39;)
+  ).toBeVisible({
+    timeout: 10000
+  });</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406</pre><pre class="code-text"><code class="language-javascript">    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+  await page.locator(&#39;#titulo-tarefa&#39;).fill(titulo);
+  await page.locator(&#39;#descricao-tarefa&#39;).fill(descricao);
+  await page.locator(&#39;#criado-por&#39;).fill(autor);
+
+  await page.locator(&#39;#salvar-tarefa&#39;).click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  // Abrir edição
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  await linha
+    .getByRole(&#39;link&#39;, { name: &#39;Editar&#39; })
+    .click();
+
+  await expect(
+    page.locator(&#39;#form-tarefa&#39;)
+  ).toBeVisible({
+    timeout: 10000
+  });</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 255:47 - Line 272:8),
+              listagem-consulta.spec.js (Line 27:20 - Line 47:8)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-19" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-19" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272</pre><pre class="code-text"><code class="language-javascript">  await page.locator(&#39;#criado-por&#39;).fill(autor);
+
+  await page.locator(&#39;#salvar-tarefa&#39;).click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  // Abrir edição
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  await linha</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">listagem-consulta.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47</pre><pre class="code-text"><code class="language-javascript">    .fill(criadoPor);
+
+  await page
+    .locator(&#39;#salvar-tarefa&#39;)
+    .click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  // Localiza a linha da tarefa criada
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  // Valida os dados da linha
+  await expect(linha).toContainText(titulo);</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 370:32 - Line 387:6),
+              historico.spec.js (Line 7:32 - Line 34:6)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-20" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-20" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387</pre><pre class="code-text"><code class="language-javascript">  const autor = `Autor EDI06 ${identificador}`;
+
+  // Preparação
+  await page.goto(&#39;./&#39;);
+
+  await page
+    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+  await page.locator(&#39;#titulo-tarefa&#39;).fill(titulo);
+  await page.locator(&#39;#descricao-tarefa&#39;).fill(descricao);
+  await page.locator(&#39;#criado-por&#39;).fill(autor);
+
+  await page.locator(&#39;#salvar-tarefa&#39;).click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34</pre><pre class="code-text"><code class="language-javascript">  const autor = `Autor HIS01 ${identificador}`;
+
+  // Criar tarefa
+  await page.goto(&#39;./&#39;);
+
+  await page
+    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+  await page
+    .locator(&#39;#titulo-tarefa&#39;)
+    .fill(titulo);
+
+  await page
+    .locator(&#39;#descricao-tarefa&#39;)
+    .fill(descricao);
+
+  await page
+    .locator(&#39;#criado-por&#39;)
+    .fill(autor);
+
+  await page
+    .locator(&#39;#salvar-tarefa&#39;)
+    .click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 370:32 - Line 399:16),
+              historico.spec.js (Line 185:32 - Line 215:16)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-21" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-21" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399</pre><pre class="code-text"><code class="language-javascript">  const autor = `Autor EDI06 ${identificador}`;
+
+  // Preparação
+  await page.goto(&#39;./&#39;);
+
+  await page
+    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+  await page.locator(&#39;#titulo-tarefa&#39;).fill(titulo);
+  await page.locator(&#39;#descricao-tarefa&#39;).fill(descricao);
+  await page.locator(&#39;#criado-por&#39;).fill(autor);
+
+  await page.locator(&#39;#salvar-tarefa&#39;).click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  // Abrir edição
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  await linha
+    .getByRole(&#39;link&#39;, { name: &#39;Editar&#39; })</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215</pre><pre class="code-text"><code class="language-javascript">  const autor = `Autor HIS03 ${identificador}`;
+
+  // Criar tarefa
+  await page.goto(&#39;./&#39;);
+
+  await page
+    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+  await page.locator(&#39;#titulo-tarefa&#39;).fill(titulo);
+  await page.locator(&#39;#descricao-tarefa&#39;).fill(descricao);
+  await page.locator(&#39;#criado-por&#39;).fill(autor);
+
+  await page.locator(&#39;#salvar-tarefa&#39;).click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  // Localizar tarefa
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  // Concluir tarefa
+  await linha
+    .getByRole(&#39;button&#39;, { name: &#39;Concluir&#39; })</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 370:32 - Line 399:16),
+              historico.spec.js (Line 256:32 - Line 285:16)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-22" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-22" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399</pre><pre class="code-text"><code class="language-javascript">  const autor = `Autor EDI06 ${identificador}`;
+
+  // Preparação
+  await page.goto(&#39;./&#39;);
+
+  await page
+    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+  await page.locator(&#39;#titulo-tarefa&#39;).fill(titulo);
+  await page.locator(&#39;#descricao-tarefa&#39;).fill(descricao);
+  await page.locator(&#39;#criado-por&#39;).fill(autor);
+
+  await page.locator(&#39;#salvar-tarefa&#39;).click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  // Abrir edição
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  await linha
+    .getByRole(&#39;link&#39;, { name: &#39;Editar&#39; })</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285</pre><pre class="code-text"><code class="language-javascript">  const autor = `Autor HIS04 ${identificador}`;
+
+  // Criar tarefa
+  await page.goto(&#39;./&#39;);
+
+  await page
+    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+  await page.locator(&#39;#titulo-tarefa&#39;).fill(titulo);
+  await page.locator(&#39;#descricao-tarefa&#39;).fill(descricao);
+  await page.locator(&#39;#criado-por&#39;).fill(autor);
+
+  await page.locator(&#39;#salvar-tarefa&#39;).click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  // Primeiro conclui
+  await linha
+    .getByRole(&#39;button&#39;, { name: &#39;Concluir&#39; })</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 370:32 - Line 399:16),
+              historico.spec.js (Line 346:32 - Line 375:16)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-23" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-23" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399</pre><pre class="code-text"><code class="language-javascript">  const autor = `Autor EDI06 ${identificador}`;
+
+  // Preparação
+  await page.goto(&#39;./&#39;);
+
+  await page
+    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+  await page.locator(&#39;#titulo-tarefa&#39;).fill(titulo);
+  await page.locator(&#39;#descricao-tarefa&#39;).fill(descricao);
+  await page.locator(&#39;#criado-por&#39;).fill(autor);
+
+  await page.locator(&#39;#salvar-tarefa&#39;).click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  // Abrir edição
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  await linha
+    .getByRole(&#39;link&#39;, { name: &#39;Editar&#39; })</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375</pre><pre class="code-text"><code class="language-javascript">  const autor = `Autor HIS05 ${identificador}`;
+
+  // Criar tarefa
+  await page.goto(&#39;./&#39;);
+
+  await page
+    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+  await page.locator(&#39;#titulo-tarefa&#39;).fill(titulo);
+  await page.locator(&#39;#descricao-tarefa&#39;).fill(descricao);
+  await page.locator(&#39;#criado-por&#39;).fill(autor);
+
+  await page.locator(&#39;#salvar-tarefa&#39;).click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  // Excluir tarefa
+  await linha
+    .getByRole(&#39;button&#39;, { name: &#39;Excluir&#39; })</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 370:32 - Line 387:6),
+              historico.spec.js (Line 413:32 - Line 430:6)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-24" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-24" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387</pre><pre class="code-text"><code class="language-javascript">  const autor = `Autor EDI06 ${identificador}`;
+
+  // Preparação
+  await page.goto(&#39;./&#39;);
+
+  await page
+    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+  await page.locator(&#39;#titulo-tarefa&#39;).fill(titulo);
+  await page.locator(&#39;#descricao-tarefa&#39;).fill(descricao);
+  await page.locator(&#39;#criado-por&#39;).fill(autor);
+
+  await page.locator(&#39;#salvar-tarefa&#39;).click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430</pre><pre class="code-text"><code class="language-javascript">  const autor = `Autor HIS06 ${identificador}`;
+
+  // Criar tarefa
+  await page.goto(&#39;./&#39;);
+
+  await page
+    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+  await page.locator(&#39;#titulo-tarefa&#39;).fill(titulo);
+  await page.locator(&#39;#descricao-tarefa&#39;).fill(descricao);
+  await page.locator(&#39;#criado-por&#39;).fill(autor);
+
+  await page.locator(&#39;#salvar-tarefa&#39;).click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              edicao.spec.js (Line 370:32 - Line 381:42),
+              listagem-consulta.spec.js (Line 80:36 - Line 99:11)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-25" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-25" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">edicao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381</pre><pre class="code-text"><code class="language-javascript">  const autor = `Autor EDI06 ${identificador}`;
+
+  // Preparação
+  await page.goto(&#39;./&#39;);
+
+  await page
+    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+  await page.locator(&#39;#titulo-tarefa&#39;).fill(titulo);
+  await page.locator(&#39;#descricao-tarefa&#39;).fill(descricao);
+  await page.locator(&#39;#criado-por&#39;).fill(autor);</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">listagem-consulta.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99</pre><pre class="code-text"><code class="language-javascript">  const criadoPor = `Autor CON01 ${identificador}`;
+
+  // Preparação da tarefa
+  await page.goto(&#39;./&#39;);
+
+  await page
+    .getByRole(&#39;link&#39;, { name: &#39;+ Nova tarefa&#39; })
+    .click();
+
+  await page
+    .locator(&#39;#titulo-tarefa&#39;)
+    .fill(titulo);
+
+  await page
+    .locator(&#39;#descricao-tarefa&#39;)
+    .fill(descricao);
+
+  await page
+    .locator(&#39;#criado-por&#39;)
+    .fill(criadoPor);</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              historico.spec.js (Line 200:31 - Line 216:14),
+              historico.spec.js (Line 271:31 - Line 286:14)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-26" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-26" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216</pre><pre class="code-text"><code class="language-javascript">  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  // Localizar tarefa
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  // Concluir tarefa
+  await linha
+    .getByRole(&#39;button&#39;, { name: &#39;Concluir&#39; })
+    .click();</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286</pre><pre class="code-text"><code class="language-javascript">  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  // Primeiro conclui
+  await linha
+    .getByRole(&#39;button&#39;, { name: &#39;Concluir&#39; })
+    .click();</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              historico.spec.js (Line 200:31 - Line 215:33),
+              historico.spec.js (Line 361:31 - Line 375:33)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-27" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-27" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215</pre><pre class="code-text"><code class="language-javascript">  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  // Localizar tarefa
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  // Concluir tarefa
+  await linha
+    .getByRole(&#39;button&#39;, { name: &#39;Concluir&#39; })</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375</pre><pre class="code-text"><code class="language-javascript">  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  // Excluir tarefa
+  await linha
+    .getByRole(&#39;button&#39;, { name: &#39;Excluir&#39; })</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              historico.spec.js (Line 200:31 - Line 215:33),
+              status-exclusao.spec.js (Line 348:31 - Line 362:33)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-28" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-28" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215</pre><pre class="code-text"><code class="language-javascript">  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  // Localizar tarefa
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  // Concluir tarefa
+  await linha
+    .getByRole(&#39;button&#39;, { name: &#39;Concluir&#39; })</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362</pre><pre class="code-text"><code class="language-javascript">  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  // Solicita exclusão
+  await linha
+    .getByRole(&#39;button&#39;, { name: &#39;Excluir&#39; })</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              historico.spec.js (Line 205:9 - Line 216:14),
+              status-exclusao.spec.js (Line 179:7 - Line 190:14)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-29" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-29" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216</pre><pre class="code-text"><code class="language-javascript">  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  // Concluir tarefa
+  await linha
+    .getByRole(&#39;button&#39;, { name: &#39;Concluir&#39; })
+    .click();</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190</pre><pre class="code-text"><code class="language-javascript">  let linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  // Primeiro conclui a tarefa
+  await linha
+    .getByRole(&#39;button&#39;, { name: &#39;Concluir&#39; })
+    .click();</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              historico.spec.js (Line 211:4 - Line 223:33),
+              status-exclusao.spec.js (Line 106:47 - Line 119:33)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-30" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-30" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223</pre><pre class="code-text"><code class="language-javascript">  });
+
+  // Concluir tarefa
+  await linha
+    .getByRole(&#39;button&#39;, { name: &#39;Concluir&#39; })
+    .click();
+
+  const modal = page.getByRole(&#39;dialog&#39;);
+
+  await expect(modal).toBeVisible();
+
+  await modal
+    .getByRole(&#39;button&#39;, { name: &#39;Concluir&#39; })</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119</pre><pre class="code-text"><code class="language-javascript">  await expect(linha).toContainText(&#39;Pendente&#39;);
+
+  // Solicita conclusão
+  await linha
+    .getByRole(&#39;button&#39;, { name: &#39;Concluir&#39; })
+    .click();
+
+  const modal = page.getByRole(&#39;dialog&#39;);
+
+  await expect(modal).toBeVisible();
+
+  // Cancela
+  await modal
+    .getByRole(&#39;button&#39;, { name: &#39;Cancelar&#39; })</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              historico.spec.js (Line 218:9 - Line 234:8),
+              historico.spec.js (Line 288:7 - Line 304:8)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-31" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-31" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234</pre><pre class="code-text"><code class="language-javascript">  const modal = page.getByRole(&#39;dialog&#39;);
+
+  await expect(modal).toBeVisible();
+
+  await modal
+    .getByRole(&#39;button&#39;, { name: &#39;Concluir&#39; })
+    .click();
+
+  await expect(linha).toContainText(
+    &#39;Concluída&#39;,
+    {
+      timeout: 10000
+    }
+  );
+
+  // Abrir histórico
+  await page.goto(&#39;./historico.html&#39;);</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304</pre><pre class="code-text"><code class="language-javascript">  let modal = page.getByRole(&#39;dialog&#39;);
+
+  await expect(modal).toBeVisible();
+
+  await modal
+    .getByRole(&#39;button&#39;, { name: &#39;Concluir&#39; })
+    .click();
+
+  await expect(linha).toContainText(
+    &#39;Concluída&#39;,
+    {
+      timeout: 10000
+    }
+  );
+
+  // Agora reabre
+  await linha</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              historico.spec.js (Line 275:17 - Line 312:8),
+              status-exclusao.spec.js (Line 179:15 - Line 214:8)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-32" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-32" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312</pre><pre class="code-text"><code class="language-javascript">  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  // Primeiro conclui
+  await linha
+    .getByRole(&#39;button&#39;, { name: &#39;Concluir&#39; })
+    .click();
+
+  let modal = page.getByRole(&#39;dialog&#39;);
+
+  await expect(modal).toBeVisible();
+
+  await modal
+    .getByRole(&#39;button&#39;, { name: &#39;Concluir&#39; })
+    .click();
+
+  await expect(linha).toContainText(
+    &#39;Concluída&#39;,
+    {
+      timeout: 10000
+    }
+  );
+
+  // Agora reabre
+  await linha
+    .getByRole(&#39;button&#39;, { name: &#39;Reabrir&#39; })
+    .click();
+
+  modal = page.getByRole(&#39;dialog&#39;);
+
+  await expect(modal).toBeVisible();
+
+  await modal</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214</pre><pre class="code-text"><code class="language-javascript">  let linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  // Primeiro conclui a tarefa
+  await linha
+    .getByRole(&#39;button&#39;, { name: &#39;Concluir&#39; })
+    .click();
+
+  let modal = page.getByRole(&#39;dialog&#39;);
+
+  await expect(modal).toBeVisible();
+
+  await modal
+    .getByRole(&#39;button&#39;, { name: &#39;Concluir&#39; })
+    .click();
+
+  await expect(linha).toContainText(
+    &#39;Concluída&#39;,
+    { timeout: 10000 }
+  );
+
+  // Agora testa a reabertura
+  await linha
+    .getByRole(&#39;button&#39;, { name: &#39;Reabrir&#39; })
+    .click();
+
+  modal = page.getByRole(&#39;dialog&#39;);
+
+  await expect(modal).toBeVisible();
+
+  await expect(modal)</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              historico.spec.js (Line 296:23 - Line 313:33),
+              status-exclusao.spec.js (Line 281:23 - Line 297:33)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-33" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-33" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313</pre><pre class="code-text"><code class="language-javascript">  await expect(linha).toContainText(
+    &#39;Concluída&#39;,
+    {
+      timeout: 10000
+    }
+  );
+
+  // Agora reabre
+  await linha
+    .getByRole(&#39;button&#39;, { name: &#39;Reabrir&#39; })
+    .click();
+
+  modal = page.getByRole(&#39;dialog&#39;);
+
+  await expect(modal).toBeVisible();
+
+  await modal
+    .getByRole(&#39;button&#39;, { name: &#39;Reabrir&#39; })</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297</pre><pre class="code-text"><code class="language-javascript">  await expect(linha).toContainText(
+    &#39;Concluída&#39;,
+    { timeout: 10000 }
+  );
+
+  // Solicita reabertura
+  await linha
+    .getByRole(&#39;button&#39;, { name: &#39;Reabrir&#39; })
+    .click();
+
+  modal = page.getByRole(&#39;dialog&#39;);
+
+  await expect(modal).toBeVisible();
+
+  // Cancela
+  await modal
+    .getByRole(&#39;button&#39;, { name: &#39;Cancelar&#39; })</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              historico.spec.js (Line 362:12 - Line 382:8),
+              status-exclusao.spec.js (Line 349:12 - Line 369:8)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-34" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-34" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382</pre><pre class="code-text"><code class="language-javascript">    timeout: 15000
+  });
+
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  // Excluir tarefa
+  await linha
+    .getByRole(&#39;button&#39;, { name: &#39;Excluir&#39; })
+    .click();
+
+  const modal = page.getByRole(&#39;dialog&#39;);
+
+  await expect(modal).toBeVisible();
+
+  await modal</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369</pre><pre class="code-text"><code class="language-javascript">    timeout: 15000
+  });
+
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  // Solicita exclusão
+  await linha
+    .getByRole(&#39;button&#39;, { name: &#39;Excluir&#39; })
+    .click();
+
+  const modal = page.getByRole(&#39;dialog&#39;);
+
+  await expect(modal).toBeVisible();
+
+  await expect(modal)</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              historico.spec.js (Line 365:9 - Line 391:14),
+              historico.spec.js (Line 432:7 - Line 458:14)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-35" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-35" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391</pre><pre class="code-text"><code class="language-javascript">  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  // Excluir tarefa
+  await linha
+    .getByRole(&#39;button&#39;, { name: &#39;Excluir&#39; })
+    .click();
+
+  const modal = page.getByRole(&#39;dialog&#39;);
+
+  await expect(modal).toBeVisible();
+
+  await modal
+    .getByRole(&#39;button&#39;, { name: &#39;Excluir tarefa&#39; })
+    .click();
+
+  await expect(linha).toHaveCount(0, {
+    timeout: 10000
+  });
+
+  // Abrir histórico
+  await page.goto(&#39;./historico.html&#39;);</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458</pre><pre class="code-text"><code class="language-javascript">  let linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  // Excluir tarefa
+  await linha
+    .getByRole(&#39;button&#39;, { name: &#39;Excluir&#39; })
+    .click();
+
+  const modal = page.getByRole(&#39;dialog&#39;);
+
+  await expect(modal).toBeVisible();
+
+  await modal
+    .getByRole(&#39;button&#39;, { name: &#39;Excluir tarefa&#39; })
+    .click();
+
+  await expect(linha).toHaveCount(0, {
+    timeout: 10000
+  });
+
+  // Confirma que a tarefa realmente não existe mais na listagem
+  await page.reload();</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              historico.spec.js (Line 423:41 - Line 442:33),
+              status-exclusao.spec.js (Line 170:41 - Line 189:33)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-36" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-36" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442</pre><pre class="code-text"><code class="language-javascript">  await page.locator(&#39;#descricao-tarefa&#39;).fill(descricao);
+  await page.locator(&#39;#criado-por&#39;).fill(autor);
+
+  await page.locator(&#39;#salvar-tarefa&#39;).click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  let linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  // Excluir tarefa
+  await linha
+    .getByRole(&#39;button&#39;, { name: &#39;Excluir&#39; })</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189</pre><pre class="code-text"><code class="language-javascript">  await page.locator(&#39;#descricao-tarefa&#39;).fill(descricao);
+  await page.locator(&#39;#criado-por&#39;).fill(autor);
+
+  await page.locator(&#39;#salvar-tarefa&#39;).click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  let linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  // Primeiro conclui a tarefa
+  await linha
+    .getByRole(&#39;button&#39;, { name: &#39;Concluir&#39; })</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              historico.spec.js (Line 423:41 - Line 442:33),
+              status-exclusao.spec.js (Line 251:41 - Line 270:33)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-37" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-37" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442</pre><pre class="code-text"><code class="language-javascript">  await page.locator(&#39;#descricao-tarefa&#39;).fill(descricao);
+  await page.locator(&#39;#criado-por&#39;).fill(autor);
+
+  await page.locator(&#39;#salvar-tarefa&#39;).click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  let linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  // Excluir tarefa
+  await linha
+    .getByRole(&#39;button&#39;, { name: &#39;Excluir&#39; })</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270</pre><pre class="code-text"><code class="language-javascript">  await page.locator(&#39;#descricao-tarefa&#39;).fill(descricao);
+  await page.locator(&#39;#criado-por&#39;).fill(autor);
+
+  await page.locator(&#39;#salvar-tarefa&#39;).click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  let linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  // Primeiro conclui a tarefa
+  await linha
+    .getByRole(&#39;button&#39;, { name: &#39;Concluir&#39; })</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              historico.spec.js (Line 423:41 - Line 450:33),
+              status-exclusao.spec.js (Line 412:41 - Line 440:33)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-38" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-38" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">historico.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450</pre><pre class="code-text"><code class="language-javascript">  await page.locator(&#39;#descricao-tarefa&#39;).fill(descricao);
+  await page.locator(&#39;#criado-por&#39;).fill(autor);
+
+  await page.locator(&#39;#salvar-tarefa&#39;).click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  let linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  // Excluir tarefa
+  await linha
+    .getByRole(&#39;button&#39;, { name: &#39;Excluir&#39; })
+    .click();
+
+  const modal = page.getByRole(&#39;dialog&#39;);
+
+  await expect(modal).toBeVisible();
+
+  await modal
+    .getByRole(&#39;button&#39;, { name: &#39;Excluir tarefa&#39; })</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440</pre><pre class="code-text"><code class="language-javascript">  await page.locator(&#39;#descricao-tarefa&#39;).fill(descricao);
+  await page.locator(&#39;#criado-por&#39;).fill(autor);
+
+  await page.locator(&#39;#salvar-tarefa&#39;).click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  let linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  // Solicita exclusão
+  await linha
+    .getByRole(&#39;button&#39;, { name: &#39;Excluir&#39; })
+    .click();
+
+  const modal = page.getByRole(&#39;dialog&#39;);
+
+  await expect(modal).toBeVisible();
+
+  // Cancela
+  await modal
+    .getByRole(&#39;button&#39;, { name: &#39;Cancelar&#39; })</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              listagem-consulta.spec.js (Line 18:5 - Line 44:6),
+              listagem-consulta.spec.js (Line 90:5 - Line 115:6)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-39" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-39" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">listagem-consulta.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44</pre><pre class="code-text"><code class="language-javascript">    .locator(&#39;#titulo-tarefa&#39;)
+    .fill(titulo);
+
+  await page
+    .locator(&#39;#descricao-tarefa&#39;)
+    .fill(descricao);
+
+  await page
+    .locator(&#39;#criado-por&#39;)
+    .fill(criadoPor);
+
+  await page
+    .locator(&#39;#salvar-tarefa&#39;)
+    .click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  // Localiza a linha da tarefa criada
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">listagem-consulta.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115</pre><pre class="code-text"><code class="language-javascript">    .locator(&#39;#titulo-tarefa&#39;)
+    .fill(titulo);
+
+  await page
+    .locator(&#39;#descricao-tarefa&#39;)
+    .fill(descricao);
+
+  await page
+    .locator(&#39;#criado-por&#39;)
+    .fill(criadoPor);
+
+  await page
+    .locator(&#39;#salvar-tarefa&#39;)
+    .click();
+
+  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              listagem-consulta.spec.js (Line 33:16 - Line 47:37),
+              status-exclusao.spec.js (Line 22:16 - Line 35:37)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-40" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-40" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">listagem-consulta.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47</pre><pre class="code-text"><code class="language-javascript">  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  // Localiza a linha da tarefa criada
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  // Valida os dados da linha
+  await expect(linha).toContainText(titulo);</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35</pre><pre class="code-text"><code class="language-javascript">  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  // Estado inicial
+  await expect(linha).toContainText(&#39;Pendente&#39;);</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              listagem-consulta.spec.js (Line 33:16 - Line 47:37),
+              status-exclusao.spec.js (Line 94:16 - Line 106:37)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-41" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-41" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">listagem-consulta.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47</pre><pre class="code-text"><code class="language-javascript">  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  // Localiza a linha da tarefa criada
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  // Valida os dados da linha
+  await expect(linha).toContainText(titulo);</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106</pre><pre class="code-text"><code class="language-javascript">  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  await expect(linha).toContainText(&#39;Pendente&#39;);</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              status-exclusao.spec.js (Line 22:47 - Line 37:8),
+              status-exclusao.spec.js (Line 94:47 - Line 109:8)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-42" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-42" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37</pre><pre class="code-text"><code class="language-javascript">  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  // Estado inicial
+  await expect(linha).toContainText(&#39;Pendente&#39;);
+
+  await expect(</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109</pre><pre class="code-text"><code class="language-javascript">  await expect(page).toHaveURL(/index\.html/, {
+    timeout: 15000
+  });
+
+  const linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  await expect(linha).toContainText(&#39;Pendente&#39;);
+
+  // Solicita conclusão
+  await linha</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              status-exclusao.spec.js (Line 110:45 - Line 126:23),
+              status-exclusao.spec.js (Line 431:44 - Line 446:23)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-43" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-43" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126</pre><pre class="code-text"><code class="language-javascript">    .getByRole(&#39;button&#39;, { name: &#39;Concluir&#39; })
+    .click();
+
+  const modal = page.getByRole(&#39;dialog&#39;);
+
+  await expect(modal).toBeVisible();
+
+  // Cancela
+  await modal
+    .getByRole(&#39;button&#39;, { name: &#39;Cancelar&#39; })
+    .click();
+
+  // Modal deve desaparecer
+  await expect(modal).not.toBeVisible();
+
+  // Estado não pode mudar
+  await expect(linha).toContainText(&#39;Pendente&#39;);</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446</pre><pre class="code-text"><code class="language-javascript">    .getByRole(&#39;button&#39;, { name: &#39;Excluir&#39; })
+    .click();
+
+  const modal = page.getByRole(&#39;dialog&#39;);
+
+  await expect(modal).toBeVisible();
+
+  // Cancela
+  await modal
+    .getByRole(&#39;button&#39;, { name: &#39;Cancelar&#39; })
+    .click();
+
+  await expect(modal).not.toBeVisible();
+
+  // A tarefa continua visível
+  await expect(linha).toBeVisible();</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              status-exclusao.spec.js (Line 113:9 - Line 126:37),
+              status-exclusao.spec.js (Line 291:3 - Line 304:20)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-44" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-44" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126</pre><pre class="code-text"><code class="language-javascript">  const modal = page.getByRole(&#39;dialog&#39;);
+
+  await expect(modal).toBeVisible();
+
+  // Cancela
+  await modal
+    .getByRole(&#39;button&#39;, { name: &#39;Cancelar&#39; })
+    .click();
+
+  // Modal deve desaparecer
+  await expect(modal).not.toBeVisible();
+
+  // Estado não pode mudar
+  await expect(linha).toContainText(&#39;Pendente&#39;);</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304</pre><pre class="code-text"><code class="language-javascript">  modal = page.getByRole(&#39;dialog&#39;);
+
+  await expect(modal).toBeVisible();
+
+  // Cancela
+  await modal
+    .getByRole(&#39;button&#39;, { name: &#39;Cancelar&#39; })
+    .click();
+
+  await expect(modal).not.toBeVisible();
+
+  // Continua concluída
+  await expect(linha)
+    .toContainText(&#39;Concluída&#39;);</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              status-exclusao.spec.js (Line 176:12 - Line 214:8),
+              status-exclusao.spec.js (Line 257:12 - Line 296:8)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-45" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-45" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214</pre><pre class="code-text"><code class="language-javascript">    timeout: 15000
+  });
+
+  let linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  // Primeiro conclui a tarefa
+  await linha
+    .getByRole(&#39;button&#39;, { name: &#39;Concluir&#39; })
+    .click();
+
+  let modal = page.getByRole(&#39;dialog&#39;);
+
+  await expect(modal).toBeVisible();
+
+  await modal
+    .getByRole(&#39;button&#39;, { name: &#39;Concluir&#39; })
+    .click();
+
+  await expect(linha).toContainText(
+    &#39;Concluída&#39;,
+    { timeout: 10000 }
+  );
+
+  // Agora testa a reabertura
+  await linha
+    .getByRole(&#39;button&#39;, { name: &#39;Reabrir&#39; })
+    .click();
+
+  modal = page.getByRole(&#39;dialog&#39;);
+
+  await expect(modal).toBeVisible();
+
+  await expect(modal)</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296</pre><pre class="code-text"><code class="language-javascript">    timeout: 15000
+  });
+
+  let linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  // Primeiro conclui a tarefa
+  await linha
+    .getByRole(&#39;button&#39;, { name: &#39;Concluir&#39; })
+    .click();
+
+  let modal = page.getByRole(&#39;dialog&#39;);
+
+  await expect(modal).toBeVisible();
+
+  await modal
+    .getByRole(&#39;button&#39;, { name: &#39;Concluir&#39; })
+    .click();
+
+  await expect(linha).toContainText(
+    &#39;Concluída&#39;,
+    { timeout: 10000 }
+  );
+
+  // Solicita reabertura
+  await linha
+    .getByRole(&#39;button&#39;, { name: &#39;Reabrir&#39; })
+    .click();
+
+  modal = page.getByRole(&#39;dialog&#39;);
+
+  await expect(modal).toBeVisible();
+
+  // Cancela
+  await modal</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <div class="clone-item">
+            <div class="clone-info">
+              status-exclusao.spec.js (Line 308:17 - Line 322:20),
+              status-exclusao.spec.js (Line 449:26 - Line 463:20)
+            </div>
+            <div>
+              <button class="toggle-btn" data-code="code-javascript-46" onclick="toggle(this.dataset.code)">Show code</button>
+            </div>
+            <div id="code-javascript-46" class="code-pair">
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322</pre><pre class="code-text"><code class="language-javascript">  ).toBeVisible();
+
+  // Verifica persistência no banco
+  await page.reload();
+
+  linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  await expect(linha)
+    .toContainText(&#39;Concluída&#39;);</code></pre></div>
+              </div>
+              
+              <div class="code-side">
+                <div class="code-file">status-exclusao.spec.js</div>
+                <div class="code-lines"><pre class="code-gutter" aria-hidden="true">449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463</pre><pre class="code-text"><code class="language-javascript">    .toContainText(titulo);
+
+  // Recarrega para verificar persistência
+  await page.reload();
+
+  linha = page
+    .locator(&#39;#lista-tarefas tr&#39;)
+    .filter({ hasText: titulo });
+
+  await expect(linha).toBeVisible({
+    timeout: 10000
+  });
+
+  await expect(linha)
+    .toContainText(titulo);</code></pre></div>
+              </div>
+              
+            </div>
+          </div>
+          
+        </div>
+      </section>
+    </div>
+    
+    
+  </div>
+
+  <div class="footer">
+    <p>Generated by <a href="https://jscpd.dev" target="_blank">jscpd</a> v5.4.3 by <a href="https://github.com/kucherenko" target="_blank">Andrey Kucherenko</a></p>
+    <p><a href="https://www.npmjs.com/package/jscpd" target="_blank"><img src="https://img.shields.io/npm/dw/jscpd.svg?style=flat-square" alt="npm weekly downloads" style="vertical-align: middle;"></a></p>
+  </div>
+
+  
+  <script>window.Prism = { manual: true };</script>
+  <script>/*!
+MIT LICENSE
+
+Copyright (c) 2012 Lea Verou
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+*/
+/*! Prism 1.30.0 (https://prismjs.com), MIT License, see LICENSE next to this file. Bundled by rust/scripts/vendor-prism.py. */
+
+var _self="undefined"!=typeof window?window:"undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?self:{},Prism=function(e){var n=/(?:^|\s)lang(?:uage)?-([\w-]+)(?=\s|$)/i,t=0,r={},a={manual:e.Prism&&e.Prism.manual,disableWorkerMessageHandler:e.Prism&&e.Prism.disableWorkerMessageHandler,util:{encode:function e(n){return n instanceof i?new i(n.type,e(n.content),n.alias):Array.isArray(n)?n.map(e):n.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\u00a0/g," ")},type:function(e){return Object.prototype.toString.call(e).slice(8,-1)},objId:function(e){return e.__id||Object.defineProperty(e,"__id",{value:++t}),e.__id},clone:function e(n,t){var r,i;switch(t=t||{},a.util.type(n)){case"Object":if(i=a.util.objId(n),t[i])return t[i];for(var l in r={},t[i]=r,n)n.hasOwnProperty(l)&&(r[l]=e(n[l],t));return r;case"Array":return i=a.util.objId(n),t[i]?t[i]:(r=[],t[i]=r,n.forEach((function(n,a){r[a]=e(n,t)})),r);default:return n}},getLanguage:function(e){for(;e;){var t=n.exec(e.className);if(t)return t[1].toLowerCase();e=e.parentElement}return"none"},setLanguage:function(e,t){e.className=e.className.replace(RegExp(n,"gi"),""),e.classList.add("language-"+t)},currentScript:function(){if("undefined"==typeof document)return null;if(document.currentScript&&"SCRIPT"===document.currentScript.tagName)return document.currentScript;try{throw new Error}catch(r){var e=(/at [^(\r\n]*\((.*):[^:]+:[^:]+\)$/i.exec(r.stack)||[])[1];if(e){var n=document.getElementsByTagName("script");for(var t in n)if(n[t].src==e)return n[t]}return null}},isActive:function(e,n,t){for(var r="no-"+n;e;){var a=e.classList;if(a.contains(n))return!0;if(a.contains(r))return!1;e=e.parentElement}return!!t}},languages:{plain:r,plaintext:r,text:r,txt:r,extend:function(e,n){var t=a.util.clone(a.languages[e]);for(var r in n)t[r]=n[r];return t},insertBefore:function(e,n,t,r){var i=(r=r||a.languages)[e],l={};for(var o in i)if(i.hasOwnProperty(o)){if(o==n)for(var s in t)t.hasOwnProperty(s)&&(l[s]=t[s]);t.hasOwnProperty(o)||(l[o]=i[o])}var u=r[e];return r[e]=l,a.languages.DFS(a.languages,(function(n,t){t===u&&n!=e&&(this[n]=l)})),l},DFS:function e(n,t,r,i){i=i||{};var l=a.util.objId;for(var o in n)if(n.hasOwnProperty(o)){t.call(n,o,n[o],r||o);var s=n[o],u=a.util.type(s);"Object"!==u||i[l(s)]?"Array"!==u||i[l(s)]||(i[l(s)]=!0,e(s,t,o,i)):(i[l(s)]=!0,e(s,t,null,i))}}},plugins:{},highlightAll:function(e,n){a.highlightAllUnder(document,e,n)},highlightAllUnder:function(e,n,t){var r={callback:t,container:e,selector:'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'};a.hooks.run("before-highlightall",r),r.elements=Array.prototype.slice.apply(r.container.querySelectorAll(r.selector)),a.hooks.run("before-all-elements-highlight",r);for(var i,l=0;i=r.elements[l++];)a.highlightElement(i,!0===n,r.callback)},highlightElement:function(n,t,r){var i=a.util.getLanguage(n),l=a.languages[i];a.util.setLanguage(n,i);var o=n.parentElement;o&&"pre"===o.nodeName.toLowerCase()&&a.util.setLanguage(o,i);var s={element:n,language:i,grammar:l,code:n.textContent};function u(e){s.highlightedCode=e,a.hooks.run("before-insert",s),s.element.innerHTML=s.highlightedCode,a.hooks.run("after-highlight",s),a.hooks.run("complete",s),r&&r.call(s.element)}if(a.hooks.run("before-sanity-check",s),(o=s.element.parentElement)&&"pre"===o.nodeName.toLowerCase()&&!o.hasAttribute("tabindex")&&o.setAttribute("tabindex","0"),!s.code)return a.hooks.run("complete",s),void(r&&r.call(s.element));if(a.hooks.run("before-highlight",s),s.grammar)if(t&&e.Worker){var c=new Worker(a.filename);c.onmessage=function(e){u(e.data)},c.postMessage(JSON.stringify({language:s.language,code:s.code,immediateClose:!0}))}else u(a.highlight(s.code,s.grammar,s.language));else u(a.util.encode(s.code))},highlight:function(e,n,t){var r={code:e,grammar:n,language:t};if(a.hooks.run("before-tokenize",r),!r.grammar)throw new Error('The language "'+r.language+'" has no grammar.');return r.tokens=a.tokenize(r.code,r.grammar),a.hooks.run("after-tokenize",r),i.stringify(a.util.encode(r.tokens),r.language)},tokenize:function(e,n){var t=n.rest;if(t){for(var r in t)n[r]=t[r];delete n.rest}var a=new s;return u(a,a.head,e),o(e,a,n,a.head,0),function(e){for(var n=[],t=e.head.next;t!==e.tail;)n.push(t.value),t=t.next;return n}(a)},hooks:{all:{},add:function(e,n){var t=a.hooks.all;t[e]=t[e]||[],t[e].push(n)},run:function(e,n){var t=a.hooks.all[e];if(t&&t.length)for(var r,i=0;r=t[i++];)r(n)}},Token:i};function i(e,n,t,r){this.type=e,this.content=n,this.alias=t,this.length=0|(r||"").length}function l(e,n,t,r){e.lastIndex=n;var a=e.exec(t);if(a&&r&&a[1]){var i=a[1].length;a.index+=i,a[0]=a[0].slice(i)}return a}function o(e,n,t,r,s,g){for(var f in t)if(t.hasOwnProperty(f)&&t[f]){var h=t[f];h=Array.isArray(h)?h:[h];for(var d=0;d<h.length;++d){if(g&&g.cause==f+","+d)return;var v=h[d],p=v.inside,m=!!v.lookbehind,y=!!v.greedy,k=v.alias;if(y&&!v.pattern.global){var x=v.pattern.toString().match(/[imsuy]*$/)[0];v.pattern=RegExp(v.pattern.source,x+"g")}for(var b=v.pattern||v,w=r.next,A=s;w!==n.tail&&!(g&&A>=g.reach);A+=w.value.length,w=w.next){var P=w.value;if(n.length>e.length)return;if(!(P instanceof i)){var E,S=1;if(y){if(!(E=l(b,A,e,m))||E.index>=e.length)break;var L=E.index,O=E.index+E[0].length,C=A;for(C+=w.value.length;L>=C;)C+=(w=w.next).value.length;if(A=C-=w.value.length,w.value instanceof i)continue;for(var j=w;j!==n.tail&&(C<O||"string"==typeof j.value);j=j.next)S++,C+=j.value.length;S--,P=e.slice(A,C),E.index-=A}else if(!(E=l(b,0,P,m)))continue;L=E.index;var N=E[0],_=P.slice(0,L),M=P.slice(L+N.length),W=A+P.length;g&&W>g.reach&&(g.reach=W);var I=w.prev;if(_&&(I=u(n,I,_),A+=_.length),c(n,I,S),w=u(n,I,new i(f,p?a.tokenize(N,p):N,k,N)),M&&u(n,w,M),S>1){var T={cause:f+","+d,reach:W};o(e,n,t,w.prev,A,T),g&&T.reach>g.reach&&(g.reach=T.reach)}}}}}}function s(){var e={value:null,prev:null,next:null},n={value:null,prev:e,next:null};e.next=n,this.head=e,this.tail=n,this.length=0}function u(e,n,t){var r=n.next,a={value:t,prev:n,next:r};return n.next=a,r.prev=a,e.length++,a}function c(e,n,t){for(var r=n.next,a=0;a<t&&r!==e.tail;a++)r=r.next;n.next=r,r.prev=n,e.length-=a}if(e.Prism=a,i.stringify=function e(n,t){if("string"==typeof n)return n;if(Array.isArray(n)){var r="";return n.forEach((function(n){r+=e(n,t)})),r}var i={type:n.type,content:e(n.content,t),tag:"span",classes:["token",n.type],attributes:{},language:t},l=n.alias;l&&(Array.isArray(l)?Array.prototype.push.apply(i.classes,l):i.classes.push(l)),a.hooks.run("wrap",i);var o="";for(var s in i.attributes)o+=" "+s+'="'+(i.attributes[s]||"").replace(/"/g,"&quot;")+'"';return"<"+i.tag+' class="'+i.classes.join(" ")+'"'+o+">"+i.content+"</"+i.tag+">"},!e.document)return e.addEventListener?(a.disableWorkerMessageHandler||e.addEventListener("message",(function(n){var t=JSON.parse(n.data),r=t.language,i=t.code,l=t.immediateClose;e.postMessage(a.highlight(i,a.languages[r],r)),l&&e.close()}),!1),a):a;var g=a.util.currentScript();function f(){a.manual||a.highlightAll()}if(g&&(a.filename=g.src,g.hasAttribute("data-manual")&&(a.manual=!0)),!a.manual){var h=document.readyState;"loading"===h||"interactive"===h&&g&&g.defer?document.addEventListener("DOMContentLoaded",f):window.requestAnimationFrame?window.requestAnimationFrame(f):window.setTimeout(f,16)}return a}(_self);"undefined"!=typeof module&&module.exports&&(module.exports=Prism),"undefined"!=typeof global&&(global.Prism=Prism);
+Prism.languages.clike={comment:[{pattern:/(^|[^\\])\/\*[\s\S]*?(?:\*\/|$)/,lookbehind:!0,greedy:!0},{pattern:/(^|[^\\:])\/\/.*/,lookbehind:!0,greedy:!0}],string:{pattern:/(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,greedy:!0},"class-name":{pattern:/(\b(?:class|extends|implements|instanceof|interface|new|trait)\s+|\bcatch\s+\()[\w.\\]+/i,lookbehind:!0,inside:{punctuation:/[.\\]/}},keyword:/\b(?:break|catch|continue|do|else|finally|for|function|if|in|instanceof|new|null|return|throw|try|while)\b/,boolean:/\b(?:false|true)\b/,function:/\b\w+(?=\()/,number:/\b0x[\da-f]+\b|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:e[+-]?\d+)?/i,operator:/[<>]=?|[!=]=?=?|--?|\+\+?|&&?|\|\|?|[?*/~^%]/,punctuation:/[{}[\];(),.:]/};
+Prism.languages.javascript=Prism.languages.extend("clike",{"class-name":[Prism.languages.clike["class-name"],{pattern:/(^|[^$\w\xA0-\uFFFF])(?!\s)[_$A-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\.(?:constructor|prototype))/,lookbehind:!0}],keyword:[{pattern:/((?:^|\})\s*)catch\b/,lookbehind:!0},{pattern:/(^|[^.]|\.\.\.\s*)\b(?:as|assert(?=\s*\{)|async(?=\s*(?:function\b|\(|[$\w\xA0-\uFFFF]|$))|await|break|case|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally(?=\s*(?:\{|$))|for|from(?=\s*(?:['"]|$))|function|(?:get|set)(?=\s*(?:[#\[$\w\xA0-\uFFFF]|$))|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)\b/,lookbehind:!0}],function:/#?(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*(?:\.\s*(?:apply|bind|call)\s*)?\()/,number:{pattern:RegExp("(^|[^\\w$])(?:NaN|Infinity|0[bB][01]+(?:_[01]+)*n?|0[oO][0-7]+(?:_[0-7]+)*n?|0[xX][\\dA-Fa-f]+(?:_[\\dA-Fa-f]+)*n?|\\d+(?:_\\d+)*n|(?:\\d+(?:_\\d+)*(?:\\.(?:\\d+(?:_\\d+)*)?)?|\\.\\d+(?:_\\d+)*)(?:[Ee][+-]?\\d+(?:_\\d+)*)?)(?![\\w$])"),lookbehind:!0},operator:/--|\+\+|\*\*=?|=>|&&=?|\|\|=?|[!=]==|<<=?|>>>?=?|[-+*/%&|^!=<>]=?|\.{3}|\?\?=?|\?\.?|[~:]/}),Prism.languages.javascript["class-name"][0].pattern=/(\b(?:class|extends|implements|instanceof|interface|new)\s+)[\w.\\]+/,Prism.languages.insertBefore("javascript","keyword",{regex:{pattern:RegExp("((?:^|[^$\\w\\xA0-\\uFFFF.\"'\\])\\s]|\\b(?:return|yield))\\s*)/(?:(?:\\[(?:[^\\]\\\\\r\n]|\\\\.)*\\]|\\\\.|[^/\\\\\\[\r\n])+/[dgimyus]{0,7}|(?:\\[(?:[^[\\]\\\\\r\n]|\\\\.|\\[(?:[^[\\]\\\\\r\n]|\\\\.|\\[(?:[^[\\]\\\\\r\n]|\\\\.)*\\])*\\])*\\]|\\\\.|[^/\\\\\\[\r\n])+/[dgimyus]{0,7}v[dgimyus]{0,7})(?=(?:\\s|/\\*(?:[^*]|\\*(?!/))*\\*/)*(?:$|[\r\n,.;:})\\]]|//))"),lookbehind:!0,greedy:!0,inside:{"regex-source":{pattern:/^(\/)[\s\S]+(?=\/[a-z]*$)/,lookbehind:!0,alias:"language-regex",inside:Prism.languages.regex},"regex-delimiter":/^\/|\/$/,"regex-flags":/^[a-z]+$/}},"function-variable":{pattern:/#?(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*[=:]\s*(?:async\s*)?(?:\bfunction\b|(?:\((?:[^()]|\([^()]*\))*\)|(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)\s*=>))/,alias:"function"},parameter:[{pattern:/(function(?:\s+(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)?\s*\(\s*)(?!\s)(?:[^()\s]|\s+(?![\s)])|\([^()]*\))+(?=\s*\))/,lookbehind:!0,inside:Prism.languages.javascript},{pattern:/(^|[^$\w\xA0-\uFFFF])(?!\s)[_$a-z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*=>)/i,lookbehind:!0,inside:Prism.languages.javascript},{pattern:/(\(\s*)(?!\s)(?:[^()\s]|\s+(?![\s)])|\([^()]*\))+(?=\s*\)\s*=>)/,lookbehind:!0,inside:Prism.languages.javascript},{pattern:/((?:\b|\s|^)(?!(?:as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)(?![$\w\xA0-\uFFFF]))(?:(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*\s*)\(\s*|\]\s*\(\s*)(?!\s)(?:[^()\s]|\s+(?![\s)])|\([^()]*\))+(?=\s*\)\s*\{)/,lookbehind:!0,inside:Prism.languages.javascript}],constant:/\b[A-Z](?:[A-Z_]|\dx?)*\b/}),Prism.languages.insertBefore("javascript","string",{hashbang:{pattern:/^#!.*/,greedy:!0,alias:"comment"},"template-string":{pattern:/`(?:\\[\s\S]|\$\{(?:[^{}]|\{(?:[^{}]|\{[^}]*\})*\})+\}|(?!\$\{)[^\\`])*`/,greedy:!0,inside:{"template-punctuation":{pattern:/^`|`$/,alias:"string"},interpolation:{pattern:/((?:^|[^\\])(?:\\{2})*)\$\{(?:[^{}]|\{(?:[^{}]|\{[^}]*\})*\})+\}/,lookbehind:!0,inside:{"interpolation-punctuation":{pattern:/^\$\{|\}$/,alias:"punctuation"},rest:Prism.languages.javascript}},string:/[\s\S]+/}},"string-property":{pattern:/((?:^|[,{])[ \t]*)(["'])(?:\\(?:\r\n|[\s\S])|(?!\2)[^\\\r\n])*\2(?=\s*:)/m,lookbehind:!0,greedy:!0,alias:"property"}}),Prism.languages.insertBefore("javascript","operator",{"literal-property":{pattern:/((?:^|[,{])[ \t]*)(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*:)/m,lookbehind:!0,alias:"property"}}),Prism.languages.markup&&(Prism.languages.markup.tag.addInlined("script","javascript"),Prism.languages.markup.tag.addAttribute("on(?:abort|blur|change|click|composition(?:end|start|update)|dblclick|error|focus(?:in|out)?|key(?:down|up)|load|mouse(?:down|enter|leave|move|out|over|up)|reset|resize|scroll|select|slotchange|submit|unload|wheel)","javascript")),Prism.languages.js=Prism.languages.javascript;</script>
+  
+  <script>
+    function toggle(id) {
+      var el = document.getElementById(id);
+      if (!el) { return; }
+      el.classList.toggle('visible');
+      // Highlight a clone's code when it is first shown, not the whole page on load.
+      if (window.Prism && !el.hasAttribute('data-highlighted')) {
+        el.setAttribute('data-highlighted', '');
+        Prism.highlightAllUnder(el);
+      }
+    }
+  </script>
+</body>
+</html>
