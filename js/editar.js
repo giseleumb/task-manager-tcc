@@ -4,7 +4,7 @@ const form = document.getElementById("form-tarefa");
 const titulo = document.getElementById("titulo-tarefa");
 const descricao = document.getElementById("descricao-tarefa");
 const criadoPor = document.getElementById("criado-por");
-const botaoSalvar = document.getElementById("salvar-edicao");
+const botaoSalvar = document.getElementById("confirmar-edicao-tarefa");
 
 async function carregarTarefa() {
   if (!id) {
