@@ -162,7 +162,7 @@ test('EXC01 - excluir tarefa e confirmar', async ({ page }) => {
   await lista.solicitarExclusao(titulo);
   await expect(lista.modal).toBeVisible();
   await expect(lista.modal).toContainText(titulo);
-  await lista.confirmarModal();
+  await lista.confirmarExclusao();
 
   await expect(linha).toHaveCount(0, { timeout: 10000 });
   await expect(lista.mensagem).toContainText('Tarefa excluída com sucesso.');

@@ -158,7 +158,7 @@ test('HIS05 - registrar evento de exclusão', async ({ page }) => {
   await expect(linha).toBeVisible({ timeout: 10000 });
   await lista.solicitarExclusao(titulo);
   await expect(lista.modal).toBeVisible();
-  await lista.confirmarModal();
+  await lista.confirmarExclusao();
   await expect(linha).toHaveCount(0, { timeout: 10000 });
 
   await historico.abrir();
@@ -187,7 +187,7 @@ test('HIS06 - preservar histórico após exclusão', async ({ page }) => {
   await expect(linha).toBeVisible({ timeout: 10000 });
   await lista.solicitarExclusao(titulo);
   await expect(lista.modal).toBeVisible();
-  await lista.confirmarModal();
+  await lista.confirmarExclusao();
   await expect(linha).toHaveCount(0, { timeout: 10000 });
 
   // Verifica que a tarefa foi efetivamente removida da listagem persistida.

@@ -93,6 +93,16 @@ class ListaPage {
     await this.modal.locator('[data-modal-confirmar]').click();
   }
 
+  async confirmarExclusao() {
+    await this.confirmarModal();
+
+    await this.modal
+      .getByText('Confirmação definitiva')
+      .waitFor({ state: 'visible' });
+
+    await this.confirmarModal();
+  }
+
   async cancelarModal() {
     await this.modal.locator('[data-modal-cancelar]').click();
   }
