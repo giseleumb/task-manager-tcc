@@ -382,6 +382,12 @@ test('HIS05 - registrar evento de exclusão', async ({ page }) => {
   await modal
     .getByRole('button', { name: 'Excluir tarefa' })
     .click();
+  // CENÁRIO 3: segunda confirmação de exclusão
+  await expect(modal).toContainText('Confirmação definitiva');
+
+  await modal
+    .getByRole('button', { name: 'Excluir definitivamente' })
+    .click();
 
   await expect(linha).toHaveCount(0, {
     timeout: 10000
@@ -448,6 +454,13 @@ test('HIS06 - preservar histórico após exclusão', async ({ page }) => {
 
   await modal
     .getByRole('button', { name: 'Excluir tarefa' })
+    .click();
+
+  // CENÁRIO 3: segunda confirmação de exclusão
+  await expect(modal).toContainText('Confirmação definitiva');
+
+  await modal
+    .getByRole('button', { name: 'Excluir definitivamente' })
     .click();
 
   await expect(linha).toHaveCount(0, {

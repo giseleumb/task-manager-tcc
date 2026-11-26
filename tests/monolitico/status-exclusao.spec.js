@@ -374,6 +374,13 @@ test('EXC01 - excluir tarefa e confirmar', async ({ page }) => {
     .getByRole('button', { name: 'Excluir tarefa' })
     .click();
 
+  // CENÁRIO 3: segunda confirmação de exclusão
+  await expect(modal).toContainText('Confirmação definitiva');
+
+  await modal
+    .getByRole('button', { name: 'Excluir definitivamente' })
+    .click();
+
   // A tarefa deve desaparecer da listagem
   await expect(linha).toHaveCount(0, {
     timeout: 10000
