@@ -125,6 +125,17 @@ async function excluirTarefa(id, tituloTarefa) {
 
   if (!confirmou) return;
 
+  // CENÁRIO 3: segunda etapa de confirmação
+  const confirmouDefinitivamente = await abrirModalConfirmacao({
+    titulo: "Confirmação definitiva",
+    mensagem: `Confirma a exclusão definitiva da tarefa "${tituloTarefa}"?`,
+    confirmarTexto: "Excluir definitivamente",
+    cancelarTexto: "Cancelar exclusão",
+    perigoso: true
+  });
+
+  if (!confirmouDefinitivamente) return;
+
   const { error } = await window.dbClient
     .from("tarefas")
     .delete()
