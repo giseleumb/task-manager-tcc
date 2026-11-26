@@ -3,6 +3,7 @@ const carregando = document.getElementById("carregando");
 const form = document.getElementById("form-tarefa");
 const titulo = document.getElementById("titulo-tarefa");
 const descricao = document.getElementById("descricao-tarefa");
+const justificativa = document.getElementById("justificativa-edicao");
 const criadoPor = document.getElementById("criado-por");
 const botaoSalvar = document.getElementById("salvar-edicao");
 
@@ -37,6 +38,7 @@ form.addEventListener("submit", async (event) => {
 
   const tituloNormalizado = titulo.value.trim();
   const descricaoNormalizada = descricao.value.trim();
+  const justificativaNormalizada = justificativa.value.trim();
 
   if (!tituloNormalizado) {
     mostrarMensagem("O título é obrigatório.", "error");
@@ -47,6 +49,12 @@ form.addEventListener("submit", async (event) => {
   if (!descricaoNormalizada) {
     mostrarMensagem("A descrição é obrigatória.", "error");
     descricao.focus();
+    return;
+  }
+
+  if (!justificativaNormalizada) {
+    mostrarMensagem("A justificativa da edição é obrigatória.", "error");
+    justificativa.focus();
     return;
   }
 
